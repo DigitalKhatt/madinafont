@@ -1,2 +1,1 @@
-# madinafont
-Madina OpenType variable font
+# Madina OpenType variable font
