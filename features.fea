@@ -418,7 +418,7 @@ lookup kaflamalef {
     sub lam.medi.beforeheh by lam.medi.beforeheh.afterkaf;
   } kaflamalef.l1;
 
-  sub  [kaf.init kaf.medi]'lookup  kaflamalef.l1 [lam.medi.laf lam.fina alef.fina lam.medi lam.medi.beforeheh]'lookup kaflamalef.l1;
+  sub  [kaf.init kaf.medi]'lookup  kaflamalef.l1 [lam.medi.laf lam.fina alef.fina lam.medi lam.medi.beforeheh lam.medi.beforeyeh]'lookup kaflamalef.l1;
   
 
 } kaflamalef;
@@ -792,6 +792,8 @@ lookup isolkern {
   pos [alef.fina.laf]' [hah.init]'<0 0 -100 0>;
 
   pos [alef.fina.lamalef]' [hah.init hah.init.ii]'<0 0 -100 0>;
+
+  #pos [alef.fina.lamalef]'<-100 0 0 0>;
 
   pos alef.isol' lam.init.lam_hah';
 

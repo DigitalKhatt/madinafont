@@ -2514,6 +2514,7 @@ Lookup* Madina::glyphalternates() {
   cv01mappings.insert({ "alef.fina","alef.fina" });
   cv01mappings.insert({ "yehshape.fina","yehshape.fina.expa" });
   cv01mappings.insert({ "yehshape.fina.ii","yehshape.fina.ii.expa" });
+  cv01mappings.insert({ "yehshape.fina.afterbeh","yehshape.fina.afterbeh.expa" });
 
   struct AltFeature {
     struct Subst {
