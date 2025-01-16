@@ -617,6 +617,16 @@
             }
         }
     },
+    "cursivejoinrtl": {
+        "rtlcursive": {
+            "entryParameters": {
+                "waw.fina": [
+                    -17,
+                    0
+                ]
+            }
+        }
+    },
     "defaultdotmarks": {
         "onedotdown": {
             "onedotdown": {
@@ -976,6 +986,10 @@
                     "seen.isol": [
                         221,
                         -54
+                    ],
+                    "seen.medi.beforeyeh": [
+                        66,
+                        -13
                     ]
                 }
             }
@@ -1025,7 +1039,7 @@
                     ],
                     "behshape.medi.beforeyeh": [
                         75,
-                        -108
+                        -153
                     ],
                     "behshape.medi.expa": [
                         -5,
@@ -1222,7 +1236,7 @@
                         -80
                     ],
                     "waw.fina": [
-                        218,
+                        198,
                         -185
                     ],
                     "waw.isol": [
@@ -1625,6 +1639,10 @@
                         97,
                         0
                     ],
+                    "seen.medi.beforeyeh": [
+                        93,
+                        20
+                    ],
                     "tah.medi": [
                         146,
                         -14
@@ -1858,8 +1876,8 @@
                         -45
                     ],
                     "lam.medi.beforeyeh": [
-                        -147,
-                        -65
+                        -66,
+                        -88
                     ],
                     "lam.medi.laf": [
                         -94,
@@ -2246,8 +2264,8 @@
                         -151
                     ],
                     "behshape.init": [
-                        0,
-                        -96
+                        -9,
+                        -47
                     ],
                     "behshape.init.beforebeh": [
                         -46,
@@ -2546,8 +2564,8 @@
                         -62
                     ],
                     "lam.medi.beforeyeh": [
-                        -141,
-                        -79
+                        -59,
+                        -46
                     ],
                     "lam.medi.laf": [
                         -115,
@@ -2904,8 +2922,8 @@
                         136
                     ],
                     "kaf.fina.afterlam.expa": [
-                        8,
-                        79
+                        -12,
+                        149
                     ],
                     "lam.isol": [
                         -30,
@@ -3074,8 +3092,8 @@
             "beforewaw": {
                 "baseparameters": {
                     "behshape.init": [
-                        -16,
-                        14
+                        9,
+                        47
                     ],
                     "behshape.medi": [
                         49,
@@ -3101,9 +3119,13 @@
                         125,
                         0
                     ],
-                    "seen.medi": [
-                        95,
+                    "seen.init": [
+                        66,
                         0
+                    ],
+                    "seen.medi": [
+                        45,
+                        -8
                     ],
                     "tah.init": [
                         147,
@@ -3112,6 +3134,12 @@
                     "tah.medi": [
                         126,
                         -19
+                    ]
+                },
+                "markparameters": {
+                    "hamzaabove.joined": [
+                        -16,
+                        50
                     ]
                 }
             }
