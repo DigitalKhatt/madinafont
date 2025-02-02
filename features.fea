@@ -37,17 +37,19 @@ lookup miscellaneoussubst {
   @joinedmarks = [smallalef smallalef.joined hamzaabove.joined smallhighyeh  smallhighnoon maddahabove];
 
   lookup miscellaneoussubst.l1 {
-    sub  cgj hamzaabove cgj by hamzaabove; 
-    sub  cgj maddahabove cgj by maddahabove; 
-    sub  cgj hamzaabove by hamzaabove; 
-    sub  cgj smallhighseen by smallhighseen; 
-    sub  cgj maddahabove by maddahabove; 
-    sub  hamzaabove cgj by hamzaabove;  
-    sub  maddahabove cgj by maddahabove;      
-    sub  tatweel smallalef by smallalef.joined; 
-    sub  tatweel hamzaabove by hamzaabove.joined;      
-    sub  tatweel smallhighyeh by smallhighyeh;      
-    sub  tatweel smallhighnoon by smallhighnoon;         
+    sub cgj hamzaabove cgj by hamzaabove; 
+    sub cgj maddahabove cgj by maddahabove; 
+    sub cgj hamzaabove by hamzaabove; 
+    sub cgj smallhighseen by smallhighseen; 
+    sub cgj maddahabove by maddahabove; 
+    sub hamzaabove cgj by hamzaabove;  
+    sub hamzaabove.joined cgj by hamzaabove.joined; 
+    sub maddahabove cgj by maddahabove;      
+    sub hamzabelow cgj by hamzabelow;
+    sub tatweel smallalef by smallalef.joined; 
+    sub tatweel hamzaabove by hamzaabove.joined;      
+    sub tatweel smallhighyeh by smallhighyeh;      
+    sub tatweel smallhighnoon by smallhighnoon;         
   } miscellaneoussubst.l1;
 
    lookup miscellaneoussubst.l2 {
@@ -58,7 +60,7 @@ lookup miscellaneoussubst {
 
   sub [smallalef] cgj'lookup miscellaneoussubst.l1 hamzaabove';  
 
-  sub [hamzaabove maddahabove]'lookup miscellaneoussubst.l1 cgj';
+  sub [hamzaabove maddahabove hamzabelow hamzaabove.joined]'lookup miscellaneoussubst.l1 cgj';
 
   sub tatweel'lookup miscellaneoussubst.l1 [smallalef hamzaabove smallhighyeh smallhighnoon];
 

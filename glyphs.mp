@@ -3500,7 +3500,7 @@ fill
 (56,95) .. tension 1 and 2.38398 ..
  {up}(84.9801,141.411) .. tension 3.07244 and 4.80937 ..
  {up}(2.37573,751.962) .. tension 1.60026 and 2.59865 ..
- {right}(30.6235,829.368) .. tension 14.1548 and 25.1081 ..
+ {right}(31,829) .. tension 14.1548 and 25.1081 ..
 (54.6821,697.203) .. tension 1.53225 ..
 brdmv ( (140.273,258.5), (45.1389,-6.94444), (-7.52315,-57.8704) ) .. tension 1 ..
 brdmv ( (242.213,149.737), (194.322,-38.8583), (-67.4172,-13.6183) ) setranchor
@@ -3516,7 +3516,6 @@ brdmv ( (163.878,103.495), (18.0556,4.86111), (-10.7639,-19.3287) ) .. tension 1
 
 tr_:= tr_ shifted (0,-lamdaldeep);
 
-show currentwidth;
 enddefchar;
 defchar(lam.medi.beforeheh.afterkaf,-1,-1,-1,-1);
 %%backgroundimage:images/kaflamheh.jpg,-772.255,-1298.67,1,0,0,1
@@ -3724,8 +3723,8 @@ bldmv ( (92.9877,99.8857), (-63.6,-15.6), (16.7824,-8.68056) ) ..
 bldmv ( (149.461,164.203), (0,0), (0,0) ) .. tension 1 ..
 (179.121,229.879) .. tension 1.83772 and 1 ..
 (213.009,292.964) .. tension 1 and 1.53351 ..
- {right}(268.677,340.706) .. tension 1.41266 and 1.83398 ..
- {down}(367.773,149.319) .. tension 1.20926 and 3.07538 ..
+ {right}(269,341) .. tension 1.41266 and 1.83398 ..
+ {down}(367,149) .. tension 1.20926 and 3.07538 ..
  {left}(352.33,88.5327) .. tension 0.790113 and 1.39505 ..
 (252.986,97.8763) .. tension 1 and 1.60112 ..
  {dir 121.679}(174.613,135.393) {dir -102.826} .. tension 0.925966 and 2.12515 ..
@@ -3742,9 +3741,6 @@ fill
 %%endpaths
 %%beginbody
 
-
-
-%labels(1,2);
 enddefchar;
 defchar(meem.init.beforehah,-1,-1,-1,-1);
 %%backgroundimage:images/meemhah.jpg,-1200.26,-1066.27,1,0,0,1
