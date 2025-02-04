@@ -1788,18 +1788,18 @@ feature shr1 {
     
   } shrr.alefcursive;
 
-  lookup shr1.kern {	
+  #lookup shr1.kern {	
   
-    feature shr1;
+  #  feature shr1;
 
-    lookupflag IgnoreMarks;
+  #  lookupflag IgnoreMarks;
 
-    pos [alef.fina alef.isol]  @bases'<0 0 -50 0>;
+  #  pos [alef.fina alef.isol]  @bases'<0 0 -50 0>;
 
-    pos /dal.fina/ kaf.init'<0 0 -150 0>;
+  #  pos /dal.fina/ kaf.init'<0 0 -150 0>;
     
     
-  } shr1.kern;
+  #} shr1.kern;
 
   lookup shr1.dalcursive {	
   

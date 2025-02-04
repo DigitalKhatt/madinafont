@@ -706,20 +706,21 @@ Lookup* Madina::cursivejoinrtl() {
 
   for (auto it = entryAnchorsRTL.constBegin(); it != entryAnchorsRTL.constEnd(); ++it) {
     QString cursiveName = it.key();
-    auto entries = it.value();
-    auto exits = exitAnchorsRTL[cursiveName];
-
+    auto& entries = it.value();
+    auto& exits = exitAnchorsRTL[cursiveName];
+   
     CursiveSubtable* newsubtable = new CursiveSubtable(lookup);
     lookup->subtables.append(newsubtable);
     newsubtable->name = cursiveName;
 
     for (auto anchor = entries.constBegin(); anchor != entries.constEnd(); ++anchor) {
-      newsubtable->anchors[anchor.key()].entry = anchor.value();
+        newsubtable->anchors[anchor.key()].entry = anchor.value();
     }
 
     for (auto anchor = exits.constBegin(); anchor != exits.constEnd(); ++anchor) {
-      newsubtable->anchors[anchor.key()].exit = anchor.value();
+        newsubtable->anchors[anchor.key()].exit = anchor.value();
     }
+   
   }
 
   return lookup;

@@ -653,8 +653,10 @@ z1 = (106,25);
 %%beginbody
 interim leftbearing := 0;
 interim rightbearing := 0;
-drawcomp(one_dot,identity);
-drawcomp(one_dot,identity shifted z1);
+%drawcomp(one_dot,identity);
+%drawcomp(one_dot,identity shifted z1);
+draw one_dot.pic;
+draw one_dot.pic  shifted z1;
 savepicture:=1;
 
 endchar;
