@@ -790,8 +790,9 @@ lookup isolkern {
     pos /^alef.fina/ <100 0 100 0>;
     pos /^lam.init.lamalef/ <0 0 50 0>;    
   } isolkern.o2;
-
+  
   pos [alef.fina.laf]' [hah.init]'<0 0 -100 0>;
+  pos [dal.fina]' [kaf.init.beforemeem]'<0 0 -50 0>; #added by zeeshan
 
   pos [alef.fina.lamalef]' [hah.init hah.init.ii]'<0 0 -100 0>;
 
@@ -860,13 +861,29 @@ lookup variouskern {
   pos [alef.fina.lamalef alef.fina alef.isol]' [hamzaabove]' [fatha damma sukun]' [kaf.init.ascent]'<0 0 150 0>;
 
   pos [alef.isol alef.fina]' [wasla]' [kaf.init]'<0 0 100 0>;
-
+   pos [waw.fina]' [kaf.init.beforemeem]'<0 0 -200 0>; #added by zeeshan
+  pos [reh.fina]' [kasra]' [kaf.init.beforemeem]'<0 0 -200 0>; #added by zeeshan
+   pos [reh.fina]' [kasra]' [kaf.init]'<0 0 -100 0>; #added by zeeshan
+  pos [reh.fina.afterseen]' [kasra]' [feh.isol]'<0 0 -100 0>; #added by zeeshan
+    pos [reh.fina]' [kasra]' [kaf.init.ii]' <0 0 -150 0>; #added by zeeshan
+  pos [waw.fina]' [fatha]' [kaf.init.beforelam]' <0 0 -250 0>; #added by zeeshan
+  pos [reh.fina]' [damma]' space' [kaf.init.beforelam]' <0 0 -250 0>; #added by zeeshan
+  pos [alef.fina.lamalef]' space' [kaf.init.beforelam]' <0 0 -150 0>; #added by zeeshan
+  pos [waw.fina]' [sukun]' space' [kaf.init.beforelam]' <0 0 -350 0>; #added by zeeshan
+  pos [reh.fina.afterseen]' [kasra]' [hah.init.ii]' <0 0 -200 0>; #added by zeeshan
+  pos [reh.fina.afterseen]' [kasra]' [kaf.isol]' <0 0 -100 0>; #added by zeeshan
+  
+  
   pos @waqfmarks space [kaf.init kaf.init.beforelam]'<0 0 100 0>;
 
   pos [alef.isol]' [hamzaabove]' [sukun]' space' [kaf.init]'<0 0 100 0>; 
 
   pos [waw.isol reh.isol]' ([@topmarks @topdotmarks]?)' (@topmarks?)' [heh.isol]'<0 0 100 0> [twodotsup]' [kasratanidgham]';
-
+  lookup variouskern.l9 {
+    pos hamza.isol <0 0 -200 0>;    	
+  } variouskern.l9;
+  pos alef.fina.lamalef' maddahabove' hamza.isol' lookup variouskern.l9; # page 183 line 9 هَٰٓو͏ٔ͏ُلَا͏ٓءِ
+  
   lookup variouskern.smallletters {
     pos [heh.fina.afterlam hamza.isol heh.isol heh.fina] <50 0 50 0>;
     pos meem.fina.afterkaf <100 0 100 0>;
