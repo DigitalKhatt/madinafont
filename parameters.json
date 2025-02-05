@@ -145,6 +145,10 @@
             },
             "fathashadda": {
                 "baseparameters": {
+                    "tah.fina": [
+                        200,
+                        -40
+                    ],
                     "tah.init": [
                         95,
                         -221
@@ -157,6 +161,10 @@
             },
             "fathatandammatan": {
                 "baseparameters": {
+                    "tah.fina": [
+                        200,
+                        -40
+                    ],
                     "tah.medi": [
                         249,
                         -225
@@ -617,16 +625,6 @@
             }
         }
     },
-    "cursivejoinrtl": {
-        "rtlcursive": {
-            "entryParameters": {
-                "waw.fina": [
-                    -17,
-                    0
-                ]
-            }
-        }
-    },
     "defaultdotmarks": {
         "onedotdown": {
             "onedotdown": {
@@ -912,6 +910,10 @@
                     "tah.init": [
                         68,
                         -510
+                    ],
+                    "tah.init.beforeyeh": [
+                        160,
+                        -400
                     ],
                     "tah.isol": [
                         245,
@@ -1396,8 +1398,8 @@
                         16
                     ],
                     "behshape.medi.beforeyeh": [
-                        -49,
-                        -156
+                        -5,
+                        -223
                     ],
                     "dal.isol": [
                         33,
@@ -1532,8 +1534,8 @@
                         -222
                     ],
                     "meem.fina": [
-                        86,
-                        120
+                        66,
+                        80
                     ],
                     "meem.fina.basmala": [
                         24,
@@ -1580,7 +1582,7 @@
                         -29
                     ],
                     "qaf.fina.expa": [
-                        -82,
+                        158,
                         -45
                     ],
                     "reh.fina": [
@@ -1642,6 +1644,10 @@
                     "seen.medi.beforeyeh": [
                         93,
                         20
+                    ],
+                    "tah.fina": [
+                        220,
+                        0
                     ],
                     "tah.medi": [
                         146,
@@ -1815,6 +1821,10 @@
                         -240,
                         -20
                     ],
+                    "kaf.medi": [
+                        -92,
+                        -161
+                    ],
                     "kaf.medi.beforemeem": [
                         -47,
                         -175
@@ -1887,6 +1897,14 @@
                         -64,
                         -11
                     ],
+                    "meem.fina": [
+                        100,
+                        20
+                    ],
+                    "meem.isol": [
+                        120,
+                        20
+                    ],
                     "meem.medi.afterhah": [
                         -18,
                         75
@@ -1915,6 +1933,14 @@
                         167,
                         32
                     ],
+                    "sad.fina": [
+                        480,
+                        40
+                    ],
+                    "sad.isol": [
+                        220,
+                        0
+                    ],
                     "sad.medi": [
                         276,
                         -9
@@ -1922,6 +1948,10 @@
                     "sad.medi.beforereh": [
                         275,
                         15
+                    ],
+                    "sad.medi.beforeyeh": [
+                        240,
+                        40
                     ],
                     "seen.isol": [
                         333,
@@ -2205,6 +2235,10 @@
             },
             "fathatandammatan": {
                 "baseparameters": {
+                    "tah.fina": [
+                        240,
+                        -20
+                    ],
                     "tah.isol": [
                         306,
                         -363
@@ -2213,6 +2247,10 @@
             },
             "idgham": {
                 "baseparameters": {
+                    "tah.fina": [
+                        270,
+                        20
+                    ],
                     "tah.isol": [
                         458,
                         -347
@@ -2640,8 +2678,8 @@
                         -127
                     ],
                     "sad.fina": [
-                        231,
-                        -125
+                        511,
+                        -5
                     ],
                     "sad.isol": [
                         266,
@@ -2652,8 +2690,12 @@
                         -16
                     ],
                     "sad.medi.beforereh": [
-                        250,
-                        -67
+                        310,
+                        -27
+                    ],
+                    "sad.medi.beforeyeh": [
+                        200,
+                        -20
                     ],
                     "seen.fina": [
                         192,
@@ -3585,6 +3627,10 @@
                         1,
                         100
                     ],
+                    "kaf.init.beforelam": [
+                        0,
+                        80
+                    ],
                     "kaf.init.beforeyeh": [
                         0,
                         -166
@@ -3784,6 +3830,10 @@
                     "heh.isol": [
                         -19,
                         -148
+                    ],
+                    "kaf.init.beforelam": [
+                        -60,
+                        40
                     ],
                     "kaf.init.beforeyeh": [
                         100,
