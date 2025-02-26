@@ -173,6 +173,10 @@
             },
             "idgham": {
                 "baseparameters": {
+                    "tah.fina": [
+                        260,
+                        0
+                    ],
                     "tah.init": [
                         152,
                         -222
@@ -309,8 +313,8 @@
                     0
                 ],
                 "fatha": [
-                    11,
-                    -83,
+                    -9,
+                    -63,
                     0,
                     0
                 ]
@@ -872,8 +876,8 @@
                         115
                     ],
                     "reh.isol": [
-                        92,
-                        20
+                        152,
+                        40
                     ],
                     "sad.fina": [
                         378,
@@ -1147,6 +1151,10 @@
                 "baseparameters": {
                     "onedotup": [
                         -41,
+                        0
+                    ],
+                    "three_dots": [
+                        -22,
                         0
                     ],
                     "twodotsup": [
@@ -1918,7 +1926,7 @@
                         -57
                     ],
                     "reh.fina": [
-                        109,
+                        189,
                         67
                     ],
                     "reh.fina.afterbehshape": [
@@ -1952,6 +1960,10 @@
                     "sad.medi.beforeyeh": [
                         240,
                         40
+                    ],
+                    "seen.fina": [
+                        180,
+                        80
                     ],
                     "seen.isol": [
                         333,
@@ -2152,7 +2164,7 @@
                         -25
                     ],
                     "hah.medi.aftermeem": [
-                        -104,
+                        -23,
                         23
                     ],
                     "hah.medi.lam_hah": [
@@ -2425,6 +2437,10 @@
                         -14,
                         -95
                     ],
+                    "hah.medi.aftermeem": [
+                        -100,
+                        -20
+                    ],
                     "hah.medi.ii": [
                         -57,
                         -23
@@ -2626,8 +2642,8 @@
                         -183
                     ],
                     "meem.fina.afterkaf": [
-                        -69,
-                        -425
+                        -41,
+                        -463
                     ],
                     "meem.fina.ii": [
                         27,
@@ -3596,8 +3612,8 @@
                         81
                     ],
                     "fehshape.init": [
-                        69,
-                        -153
+                        29,
+                        47
                     ],
                     "fehshape.init.beforeyeh": [
                         34,
@@ -3878,6 +3894,10 @@
                     "reh.isol": [
                         -55,
                         0
+                    ],
+                    "sad.init": [
+                        120,
+                        100
                     ],
                     "seen.isol": [
                         277,
