@@ -844,7 +844,7 @@ lookup variouskern {
     pos /^alef/ <500 0 500 0>;	
   } alefkern.l2;
 
-  pos /^alef/'lookup alefkern.l1 (wasla | (hamzaabove [fatha damma]))  [/behshape.init/ /fehshape.init/] /dot/ shadda [fatha fathatan fathatanidgham];	
+  #pos /^alef/'lookup alefkern.l1 (wasla | (hamzaabove [fatha damma]))  #[/behshape.init/ /fehshape.init/] /dot/ shadda [fatha fathatan #fathatanidgham];	
 
   pos /^alef.isol/ maddahabove /^hamza.isol/'lookup variouskern.l1 dammatan'lookup variouskern.l2;
   #pos fathatanidgham /^alef.isol/'lookup variouskern.l1;
@@ -861,21 +861,43 @@ lookup variouskern {
   pos [alef.fina.lamalef alef.fina alef.isol]' [hamzaabove]' [fatha damma sukun]' [kaf.init.ascent]'<0 0 150 0>;
 
   pos [alef.isol alef.fina]' [wasla]' [kaf.init]'<0 0 100 0>;
-   pos [waw.fina]' [kaf.init.beforemeem]'<0 0 -200 0>; #added by zeeshan
+  pos [waw.fina]' [kaf.init.beforemeem]'<0 0 -200 0>; #added by zeeshan
   pos [reh.fina]' [kasra]' [kaf.init.beforemeem]'<0 0 -200 0>; #added by zeeshan
-   pos [reh.fina]' [kasra]' [kaf.init]'<0 0 -100 0>; #added by zeeshan
+  pos [reh.fina]' [kasra]' [kaf.init]'<0 0 -100 0>; #added by zeeshan
   pos [reh.fina.afterseen]' [kasra]' [feh.isol]'<0 0 -100 0>; #added by zeeshan
-    pos [reh.fina]' [kasra]' [kaf.init.ii]' <0 0 -150 0>; #added by zeeshan
+  pos [reh.fina]' [kasra]' [kaf.init.ii]' <0 0 -150 0>; #added by zeeshan
   pos [waw.fina]' [fatha]' [kaf.init.beforelam]' <0 0 -250 0>; #added by zeeshan
   pos [reh.fina]' [damma]' space' [kaf.init.beforelam]' <0 0 -250 0>; #added by zeeshan
   pos [alef.fina.lamalef]' space' [kaf.init.beforelam]' <0 0 -150 0>; #added by zeeshan
   pos [waw.fina]' [sukun]' space' [kaf.init.beforelam]' <0 0 -350 0>; #added by zeeshan
   pos [reh.fina.afterseen]' [kasra]' [hah.init.ii]' <0 0 -200 0>; #added by zeeshan
   pos [reh.fina.afterseen]' [kasra]' [kaf.isol]' <0 0 -100 0>; #added by zeeshan
-  
-  
+  pos [reh.fina]' [kasra]' [dal.isol]' <0 0 -100 0>; #by zeeshan
+  pos [reh.fina]' [kasra]' [ain.init]' <0 0 -150 0>; #by zeeshan
+  pos [alef.fina]' [maddahabove]' [hamza.isol]' <0 0 -100 0> [fatha fathatanidgham kasra damma]'; #by zeeshan
+  pos [alef.fina.lamalef]' space' [kaf.init]' <0 0 -150 0>; #by zeeshan
+  pos [alef.isol]' [hamzaabove]' [damma fatha]' [hah.init.ii]' <0 0 -100 0>; #by zeeshan 
+  pos [alef.isol]' [wasla]' [hah.init]'  <0 0 -100 0>; #by zeeshan
+  pos [alef.isol]' [wasla]' [lam.init.allah]'  <0 0 -50 0>; #by zeeshan
+  pos [alef.isol]' [hamzaabove]' [fatha damma]' [hah.init]' <0 0 -100 0>; #by zeeshan
+  pos [alef.fina.lamalef]' [hamzabelow]' [kasra]' [sad.init]' <0 0 -150 0>; #by zeeshan
+  pos [alef.isol]' [wasla]' [lam.init.beforehahyeh]' <0 0 -100 0>; #by zeeshan
+  pos [reh.fina]' [kasra]' [sad.isol]'<0 0 -200 0>; #by zeeshan
+  pos [alef.fina.lamalef]' [hamzaabove]' [fatha]' [hah.init.beforeyeh]' <0 0 -200 0>; #by zeeshan
+  pos [alef.fina.lamalef]' [hamzaabove]' [fatha damma]' [ain.init ain.init.finjani seen.init.beforereh meem.init]' <0 0 -150 0>; #by zeeshan
+  pos [reh.fina.afterseen]' [sukun]' [kaf.init.beforemeem]' <0 0 -150 0>; #by zeeshan
+  pos [waw.fina waw.isol]' [damma]'<0 0 0 0> [smallwaw]' [maddahabove]'; #by zeeshan
+  pos [waw.fina waw.isol]'  [damma]' [smallwaw]' <0 0 -150 0>; #by zeeshan
+  pos [reh.fina]' [fatha]' space' [kaf.init.beforelam]' <0 0 -250 0>; #by zeeshan
+  pos [waw.fina waw.isol]' [sukun]' space' [alef.isol hamza.isol]' <0 0 0 0> [hamzabelow]' ; #by zeeshan
+  pos [waw.fina]' [sukun]' space' [alef.isol hamza.isol]' <0 0 -200 0>; #by zeeshan
+  pos [reh.fina]' @marks' space' [lam.init]' <0 0 -200 0>;  #by zeeshan
+  pos [reh.fina reh.fina.afterseen]' [kasra]' [sad.init kaf.init meem.init]'<0 0 -150 0>; #by zeeshan
+  pos [alef.fina]' [wasla]' [lam.init.lam_hah]' <0 0 -70 0>; #by zeeshan
+  pos [reh.fina]' [fatha]' [kaf.init.beforelam]'<0 0 -200 0>; #by zeeshan
+  pos [reh.fina.afterseen]' [kasra]' [behshape.isol]' <0 0 -200 0>; #by zeeshan
+   
   pos @waqfmarks space [kaf.init kaf.init.beforelam]'<0 0 100 0>;
-
   pos [alef.isol]' [hamzaabove]' [sukun]' space' [kaf.init]'<0 0 100 0>; 
 
   pos [waw.isol reh.isol]' ([@topmarks @topdotmarks]?)' (@topmarks?)' [heh.isol]'<0 0 100 0> [twodotsup]' [kasratanidgham]';
@@ -1437,7 +1459,8 @@ lookup adjustmkmk {
   pos [lam.medi.beforeheh]' [shadda]' [fatha]' [heh.fina.afterlam]' [twodotsup]' [kasra]' [waqf.sad]'<0 150 0 0>;
 
   pos [behshape.medi.afterlam]' [twodotsup]' [shadda]'<0 50 0 0> [fatha]' [smallalef.joined]' [maddahabove]'<-50 0 0 0>;
-
+  
+  
 } adjustmkmk;
 
 lookup caltmkmk {
