@@ -1459,6 +1459,12 @@ lookup adjustmkmk {
   pos [lam.medi.beforeheh]' [shadda]' [fatha]' [heh.fina.afterlam]' [twodotsup]' [kasra]' [waqf.sad]'<0 150 0 0>;
 
   pos [behshape.medi.afterlam]' [twodotsup]' [shadda]'<0 50 0 0> [fatha]' [smallalef.joined]' [maddahabove]'<-50 0 0 0>;
+
+  pos [alef.fina alef.isol alef.fina.lamalef alef.fina.afterkaf]' [maddahabove]' [hamza.isol]' @marks' @waqfmarks'<0 300 0 0>; 
+
+  pos [kaf.fina]' [dammatanidgham]' @waqfmarks'<0 200 0 0>;
+
+  pos [lam.init.beforedal]' [shadda]' [fatha]' [heh.fina.afterlam]' [twodotsup]' [fathatanidgham]' @waqfmarks'<-100 220 0 0>; 
   
   
 } adjustmkmk;
