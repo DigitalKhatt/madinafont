@@ -1,4 +1,90 @@
 {
+    "adjustinterlineoverlap.2": {
+        "subtable1": {
+            "adjustinterlineoverlap.2.topmarks": {
+                "baseparameters": {
+                    "kaf.init.beforemeem": [
+                        -9,
+                        -302
+                    ]
+                }
+            }
+        }
+    },
+    "adjustinterlineoverlap.3": {
+        "subtable1": {
+            "parameters": {
+                "fatha": [
+                    11,
+                    -23,
+                    0,
+                    0
+                ],
+                "shadda": [
+                    -92,
+                    -118,
+                    0,
+                    0
+                ]
+            }
+        }
+    },
+    "adjustinterlineoverlap.5": {
+        "subtable1": {
+            "parameters": {
+                "damma": [
+                    22,
+                    -58,
+                    0,
+                    0
+                ],
+                "shadda": [
+                    -11,
+                    -68,
+                    0,
+                    0
+                ]
+            }
+        }
+    },
+    "adjustinterlineoverlap.6": {
+        "subtable1": {
+            "parameters": {
+                "damma": [
+                    -22,
+                    -80,
+                    0,
+                    0
+                ],
+                "hamzaabove": [
+                    0,
+                    -23,
+                    0,
+                    0
+                ]
+            }
+        }
+    },
+    "adjustinterlineoverlap.7": {
+        "subtable1": {
+            "adjustinterlineoverlap.7.damma": {
+                "baseparameters": {
+                    "alef.isol": [
+                        -104,
+                        18
+                    ]
+                }
+            },
+            "adjustinterlineoverlap.7.hamzaabove": {
+                "baseparameters": {
+                    "alef.isol": [
+                        -56,
+                        -117
+                    ]
+                }
+            }
+        }
+    },
     "adjustlowmarks.l1": {
         "subtable1": {
             "kasra": {
@@ -193,19 +279,63 @@
             }
         }
     },
-    "adjustmkmk_auto10": {
+    "adjustmkmk.waqfmarks.5": {
         "subtable1": {
             "parameters": {
-                "twodotsup": [
-                    -19,
-                    -82,
+                "waqf.jeem": [
+                    -221,
+                    -292,
+                    0,
+                    0
+                ],
+                "waqf.qaf": [
+                    0,
+                    27,
+                    0,
+                    0
+                ],
+                "waqf.sad": [
+                    0,
+                    34,
                     0,
                     0
                 ]
             }
         }
     },
-    "adjustmkmk_auto11": {
+    "adjustmkmk.waqfmarks.6": {
+        "subtable1": {
+            "adjustmkmk.waqfmarks.6": {
+                "baseparameters": {
+                    "smallhighroundedzero": [
+                        181,
+                        -209
+                    ]
+                }
+            },
+            "caltmkmk.waqfmarks.6": {
+                "baseparameters": {
+                    "smallhighroundedzero": [
+                        220,
+                        -271
+                    ]
+                }
+            }
+        }
+    },
+    "adjustmkmk.waqfmarks.7": {
+        "subtable1": {
+            "waqf.sad": {
+                "baseparameters": {
+                    "alef.fina": [
+                        185,
+                        -127
+                    ]
+                }
+            }
+        }
+    },
+    "adjustmkmk_auto10": {
         "subtable1": {
             "parameters": {
                 "dammatanidgham": [
@@ -217,7 +347,7 @@
             }
         }
     },
-    "adjustmkmk_auto12": {
+    "adjustmkmk_auto11": {
         "subtable1": {
             "parameters": {
                 "waqf.sad": [
@@ -229,7 +359,7 @@
             }
         }
     },
-    "adjustmkmk_auto13": {
+    "adjustmkmk_auto12": {
         "subtable1": {
             "parameters": {
                 "fatha": [
@@ -241,7 +371,7 @@
             }
         }
     },
-    "adjustmkmk_auto15": {
+    "adjustmkmk_auto14": {
         "subtable1": {
             "parameters": {
                 "onedotdown": [
@@ -253,7 +383,7 @@
             }
         }
     },
-    "adjustmkmk_auto16": {
+    "adjustmkmk_auto15": {
         "subtable1": {
             "parameters": {
                 "fatha": [
@@ -271,7 +401,7 @@
             }
         }
     },
-    "adjustmkmk_auto17": {
+    "adjustmkmk_auto16": {
         "subtable1": {
             "parameters": {
                 "kasra": [
@@ -283,7 +413,7 @@
             }
         }
     },
-    "adjustmkmk_auto18": {
+    "adjustmkmk_auto17": {
         "subtable1": {
             "parameters": {
                 "fatha": [
@@ -295,12 +425,24 @@
             }
         }
     },
-    "adjustmkmk_auto20": {
+    "adjustmkmk_auto19": {
         "subtable1": {
             "parameters": {
                 "waqf.sad": [
                     15,
                     30,
+                    0,
+                    0
+                ]
+            }
+        }
+    },
+    "adjustmkmk_auto22": {
+        "subtable1": {
+            "parameters": {
+                "waqf.sad": [
+                    0,
+                    -11,
                     0,
                     0
                 ]
@@ -358,9 +500,9 @@
     "adjustmkmk_auto8": {
         "subtable1": {
             "parameters": {
-                "waqf.sad": [
-                    186,
-                    142,
+                "fatha": [
+                    28,
+                    9,
                     0,
                     0
                 ]
@@ -370,9 +512,9 @@
     "adjustmkmk_auto9": {
         "subtable1": {
             "parameters": {
-                "fatha": [
-                    28,
-                    9,
+                "twodotsup": [
+                    -19,
+                    -82,
                     0,
                     0
                 ]
@@ -558,8 +700,8 @@
                         18
                     ],
                     "dammatanidgham": [
-                        56,
-                        0
+                        64,
+                        8
                     ],
                     "fathatanidgham": [
                         17,
@@ -573,9 +715,27 @@
             }
         }
     },
+    "caltmkmk.waqfmarks.2": {
+        "subtable1": {
+            "waqfmarks": {
+                "baseparameters": {
+                    "maddahabove": [
+                        -14,
+                        -57
+                    ]
+                }
+            }
+        }
+    },
     "caltmkmk_auto1": {
         "subtable1": {
             "parameters": {
+                "waqf.jeem": [
+                    14,
+                    72,
+                    0,
+                    0
+                ],
                 "waqf.sad": [
                     -133,
                     15,
@@ -589,8 +749,8 @@
         "subtable1": {
             "parameters": {
                 "waqf.sad": [
-                    3,
-                    100,
+                    -108,
+                    31,
                     0,
                     0
                 ]
@@ -609,24 +769,12 @@
             }
         }
     },
-    "caltmkmk_auto6": {
+    "caltmkmk_auto5": {
         "subtable1": {
             "parameters": {
                 "waqf.sad": [
-                    32,
-                    90,
                     0,
-                    0
-                ]
-            }
-        }
-    },
-    "caltmkmk_auto7": {
-        "subtable1": {
-            "parameters": {
-                "waqf.sad": [
-                    -208,
-                    -27,
+                    277,
                     0,
                     0
                 ]
@@ -656,6 +804,10 @@
                     "behshape.init.beforenoon": [
                         69,
                         -69
+                    ],
+                    "behshape.init.beforeseen": [
+                        -9,
+                        0
                     ],
                     "behshape.init.beforeyeh": [
                         50,
@@ -1506,7 +1658,7 @@
                         46
                     ],
                     "lam.fina.afterkaf": [
-                        150,
+                        16,
                         23
                     ],
                     "lam.init": [
@@ -1578,12 +1730,16 @@
                         0
                     ],
                     "noon.fina": [
-                        114,
+                        -9,
                         0
                     ],
                     "noon.fina.basmala": [
                         1486,
                         25
+                    ],
+                    "noon.fina.expa": [
+                        140,
+                        26
                     ],
                     "noon.fina.expa.afterbeh": [
                         142,
@@ -1689,7 +1845,7 @@
                 "baseparameters": {
                     "alef.fina": [
                         -8,
-                        -9
+                        -64
                     ],
                     "alef.fina.afterkaf": [
                         -11,
@@ -1811,11 +1967,11 @@
                     ],
                     "kaf.fina.expa": [
                         0,
-                        -104
+                        -181
                     ],
                     "kaf.init": [
-                        -11,
-                        -204
+                        8,
+                        -281
                     ],
                     "kaf.init.ascent": [
                         69,
@@ -2514,8 +2670,8 @@
                         -270
                     ],
                     "kaf.init.beforelam": [
-                        13,
-                        -49
+                        -53,
+                        -216
                     ],
                     "kaf.init.beforelamalef": [
                         -69,
@@ -2651,7 +2807,7 @@
                     ],
                     "meem.fina.ii": [
                         41,
-                        -167
+                        -181
                     ],
                     "meem.init": [
                         26,
@@ -2687,7 +2843,7 @@
                     ],
                     "reh.fina.afterbehshape": [
                         87,
-                        -84
+                        -194
                     ],
                     "reh.fina.afterseen": [
                         183,
@@ -2924,20 +3080,24 @@
             "waqfmarks": {
                 "baseparameters": {
                     "alef.fina": [
-                        -38,
-                        18
+                        -65,
+                        -44
                     ],
                     "alef.fina.afterkaf": [
                         -23,
                         0
                     ],
                     "alef.fina.laf": [
-                        -57,
-                        199
+                        -73,
+                        66
                     ],
                     "alef.fina.lamalef": [
                         -91,
                         17
+                    ],
+                    "alef.isol": [
+                        -58,
+                        -67
                     ],
                     "behshape.fina": [
                         97,
@@ -2976,8 +3136,8 @@
                         -96
                     ],
                     "kaf.fina": [
-                        15,
-                        -6
+                        22,
+                        -58
                     ],
                     "kaf.fina.afterlam": [
                         40,
@@ -2986,6 +3146,10 @@
                     "kaf.fina.afterlam.expa": [
                         -12,
                         149
+                    ],
+                    "kaf.fina.expa": [
+                        9,
+                        -105
                     ],
                     "lam.isol": [
                         -30,
@@ -2996,16 +3160,16 @@
                         -60
                     ],
                     "meem.fina.afterkaf": [
-                        44,
-                        19
+                        34,
+                        -144
                     ],
                     "meem.fina.ii": [
                         0,
                         -154
                     ],
                     "meem.isol": [
-                        0,
-                        53
+                        67,
+                        66
                     ],
                     "noon.fina": [
                         57,
@@ -3029,7 +3193,7 @@
                     ],
                     "reh.fina.afterbehshape": [
                         83,
-                        0
+                        -97
                     ],
                     "sad.fina": [
                         69,
@@ -3068,8 +3232,8 @@
                         57
                     ],
                     "yehshape.fina.ii": [
-                        -1,
-                        166
+                        33,
+                        -192
                     ]
                 }
             }
@@ -3117,7 +3281,7 @@
                     ],
                     "hamzabelow": [
                         13,
-                        55
+                        78
                     ]
                 }
             }
@@ -3996,8 +4160,8 @@
                         83
                     ],
                     "heh.isol": [
-                        -31,
-                        -119
+                        -60,
+                        -90
                     ],
                     "lam.isol": [
                         -83,
@@ -4297,6 +4461,10 @@
                 "lam.init.beforeyeh": [
                     0,
                     -27
+                ],
+                "meem.isol": [
+                    -13,
+                    83
                 ]
             }
         },
