@@ -4316,12 +4316,16 @@ draw pic_ shifted (z4 - z1);
 
 enddefchar;
 defchar(noon.fina.basmala,-1,-1,-1,-1);
+%%beginparams
+z.mark1 = (460,314);
 %%beginbody
 
 noon.fina.expa_(lefttatweel,righttatweel);
 
 
+%%beginbody
 
+defAnchor(onedotup,z.mark1,MarkAnchor);
 
 enddefchar;
 defchar(qaf.isol,-1,-1,-1,-1);

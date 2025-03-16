@@ -323,6 +323,53 @@ lookup basmala.kern {
 
 } basmala.kern ;
 
+lookup basmalafatiha {
+
+   lookup basmalafatiha.l1 {
+
+      feature bism;
+
+      lookupflag IgnoreMarks;
+      
+      sub behshape.init.beforeseen by behshape.init.bseen.basmala;
+      sub seen.medi by seen.medi.basmala add 0 0;
+      sub meem.fina by meem.fina.basmala add 0 0;
+      sub behshape.medi by behshape.medi.basmala add 0 0;
+      sub hah.init by hah.init.basmala;
+      sub meem.medi.afterhah  add -0.7 0; 
+      sub noon.fina by noon.fina.basmala add 9 -0.5;
+      sub lam.init  add -0.5 0; 
+      sub reh.fina  add 0 -0.5; 
+  } basmalafatiha.l1;
+  
+  feature bism;
+
+  lookupflag IgnoreMarks; 
+
+  lookup basmalafatiha.l2 {
+      sub meem.fina by meem.fina.basmala add 0 0;
+  } basmalafatiha.l2;
+
+
+  sub behshape.medi'lookup basmalafatiha.l1  meem.fina'lookup basmalafatiha.l2;
+
+  sub meem.fina'lookup basmalafatiha.l1;
+
+} basmalafatiha;
+
+lookup basmalafatiha.kern {
+
+    feature bism;
+
+    lookupflag IgnoreMarks;
+
+    pos [meem.fina.basmala]'<-0 0 0 0> space' [alef.isol]'<-50 0 -50 0>;
+
+    pos [noon.fina.basmala]'<-1700 0 0 0> space' [alef.isol]'; 
+
+
+} basmalafatiha.kern ;
+
 lookup smalllalefreplacement {
   feature rlig;
 
@@ -1873,6 +1920,11 @@ feature basm {
   #lookup basmala.curs;
   lookup basmala.kern;
 } basm;
+
+feature bism {
+  lookup basmalafatiha;  
+  lookup basmalafatiha.kern;
+} bism;
 
 feature rlig {  
   #lookup meemfina;  
