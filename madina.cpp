@@ -483,6 +483,7 @@ Madina::Madina(OtLayout* layout, Font* font, bool extended) :Automedina{ layout,
 }
 
 CalcAnchor  Madina::getanchorCalcFunctions(QString functionName, Subtable* subtable) {
+  CalcAnchor ret;
   if (functionName == "defaultmarkabovemark") {
     return Defaultmarkabovemark(*this, *(MarkBaseSubtable*)(subtable));
   }
@@ -510,6 +511,9 @@ CalcAnchor  Madina::getanchorCalcFunctions(QString functionName, Subtable* subta
 
   else if (functionName == "joinedsmalllettersbaseanchor") {
     return Joinedsmalllettersbaseanchor(*this, *(MarkBaseSubtable*)(subtable));
+  }
+  else {
+    return ret;
   }
 }
 

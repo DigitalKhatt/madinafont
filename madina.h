@@ -9,6 +9,7 @@ public:
 	Madina(OtLayout* layout, Font* font, bool extended);
 	Lookup* getLookup(QString lookupName) override;
 	CalcAnchor  getanchorCalcFunctions(QString functionName, Subtable* subtable) override;
+        ~Madina(){}
 private:
 	Lookup* defaultmarkposition();
 	Lookup* defaultwaqfmarktobase();
