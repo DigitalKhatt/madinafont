@@ -9,6 +9,9 @@ lineheight := 88;
 penwidth := 88;
 joinvector := ljoinvector := rjoinvector := (16,lineheight);
 nuqta := 1.4penwidth;
+boolean isForCoreText; isForCoreText = false;
+if not isForCoreText :
 %defAxis("leftTatweel","LTAT",-20,0,20,"params0");
 %defAxis("rightTatweel","RTAT",-20,0,20,"params1");
 defAxis("scaleX","SCLX",50,100,200,"params100");
+fi
