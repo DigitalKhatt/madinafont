@@ -28,7 +28,7 @@ class Madina : public Automedina {
   Lookup* defaultmkmk();
   Lookup* ayanumbers();
   Lookup* ayanumberskern();
-  Lookup* rehwawcursivecpp(QString lookupName, QString feature, QString glyphRegExpr);
+  Lookup* rehwawcursivecpp(QString lookupName, QString feature, bool rightToLeft, QSet<quint16> cursiveGlyphs);
   Lookup* allCursiveJoin(bool rtl);
   Lookup* tajweedcolorcpp();
   Lookup* populatecvxx();

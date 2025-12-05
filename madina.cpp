@@ -503,9 +503,22 @@ Lookup* Madina::getLookup(QString lookupName) {
     return cursivejoinrtl();
   } else if (lookupName == "rehwawcursivecpp") {
     if (isForCoreText) {
-      return rehwawcursivecpp("rehwawcursivecpp", "", "[.]isol|[.]init");
+      auto cursiveGlyphs = m_layout->classtoUnicode("[.]isol|[.]init");
+      return rehwawcursivecpp("rehwawcursivecpp", "", false, cursiveGlyphs);
+      /*auto rightToLeftCodes = m_layout->classtoUnicode("[.]isol");
+      auto leftToRighCodes = m_layout->classtoUnicode("[.]init");
+      QSet<quint16> rehWawIsols = {
+          (quint16)glyphs["reh.isol"].charcode,
+          (quint16)glyphs["waw.isol"].charcode};
+
+      rightToLeftCodes.subtract(rehWawIsols);
+      leftToRighCodes = leftToRighCodes + rehWawIsols;
+      m_layout->addLookup(rehwawcursivecpp("rehwawcursivecpp", "curs", true, rightToLeftCodes));
+      return rehwawcursivecpp("rehwawcursivecpp", "curs", false, leftToRighCodes);*/
+
     } else {
-      return rehwawcursivecpp("rehwawcursivecpp", "curs", "[.]isol|[.]init");
+      auto cursiveGlyphs = m_layout->classtoUnicode("[.]isol|[.]init");
+      return rehwawcursivecpp("rehwawcursivecpp", "curs", false, cursiveGlyphs);
     }
   } else if (lookupName == "defaultdotmarks") {
     return defaultdotmarks();
@@ -588,12 +601,16 @@ Lookup* Madina::allCursiveJoin(bool rtl) {
   return lookup;
 }
 
-Lookup* Madina::rehwawcursivecpp(QString lookupName, QString feature, QString glyphRegExpr) {
+Lookup* Madina::rehwawcursivecpp(QString lookupName, QString feature, bool rightToLeft, QSet<quint16> cursiveGlyphs) {
   Lookup* lookup = new Lookup(m_layout);
   lookup->name = lookupName;
   lookup->feature = feature;
   lookup->type = Lookup::cursive;
-  lookup->flags = Lookup::Flags::IgnoreMarks;  // | Lookup::Flags::RightToLeft;
+  if (rightToLeft) {
+    lookup->flags = Lookup::Flags::IgnoreMarks | Lookup::Flags::RightToLeft;
+  } else {
+    lookup->flags = Lookup::Flags::IgnoreMarks;
+  }
 
   int kern = 150;
 
@@ -648,9 +665,7 @@ Lookup* Madina::rehwawcursivecpp(QString lookupName, QString feature, QString gl
     wawfina->anchors[glyphcode].exit = QPoint(kern, 0);
   }
 
-  glyphcodes = m_layout->classtoUnicode(glyphRegExpr);
-
-  for (auto glyphcode : glyphcodes) {
+  for (auto glyphcode : cursiveGlyphs) {
     QString glyphName = m_layout->glyphNamePerCode[glyphcode];
     auto& glyph = glyphs[glyphName];
 
