@@ -23,7 +23,7 @@ void Madina::generateGlyphs() {
     auto name = QString(edges->charname);
 
     if (name != "alternatechar") {
-      GlyphVis& glyph = *glyphs.insert(name, GlyphVis(m_layout, edges, true));
+      GlyphVis& glyph = *glyphs.insert(name, GlyphVis(m_layout, edges));
 
       if (edges->glyphtype != (int)GlyphType::GlyphTypeColored && edges->glyphtype != (int)GlyphType::GlyphTypeTemp) {
         m_layout->glyphNamePerCode[glyph.charcode] = glyph.name;
