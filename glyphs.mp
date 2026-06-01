@@ -475,7 +475,7 @@ fill _paths1.2;fill _paths2.2;fill _paths1.3;fill _paths2.3;
 
 savepicture := 1;
 
-%coloredglyph:="endofaya.colored";
+if useColoredAya : coloredglyph:="endofaya.colored"; fi
 
 enddefchar;
 defchar(endofaya.colored,-1,-1,5,-1);
@@ -489,6 +489,14 @@ color ayacolor[];
 ayacolor1 := convRGB("edf7ff");
 ayacolor2 := tint(ayacolor1,-0.5);
 ayacolor3 := tint(ayacolor1,-5);
+
+%ayacolor1 := convRGB("217acc");
+%ayacolor2 := convRGB("217acc");
+%ayacolor3 :=  convRGB("042f47");
+
+%ayacolor1 := convRGB("0c70a8");
+%ayacolor2 := convRGB("0c70a8");
+%ayacolor3 :=  convRGB("49b8f5");
 
 _paths0.r := reverse _paths0;
 _paths1.r := reverse _paths1;

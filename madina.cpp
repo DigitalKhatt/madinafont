@@ -106,7 +106,9 @@ void Madina::generateGlyphs() {
 }
 
 void Madina::addchars() {
-  generateAyas("endofaya", false);
+  auto useColoredAya = font->getBoolVariable("useColoredAya");
+
+  generateAyas("endofaya", useColoredAya);
 }
 
 Madina::Madina(OtLayout* layout, Font* font, bool extended) : Automedina{layout, font, extended} {

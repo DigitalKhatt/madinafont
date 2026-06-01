@@ -26,3 +26,4 @@ if not isForCoreText :
 %defAxis("rightTatweel","RTAT",-20,0,20,"params1");
 defAxis("scaleX","SCLX",50,100,200,"params100");
 fi
+boolean useColoredAya;useColoredAya:=false;

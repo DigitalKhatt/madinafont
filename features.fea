@@ -2864,3 +2864,88 @@ table(just) {
     lookup markexpansion;
   }
 };
+
+lookup shrink1.l1 {
+  sub /init/ add -0.1 0;
+  sub /medi/ add -0.1 -0.1;
+  sub /fina/ add 0 -0.1;
+  sub behshape.isol add -0.2 0;
+  sub behshape.fina add -0.2 0;
+  sub feh.isol add -0.2 0;
+  sub qaf.fina add -0.2 0;
+  sub [yehshape.fina.ii yehshape.fina.afterbeh] add -0.1 0;
+  sub [alefmaksura.isol] add -0.2 0;
+  sub [yehshape.isol ] add -0.2 0;
+  sub [reh.fina] add 0 -0.2;
+  sub [lam.fina] add -0.1 -0.2;
+  sub [lam.isol] add -0.2 0;
+  sub [kaf.fina] add -0.3 -0.1;  
+  sub [noon.isol noon.fina.afterbeh] add -0.3 0; 
+  sub [dal.isol] add -0.2 0; 
+  sub [noon.fina] add -0.3 -0.1;
+  sub [feh.fina] add -0.2 -0.1;
+  sub [kaf.fina.afterlam] add -0.2 0;
+  sub [kaf.isol] add -0.3 0;
+} shrink1.l1;
+
+lookup shrink1 {
+
+  feature inherited;
+
+  lookupflag IgnoreMarks;    
+  
+  sub @bases'lookup shrink1.l1;
+
+} shrink1;
+
+lookup shrink2 {
+
+  feature inherited;
+
+  lookupflag IgnoreMarks;    
+
+  
+  
+  sub @bases'lookup shrink1.l1;
+
+} shrink2;
+
+lookup shrink3 {
+
+  feature inherited;
+
+  lookupflag IgnoreMarks;    
+
+  sub [behshape.init.beforeseen]' [seen.medi]';
+  
+  sub @bases'lookup shrink1.l1;
+
+} shrink3;
+
+lookup shrink4 {
+
+  feature inherited;
+
+  lookupflag IgnoreMarks;    
+
+  sub [behshape.init.beforeseen]' [seen.medi]';
+  
+  sub @bases'lookup shrink1.l1;
+
+} shrink4;
+
+feature sk01 {
+  lookup shrink1;
+} sk01;
+
+feature sk02{
+  lookup shrink2;
+} sk02;
+
+feature sk03{
+  lookup shrink3;
+} sk03;
+
+feature sk04 {
+  lookup shrink4;
+} sk04;
