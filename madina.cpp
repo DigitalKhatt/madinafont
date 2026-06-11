@@ -15,11 +15,11 @@
 using namespace std;
 
 void Madina::generateGlyphs() {
-  mp_edge_object* edges = font->getEdges();
+  auto edgess = font->getEdges();
 
   glyphs.clear();
 
-  while (edges) {
+  for (auto edges : edgess) {
     auto name = QString(edges->charname);
 
     if (name != "alternatechar") {
@@ -66,8 +66,6 @@ void Madina::generateGlyphs() {
         }
       }
     }
-
-    edges = edges->next;
   }
 
   auto addFake = [this](QString glyphName, quint16 unicode, quint16 codechar) {
