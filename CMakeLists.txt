@@ -16,6 +16,7 @@ set(Source_Files
 
 
 find_package(Qt5 COMPONENTS Gui  REQUIRED)
+find_package(Clipper2 CONFIG REQUIRED)
 find_package(visualmetafont REQUIRED)
 
 
