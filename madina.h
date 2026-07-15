@@ -7,8 +7,8 @@
 class Madina : public Automedina {
  public:
   Madina(OtLayout* layout, Font* font, bool extended);
-  Lookup* getLookup(QString lookupName) override;
-  CalcAnchor getanchorCalcFunctions(QString functionName, Subtable* subtable) override;
+  Lookup* getLookup(std::string lookupName) override;
+  CalcAnchor getanchorCalcFunctions(std::string functionName, Subtable* subtable) override;
   ~Madina() {}
 
  private:
@@ -28,7 +28,7 @@ class Madina : public Automedina {
   Lookup* defaultmkmk();
   Lookup* ayanumbers();
   Lookup* ayanumberskern();
-  Lookup* rehwawcursivecpp(QString lookupName, QString feature, bool rightToLeft, QSet<quint16> cursiveGlyphs);
+  Lookup* rehwawcursivecpp(QString lookupName, QString feature, bool rightToLeft, std::unordered_set<std::uint16_t> cursiveGlyphs);
   Lookup* allCursiveJoin(bool rtl);
   Lookup* tajweedcolorcpp();
   Lookup* populatecvxx();
