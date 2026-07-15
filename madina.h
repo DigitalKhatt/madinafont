@@ -45,7 +45,7 @@ class Defaultwaqfmarkabovemark : public AnchorCalc {
  public:
   Defaultwaqfmarkabovemark(Automedina& y, MarkBaseSubtable& subtable) : _y(y), _subtable(subtable) {}
   QPoint operator()(QString glyphName, QString className, QPoint adjust, GlyphParameters parameters) override {
-    GlyphVis& curr = _y.glyphs[glyphName];
+    GlyphVis& curr = _y.glyphs[glyphName.toStdString()];
 
     int width = 0;
     int height = 0;
@@ -61,7 +61,7 @@ class Defaultmarkbelowwaqfmark : public AnchorCalc {
  public:
   Defaultmarkbelowwaqfmark(Automedina& y, MarkBaseSubtable& subtable) : _y(y), _subtable(subtable) {}
   QPoint operator()(QString glyphName, QString className, QPoint adjust, GlyphParameters parameters) override {
-    GlyphVis& curr = _y.glyphs[glyphName];
+    GlyphVis& curr = _y.glyphs[glyphName.toStdString()];
 
     int width = 0 + adjust.x();
     int height = curr.height + 50 + adjust.y();
