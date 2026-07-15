@@ -26,10 +26,10 @@ void Madina::generateGlyphs() {
       GlyphVis& glyph = glyphs.insert_or_assign(name.toStdString(), GlyphVis(m_layout, edges)).first->second;
 
       if (edges->glyphtype != (int)GlyphType::GlyphTypeColored && edges->glyphtype != (int)GlyphType::GlyphTypeTemp) {
-        m_layout->glyphNamePerCode[glyph.charcode] = QString::fromStdString(glyph.name);
-        m_layout->glyphCodePerName[QString::fromStdString(glyph.name)] = glyph.charcode;
+        m_layout->glyphNamePerCode[glyph.charcode] = glyph.name;
+        m_layout->glyphCodePerName[glyph.name] = glyph.charcode;
         if (glyph.unicode != -1) {
-          m_layout->unicodeToGlyphCode.insert(glyph.unicode, glyph.charcode);
+          m_layout->unicodeToGlyphCode[glyph.unicode] = glyph.charcode;
         }
 
         if (edges->glyphtype == (int)GlyphType::GlyphTypeMark) {
@@ -76,31 +76,31 @@ void Madina::generateGlyphs() {
     glyph.name = glyphName.toStdString();
     glyph.charcode = code;
 
-    m_layout->glyphNamePerCode[glyph.charcode] = QString::fromStdString(glyph.name);
-    m_layout->glyphCodePerName[QString::fromStdString(glyph.name)] = glyph.charcode;
-    m_layout->unicodeToGlyphCode.insert(unicode, glyph.charcode);
+    m_layout->glyphNamePerCode[glyph.charcode] = glyph.name;
+    m_layout->glyphCodePerName[glyph.name] = glyph.charcode;
+    m_layout->unicodeToGlyphCode[unicode] = glyph.charcode;
   };
-  addFake("alef.maddahabove.isol", 0x0622, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("alef.hamzaabove.isol", 0x0623, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("waw.hamzaabove.isol", 0x0624, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("alef.hamzabelow.isol", 0x0625, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("alefmaksura.hamzaabove.isol", 0x0626, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("behshape.onedotdown.isol", 0x0628, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("heh.twodotsup.isol", 0x0629, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("behshape.twodotsup.isol", 0x062A, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("behshape.three_dots.isol", 0x062B, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("hah.onedotdown.isol", 0x062C, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("hah.onedotup.isol", 0x062E, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("dal.onedotup.isol", 0x0630, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("reh.onedotup.isol", 0x0632, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("seen.three_dots.isol", 0x0634, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("sad.onedotup.isol", 0x0636, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("tah.onedotup.isol", 0x0638, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("ain.onedotup.isol", 0x063A, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("alef.wasla.isol", 0x0671, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("noon.onedotup.isol", 0x0646, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("feh.onedotup.isol", 0x0641, m_layout->glyphNamePerCode.lastKey() + 1);
-  addFake("qaf.twodotsup.isol", 0x0642, m_layout->glyphNamePerCode.lastKey() + 1);
+  addFake("alef.maddahabove.isol", 0x0622, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("alef.hamzaabove.isol", 0x0623, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("waw.hamzaabove.isol", 0x0624, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("alef.hamzabelow.isol", 0x0625, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("alefmaksura.hamzaabove.isol", 0x0626, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("behshape.onedotdown.isol", 0x0628, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("heh.twodotsup.isol", 0x0629, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("behshape.twodotsup.isol", 0x062A, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("behshape.three_dots.isol", 0x062B, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("hah.onedotdown.isol", 0x062C, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("hah.onedotup.isol", 0x062E, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("dal.onedotup.isol", 0x0630, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("reh.onedotup.isol", 0x0632, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("seen.three_dots.isol", 0x0634, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("sad.onedotup.isol", 0x0636, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("tah.onedotup.isol", 0x0638, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("ain.onedotup.isol", 0x063A, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("alef.wasla.isol", 0x0671, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("noon.onedotup.isol", 0x0646, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("feh.onedotup.isol", 0x0641, m_layout->glyphNamePerCode.rbegin()->first + 1);
+  addFake("qaf.twodotsup.isol", 0x0642, m_layout->glyphNamePerCode.rbegin()->first + 1);
 
   m_layout->glyphs = glyphs;
 }
@@ -664,8 +664,8 @@ Lookup* Madina::rehwawcursivecpp(QString lookupName, QString feature, bool right
   }
 
   for (auto glyphcode : cursiveGlyphs) {
-    QString glyphName = m_layout->glyphNamePerCode[glyphcode];
-    auto& glyph = glyphs[glyphName.toStdString()];
+    const auto& glyphName = m_layout->glyphNamePerCode[glyphcode];
+    auto& glyph = glyphs[glyphName];
 
     rehisol->anchors[glyphcode].entry = QPoint(glyph.width, 0);
     wawisol->anchors[glyphcode].entry = QPoint(glyph.width, 0);
@@ -1603,7 +1603,7 @@ Lookup* Madina::ayanumberskern() {
   singleadjsubtable->name = asStdString(sublookup->name);
 
   for (auto digit : digitySet) {
-    auto& onesglyph = glyphs[m_layout->glyphNamePerCode.value(digit).toStdString()];
+    auto& onesglyph = glyphs[m_layout->glyphNamePerCode.at(digit)];
     qint16 kern = -(ayaGlyph.width / 2 - onesglyph.width / 2);
     singleadjsubtable->singlePos[digit] = { 700,yoffset,0,0 };
   }
@@ -1637,7 +1637,7 @@ Lookup* Madina::ayanumberskern() {
   singleadjsubtable->name = asStdString(sublookup->name);
 
   for (auto digit : digitySet) {
-    auto& onesglyph = glyphs[m_layout->glyphNamePerCode.value(digit).toStdString()];
+    auto& onesglyph = glyphs[m_layout->glyphNamePerCode.at(digit)];
     int leftBearing = 0;
     qint16 kern = leftBearing + (ayaGlyph.width - leftBearing) / 2 + onesglyph.width / 2;
     singleadjsubtable->singlePos[digit] = { kern,yoffset,0,0 };
@@ -1713,7 +1713,7 @@ Lookup* Madina::ayanumberskern() {
 Lookup* Madina::ayanumbers() {
   QString ayaName = "endofaya";
 
-  std::uint16_t endofaya = m_layout->glyphCodePerName[ayaName];
+  std::uint16_t endofaya = m_layout->glyphCodePerName[ayaName.toStdString()];
 
   // ligature
   Lookup* ligature = new Lookup(m_layout);
@@ -1727,16 +1727,16 @@ Lookup* Madina::ayanumbers() {
   ligaturesubtable->name = asStdString(ligature->name);
 
   for (std::uint16_t i = 286; i > 99; i--) {
-    std::uint16_t code = m_layout->glyphCodePerName[QString("%1%2").arg(ayaName).arg(i)];
+    std::uint16_t code = m_layout->glyphCodePerName[QString("%1%2").arg(ayaName).arg(i).toStdString()];
 
     int onesdigit = i % 10;
     int tensdigit = (i / 10) % 10;
     int hundredsdigit = i / 100;
     if (extended) {
-      ligaturesubtable->ligatures.push_back({code, {endofaya, (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + hundredsdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + tensdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + onesdigit))}});
+      ligaturesubtable->ligatures.push_back({code, {endofaya, (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + hundredsdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + tensdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + onesdigit))}});
     } else {
-      ligaturesubtable->ligatures.push_back({code, {(std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + onesdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + tensdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + hundredsdigit)), endofaya}});
-      ligaturesubtable->ligatures.push_back({code, {endofaya, (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + hundredsdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + tensdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + onesdigit))}});
+      ligaturesubtable->ligatures.push_back({code, {(std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + onesdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + tensdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + hundredsdigit)), endofaya}});
+      ligaturesubtable->ligatures.push_back({code, {endofaya, (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + hundredsdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + tensdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + onesdigit))}});
     }
   }
 
@@ -1752,14 +1752,14 @@ Lookup* Madina::ayanumbers() {
   ligaturesubtable->name = asStdString(ligature->name);
 
   for (std::uint16_t i = 99; i > 9; i--) {
-    std::uint16_t code = m_layout->glyphCodePerName[QString("%1%2").arg(ayaName).arg(i)];
+    std::uint16_t code = m_layout->glyphCodePerName[QString("%1%2").arg(ayaName).arg(i).toStdString()];
     int onesdigit = i % 10;
     int tensdigit = i / 10;
     if (extended) {
-      ligaturesubtable->ligatures.push_back({code, {endofaya, (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + tensdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + onesdigit))}});
+      ligaturesubtable->ligatures.push_back({code, {endofaya, (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + tensdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + onesdigit))}});
     } else {
-      ligaturesubtable->ligatures.push_back({code, {(std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + onesdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + tensdigit)), endofaya}});
-      ligaturesubtable->ligatures.push_back({code, {endofaya, (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + tensdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + onesdigit))}});
+      ligaturesubtable->ligatures.push_back({code, {(std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + onesdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + tensdigit)), endofaya}});
+      ligaturesubtable->ligatures.push_back({code, {endofaya, (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + tensdigit)), (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + onesdigit))}});
     }
   }
 
@@ -1775,9 +1775,9 @@ Lookup* Madina::ayanumbers() {
   ligaturesubtable->name = asStdString(ligature->name);
 
   for (int i = 1; i < 10; i++) {
-    std::uint16_t code = m_layout->glyphCodePerName[QString("%1%2").arg(ayaName).arg(i)];
-    ligaturesubtable->ligatures.push_back({code, {endofaya, (std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + i))}});
-    ligaturesubtable->ligatures.push_back({code, {(std::uint16_t)(m_layout->unicodeToGlyphCode.value(1632 + i)), endofaya}});
+    std::uint16_t code = m_layout->glyphCodePerName[QString("%1%2").arg(ayaName).arg(i).toStdString()];
+    ligaturesubtable->ligatures.push_back({code, {endofaya, (std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + i))}});
+    ligaturesubtable->ligatures.push_back({code, {(std::uint16_t)(m_layout->unicodeToGlyphCode.at(1632 + i)), endofaya}});
   }
 
   // main lokkup
@@ -2439,12 +2439,12 @@ Lookup* Madina::glyphalternates() {
       std::vector<ExtendedGlyph> alternates;
       const auto glyphName = QString::fromStdString(mapping.glyph);
       const auto substituteName = QString::fromStdString(mapping.substitute);
-      int code = m_layout->glyphCodePerName[glyphName];
-      int substcode = m_layout->glyphCodePerName[substituteName];
+      int code = m_layout->glyphCodePerName[glyphName.toStdString()];
+      int substcode = m_layout->glyphCodePerName[substituteName.toStdString()];
       ValueLimits valueLimits;
 
-      if (m_layout->expandableGlyphs.contains(glyphName)) {
-        valueLimits = m_layout->expandableGlyphs[glyphName];
+      if (m_layout->expandableGlyphs.contains(glyphName.toStdString())) {
+        valueLimits = m_layout->expandableGlyphs[glyphName.toStdString()];
       }
 
       if (code == 0 || substcode == 0) {
@@ -2529,13 +2529,13 @@ Lookup* Madina::glyphalternates() {
 
   for (auto mapping : mappingsdecomp) {
     std::vector<ExtendedGlyph> alternates;
-    int code = m_layout->glyphCodePerName[mapping.first];
-    int substcode = m_layout->glyphCodePerName[mapping.second];
+    int code = m_layout->glyphCodePerName[mapping.first.toStdString()];
+    int substcode = m_layout->glyphCodePerName[mapping.second.toStdString()];
 
     ValueLimits valueLimits;
 
-    if (m_layout->expandableGlyphs.contains(mapping.first)) {
-      valueLimits = m_layout->expandableGlyphs[mapping.first];
+    if (m_layout->expandableGlyphs.contains(mapping.first.toStdString())) {
+      valueLimits = m_layout->expandableGlyphs[mapping.first.toStdString()];
     }
 
     if (code == 0 || substcode == 0) {
@@ -2571,8 +2571,8 @@ Lookup* Madina::glyphalternates() {
 
   for (auto mapping : cv01mappings) {
     std::vector<ExtendedGlyph> alternates;
-    int code = m_layout->glyphCodePerName[mapping.first];
-    int substcode = m_layout->glyphCodePerName[mapping.second];
+    int code = m_layout->glyphCodePerName[mapping.first.toStdString()];
+    int substcode = m_layout->glyphCodePerName[mapping.second.toStdString()];
 
     if (code == 0 || substcode == 0) {
       throw new std::runtime_error("Glyph name invalid");
@@ -2609,8 +2609,8 @@ Lookup* Madina::glyphalternates() {
 
   for (auto mapping : mappingLigaRightOnlys) {
     std::vector<ExtendedGlyph> alternates;
-    int code = m_layout->glyphCodePerName[mapping.first];
-    int substcode = m_layout->glyphCodePerName[mapping.second];
+    int code = m_layout->glyphCodePerName[mapping.first.toStdString()];
+    int substcode = m_layout->glyphCodePerName[mapping.second.toStdString()];
 
     if (code == 0 || substcode == 0) {
       throw new std::runtime_error("Glyph name invalid");
@@ -2642,7 +2642,7 @@ Lookup* Madina::glyphalternates() {
   }
 
   for (auto& glyph : m_layout->expandableGlyphs) {
-    if (cv01mappings.find(glyph.first) != cv01mappings.end()) continue;
+    if (cv01mappings.find(QString::fromStdString(glyph.first)) != cv01mappings.end()) continue;
 
     if (glyph.first == "kasra") continue;
 
