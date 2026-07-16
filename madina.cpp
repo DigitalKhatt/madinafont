@@ -616,8 +616,8 @@ Lookup* Madina::rehwawcursivecpp(QString lookupName, QString feature, bool right
    public:
     CustomCursiveSubtable(Lookup* lookup) : CursiveSubtable(lookup) {}
 
-    virtual QPoint calculateEntry(GlyphVis* originalglyph, GlyphVis* extendedglyph, QPoint defaultEntry) {
-      QPoint entry = QPoint(extendedglyph->width, 0);
+    virtual Point calculateEntry(GlyphVis* originalglyph, GlyphVis* extendedglyph, Point defaultEntry) {
+      Point entry = Point(extendedglyph->width, 0);
 
       return entry;
     }
@@ -954,8 +954,8 @@ Lookup* Madina::defaultwaqfmarktobase() {
   lookup->feature = "mark";
   lookup->type = Lookup::mark2base;
 
-  auto basefunction = [this](QString glyphName, QString className, QPoint adjust, GlyphParameters) -> QPoint {
-    GlyphVis& curr = glyphs[glyphName.toStdString()];
+  auto basefunction = [this](std::string glyphName, std::string className, Point adjust, GlyphParameters) -> Point {
+    GlyphVis& curr = glyphs[glyphName];
 
     int height = std::max((int)curr.height + spacebasetotopmark, minwaqfhigh);
     int width = 0;  // curr.bbox.llx;
@@ -963,11 +963,11 @@ Lookup* Madina::defaultwaqfmarktobase() {
     width = width + adjust.x();
     height = height + adjust.y();
 
-    return QPoint(width, height);
+    return Point(width, height);
   };
 
-  auto markfunction = [this](QString glyphName, QString className, QPoint adjust, GlyphParameters) -> QPoint {
-    GlyphVis& curr = glyphs[glyphName.toStdString()];
+  auto markfunction = [this](std::string glyphName, std::string className, Point adjust, GlyphParameters) -> Point {
+    GlyphVis& curr = glyphs[glyphName];
 
     int height = 0;
     int width = 0;
@@ -975,7 +975,7 @@ Lookup* Madina::defaultwaqfmarktobase() {
     width = width + adjust.x();
     height = height + adjust.y();
 
-    return QPoint(width, height);
+    return Point(width, height);
   };
 
   MarkBaseSubtable* newsubtable = new MarkBaseSubtable(lookup);
@@ -1145,8 +1145,8 @@ Lookup* Madina::defaultmarkdotmarks() {
   topsubtable->name = "defaultmarkdotmarkstop";
   topsubtable->base = {"topdotmarks"};
 
-  auto basetopfunction = [this, topsubtable](QString glyphName, QString className, QPoint adjust, GlyphParameters) -> QPoint {
-    GlyphVis& curr = glyphs[glyphName.toStdString()];
+  auto basetopfunction = [this, topsubtable](std::string glyphName, std::string className, Point adjust, GlyphParameters) -> Point {
+    GlyphVis& curr = glyphs[glyphName];
 
     int width = curr.width * 0.5;
     int height = (int)curr.height + 80;
@@ -1154,7 +1154,7 @@ Lookup* Madina::defaultmarkdotmarks() {
     width = width + adjust.x();
     height = height + adjust.y();
 
-    return QPoint(width, height);
+    return Point(width, height);
   };
 
   auto topmarksSet = classes["topmarks"];
@@ -1183,8 +1183,8 @@ Lookup* Madina::defaultmarkdotmarks() {
   bottomsubtable->name = "defaultmarkdotmarksbottom";
   bottomsubtable->base = {"downdotmarks"};
 
-  auto basedownfunction = [this, bottomsubtable](QString glyphName, QString className, QPoint adjust, GlyphParameters) -> QPoint {
-    GlyphVis& curr = glyphs[glyphName.toStdString()];
+  auto basedownfunction = [this, bottomsubtable](std::string glyphName, std::string className, Point adjust, GlyphParameters) -> Point {
+    GlyphVis& curr = glyphs[glyphName];
 
     int depth = -(int)curr.depth + 50;
     int width = curr.width * 0.5;
@@ -1192,7 +1192,7 @@ Lookup* Madina::defaultmarkdotmarks() {
     width = width + adjust.x();
     depth = depth - adjust.y();
 
-    return QPoint(width, -depth);
+    return Point(width, -depth);
   };
 
   bottomsubtable->classes["lowmarks"].mark = {"lowmarks"};

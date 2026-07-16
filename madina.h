@@ -44,13 +44,13 @@ class Madina : public Automedina {
 class Defaultwaqfmarkabovemark : public AnchorCalc {
  public:
   Defaultwaqfmarkabovemark(Automedina& y, MarkBaseSubtable& subtable) : _y(y), _subtable(subtable) {}
-  QPoint operator()(QString glyphName, QString className, QPoint adjust, GlyphParameters parameters) override {
-    GlyphVis& curr = _y.glyphs[glyphName.toStdString()];
+  Point operator()(std::string glyphName, std::string className, Point adjust, GlyphParameters parameters) override {
+    GlyphVis& curr = _y.glyphs[glyphName];
 
     int width = 0;
     int height = 0;
 
-    return QPoint(width, height);
+    return Point(width, height);
   };
 
  private:
@@ -60,13 +60,13 @@ class Defaultwaqfmarkabovemark : public AnchorCalc {
 class Defaultmarkbelowwaqfmark : public AnchorCalc {
  public:
   Defaultmarkbelowwaqfmark(Automedina& y, MarkBaseSubtable& subtable) : _y(y), _subtable(subtable) {}
-  QPoint operator()(QString glyphName, QString className, QPoint adjust, GlyphParameters parameters) override {
-    GlyphVis& curr = _y.glyphs[glyphName.toStdString()];
+  Point operator()(std::string glyphName, std::string className, Point adjust, GlyphParameters parameters) override {
+    GlyphVis& curr = _y.glyphs[glyphName];
 
     int width = 0 + adjust.x();
     int height = curr.height + 50 + adjust.y();
 
-    return QPoint(width, height);
+    return Point(width, height);
   };
 
  private:
