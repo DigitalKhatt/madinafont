@@ -557,7 +557,7 @@ Lookup* Madina::getLookup(std::string lookupName) {
 
 Lookup* Madina::allCursiveJoin(bool rtl) {
   auto lookup = new Lookup(m_layout);
-  lookup->name = "allcursivejoin" + (rtl ? QString("rtl") : "nortl");
+  lookup->name = std::string("allcursivejoin") + (rtl ? "rtl" : "nortl");
   lookup->feature = "";
   lookup->type = Lookup::cursive;
 
@@ -570,7 +570,7 @@ Lookup* Madina::allCursiveJoin(bool rtl) {
     auto& exits = exitAnchorsRTL[cursiveNameStr];
 
     CursiveSubtable* newsubtable = new CursiveSubtable(lookup);
-    lookup->subtables.append(newsubtable);
+    lookup->subtables.push_back(newsubtable);
     newsubtable->name = cursiveNameStr;
 
     for (auto& [code, point] : entries) {
@@ -585,7 +585,7 @@ Lookup* Madina::allCursiveJoin(bool rtl) {
     auto& exits = exitAnchors[cursiveNameStr];
 
     CursiveSubtable* newsubtable = new CursiveSubtable(lookup);
-    lookup->subtables.append(newsubtable);
+    lookup->subtables.push_back(newsubtable);
     newsubtable->name = cursiveNameStr;
 
     for (auto& [code, point] : entries) {
@@ -601,8 +601,8 @@ Lookup* Madina::allCursiveJoin(bool rtl) {
 
 Lookup* Madina::rehwawcursivecpp(QString lookupName, QString feature, bool rightToLeft, std::unordered_set<std::uint16_t> cursiveGlyphs) {
   Lookup* lookup = new Lookup(m_layout);
-  lookup->name = lookupName;
-  lookup->feature = feature;
+  lookup->name = lookupName.toStdString();
+  lookup->feature = feature.toStdString();
   lookup->type = Lookup::cursive;
   if (rightToLeft) {
     lookup->flags = Lookup::Flags::IgnoreMarks | Lookup::Flags::RightToLeft;
@@ -624,27 +624,27 @@ Lookup* Madina::rehwawcursivecpp(QString lookupName, QString feature, bool right
   };
 
   CursiveSubtable* rehfinaafterbehshape = new CursiveSubtable(lookup);
-  lookup->subtables.append(rehfinaafterbehshape);
+  lookup->subtables.push_back(rehfinaafterbehshape);
   rehfinaafterbehshape->name = "rehfinaafterbehshape";
   rehfinaafterbehshape->anchors[glyphs["reh.fina.afterbehshape"].charcode].exit = QPoint(kern, 0);
 
   CursiveSubtable* rehfinaafterseen = new CursiveSubtable(lookup);
-  lookup->subtables.append(rehfinaafterseen);
+  lookup->subtables.push_back(rehfinaafterseen);
   rehfinaafterseen->name = "rehfinaafterseen";
   rehfinaafterseen->anchors[glyphs["reh.fina.afterseen"].charcode].exit = QPoint(kern, 0);
 
   CursiveSubtable* rehisol = new CursiveSubtable(lookup);
-  lookup->subtables.append(rehisol);
+  lookup->subtables.push_back(rehisol);
   rehisol->name = "rehisol";
   rehisol->anchors[glyphs["reh.isol"].charcode].exit = QPoint(kern, 0);
 
   CursiveSubtable* wawisol = new CursiveSubtable(lookup);
-  lookup->subtables.append(wawisol);
+  lookup->subtables.push_back(wawisol);
   wawisol->name = "wawisol";
   wawisol->anchors[glyphs["waw.isol"].charcode].exit = QPoint(kern, 0);
 
   CursiveSubtable* rehfina = new CustomCursiveSubtable(lookup);
-  lookup->subtables.append(rehfina);
+  lookup->subtables.push_back(rehfina);
   rehfina->name = "rehfina";
 
   auto glyphcodes = m_layout->classtoUnicode("^reh.fina$|^reh.fina[.]added");
@@ -654,7 +654,7 @@ Lookup* Madina::rehwawcursivecpp(QString lookupName, QString feature, bool right
   }
 
   CursiveSubtable* wawfina = new CustomCursiveSubtable(lookup);
-  lookup->subtables.append(wawfina);
+  lookup->subtables.push_back(wawfina);
   wawfina->name = "wawfina";
 
   glyphcodes = m_layout->classtoUnicode("^waw.fina$|^waw.fina[.]added");
@@ -688,7 +688,7 @@ Lookup* Madina::cursivejoin() {
     auto& exits = exitAnchors[cursiveNameStr];
 
     CursiveSubtable* newsubtable = new CursiveSubtable(lookup);
-    lookup->subtables.append(newsubtable);
+    lookup->subtables.push_back(newsubtable);
     newsubtable->name = cursiveNameStr;
 
     for (auto& [code, point] : entries) {
@@ -713,7 +713,7 @@ Lookup* Madina::cursivejoinrtl() {
     auto& exits = exitAnchorsRTL[cursiveNameStr];
 
     CursiveSubtable* newsubtable = new CursiveSubtable(lookup);
-    lookup->subtables.append(newsubtable);
+    lookup->subtables.push_back(newsubtable);
     newsubtable->name = cursiveNameStr;
 
     for (auto& [code, point] : entries) {
@@ -758,7 +758,7 @@ Lookup* Madina::defaultmarkposition() {
   // meem.fina.afterkaf
 
   MarkBaseSubtable* newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "meemfinaafterkaf";
   newsubtable->base = {"meem.fina.afterkaf"};
@@ -768,7 +768,7 @@ Lookup* Madina::defaultmarkposition() {
 
   // tah
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "tah";
   newsubtable->base = {"^tah"};
@@ -787,7 +787,7 @@ Lookup* Madina::defaultmarkposition() {
 
   // topmarks
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
   newsubtable->name = "topmarks";
   newsubtable->base = {"bases"};
   newsubtable->classes["topmarks"].mark = topmarksSet;
@@ -796,7 +796,7 @@ Lookup* Madina::defaultmarkposition() {
 
   // lowmarks
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
   newsubtable->name = "lowmarks";
   newsubtable->base = {"bases"};
   newsubtable->classes["lowmarks"].mark = lowmarksSet;
@@ -805,7 +805,7 @@ Lookup* Madina::defaultmarkposition() {
 
   // smallletters
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
   newsubtable->name = "smallletters";
   newsubtable->base = {"bases"};
   newsubtable->classes["smallletters"].mark = {"smallalef.joined", "smallhighwaw"};
@@ -814,7 +814,7 @@ Lookup* Madina::defaultmarkposition() {
 
   // joinedmarks
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
   newsubtable->name = "joinedmarks";
   newsubtable->base = {"bases"};
   newsubtable->classes["hamzaabove"].mark = {"hamzaabove.joined"};
@@ -823,7 +823,7 @@ Lookup* Madina::defaultmarkposition() {
 
   // default
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
   newsubtable->name = "smallhighyeh";
   newsubtable->base = {"bases"};  // TODO minimize
 
@@ -834,7 +834,7 @@ Lookup* Madina::defaultmarkposition() {
   // shadda
 
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "shadda";
   newsubtable->base = {"bases"};
@@ -845,7 +845,7 @@ Lookup* Madina::defaultmarkposition() {
   // maddahabove
 
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "maddahabove";
   newsubtable->base = {"bases"};
@@ -856,7 +856,7 @@ Lookup* Madina::defaultmarkposition() {
   // hamzaabove
 
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "hamzaabove";
   newsubtable->base = {"alef|waw|yehshape|behshape"};
@@ -867,7 +867,7 @@ Lookup* Madina::defaultmarkposition() {
   // smallalef.replacement
 
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "smallalefreplacement";
   newsubtable->base = {"alef|waw|yehshape|behshape"};
@@ -878,7 +878,7 @@ Lookup* Madina::defaultmarkposition() {
   // roundedfilledhigh
 
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "roundedfilledhigh";
   newsubtable->base = {"alef[.]isol.*|meem[.]init.*"};
@@ -888,7 +888,7 @@ Lookup* Madina::defaultmarkposition() {
 
   // smallhighnoon
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "smallhighnoon";
   newsubtable->base = {"behshape[.]init.*"};
@@ -898,7 +898,7 @@ Lookup* Madina::defaultmarkposition() {
 
   // smallhighseen
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "smallhighseen";
   newsubtable->base = {"sad[.]medi|^alef.fina|^heh.fina|^lam.fina|^noon.fina"};
@@ -908,7 +908,7 @@ Lookup* Madina::defaultmarkposition() {
 
   // hamzaabove.lamalef
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "hamzaabove.lamalef";
   newsubtable->base = {"lam.init.lamalef", "^lam.medi.laf"};
@@ -918,7 +918,7 @@ Lookup* Madina::defaultmarkposition() {
 
   // hamzabelow
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "hamzabelow";
   newsubtable->base = {"^alef[.]"};
@@ -928,7 +928,7 @@ Lookup* Madina::defaultmarkposition() {
 
   // wasla
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "wasla";
   newsubtable->base = {"^alef[.]"};
@@ -938,7 +938,7 @@ Lookup* Madina::defaultmarkposition() {
 
   // smalllowseen
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "smalllowseen";
   newsubtable->base = {"^sad[.]medi"};
@@ -979,7 +979,7 @@ Lookup* Madina::defaultwaqfmarktobase() {
   };
 
   MarkBaseSubtable* newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "defaultwaqfmarktobase";
   newsubtable->base = {"isol|fina|smallwaw|smallyeh"};
@@ -998,7 +998,7 @@ Lookup* Madina::defaultdotmarks() {
   lookup->flags = 0;
 
   MarkBaseSubtable* newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   /*classes["topdotmarks"] = {
                 "onedotup",
@@ -1018,7 +1018,7 @@ Lookup* Madina::defaultdotmarks() {
   newsubtable->classes["onedotup"].markfunction = Defaultopmarkanchor(*this, *newsubtable);
 
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
   newsubtable->name = "twodotsup";
   newsubtable->base = {"^behshape|^fehshape|^heh|^qaf"};
   newsubtable->classes["twodotsup"].mark = {"twodotsup"};
@@ -1026,7 +1026,7 @@ Lookup* Madina::defaultdotmarks() {
   newsubtable->classes["twodotsup"].markfunction = Defaultopmarkanchor(*this, *newsubtable);
 
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
   newsubtable->name = "three_dots";
   newsubtable->base = {"^behshape|^seen"};
   newsubtable->classes["three_dots"].mark = {"three_dots"};
@@ -1034,7 +1034,7 @@ Lookup* Madina::defaultdotmarks() {
   newsubtable->classes["three_dots"].markfunction = Defaultopmarkanchor(*this, *newsubtable);
 
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
   newsubtable->name = "onedotdown";
   newsubtable->base = {"^behshape|^hah"};
   newsubtable->classes["onedotdown"].mark = {"onedotdown"};
@@ -1042,7 +1042,7 @@ Lookup* Madina::defaultdotmarks() {
   newsubtable->classes["onedotdown"].markfunction = Defaullowmarkanchor(*this, *newsubtable);
 
   newsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
   newsubtable->name = "twodotsdown";
   newsubtable->base = {"^behshape"};
   newsubtable->classes["twodotsdown"].mark = {"twodotsdown"};
@@ -1059,7 +1059,7 @@ Lookup* Madina::defaultmkmk() {
   lookup->flags = 0;
 
   MarkBaseSubtable* subtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(subtable);
+  lookup->subtables.push_back(subtable);
 
   subtable->name = "defaultmkmktop";
   subtable->base = {"hamzaabove", "hamzaabove.small", "hamzaabove.joined", "hamzaabove.lamalef", "shadda", "smallalef", "smallalef.joined", "smallalef.replacement", "smallhighseen", "smallhighwaw", "smallhighyeh"};
@@ -1069,7 +1069,7 @@ Lookup* Madina::defaultmkmk() {
   subtable->classes["topmarks"].markfunction = Defaultopmarkanchor(*this, *subtable);
 
   subtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(subtable);
+  lookup->subtables.push_back(subtable);
 
   subtable->name = "defaultmkmkbottom";
   subtable->base = {"hamzabelow", "hamzaabove.joined", "smallhighyeh"};
@@ -1079,7 +1079,7 @@ Lookup* Madina::defaultmkmk() {
   subtable->classes["lowmarks"].markfunction = Defaullowmarkanchor(*this, *subtable);
 
   subtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(subtable);
+  lookup->subtables.push_back(subtable);
 
   subtable->name = "defaultmkmkmeemiqlab";
   subtable->base = {"fatha", "damma", "onedotup"};
@@ -1089,7 +1089,7 @@ Lookup* Madina::defaultmkmk() {
   subtable->classes["meemiqlab"].markfunction = Defaultopmarkanchor(*this, *subtable);
 
   subtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(subtable);
+  lookup->subtables.push_back(subtable);
 
   subtable->name = "defaultmkmksmalllowmeem";
   subtable->base = {"kasra"};
@@ -1099,7 +1099,7 @@ Lookup* Madina::defaultmkmk() {
   subtable->classes["smalllowmeem"].markfunction = Defaullowmarkanchor(*this, *subtable);
 
   subtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(subtable);
+  lookup->subtables.push_back(subtable);
 
   subtable->name = "smallhighseenwaqf.qaf";
   subtable->base = {"smallhighseen"};
@@ -1121,7 +1121,7 @@ Lookup* Madina::defaultmkmk() {
   lookup->flags = lookup->flags | Lookup::Flags::UseMarkFilteringSet;
 
   subtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(subtable);
+  lookup->subtables.push_back(subtable);
 
   subtable->name = "smallalefjoined";
   subtable->base = { "hamzaabove.joined" };
@@ -1140,7 +1140,7 @@ Lookup* Madina::defaultmarkdotmarks() {
   lookup->flags = 0;
 
   MarkBaseSubtable* topsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(topsubtable);
+  lookup->subtables.push_back(topsubtable);
 
   topsubtable->name = "defaultmarkdotmarkstop";
   topsubtable->base = {"topdotmarks"};
@@ -1178,7 +1178,7 @@ Lookup* Madina::defaultmarkdotmarks() {
   lookup->setGlyphSet({"downdotmarks", "lowmarks"});
 
   MarkBaseSubtable* bottomsubtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.append(bottomsubtable);
+  lookup->subtables.push_back(bottomsubtable);
 
   bottomsubtable->name = "defaultmarkdotmarksbottom";
   bottomsubtable->base = {"downdotmarks"};
@@ -1216,7 +1216,7 @@ Lookup* Madina::defaultwaqfmarkabovemarkprecise() {
     QString sublookupName = topmark;
 
     Lookup* sublookup = new Lookup(m_layout);
-    sublookup->name = lookup->name + "." + sublookupName;
+    sublookup->name = lookup->name + "." + sublookupName.toStdString();
     sublookup->feature = "";
     sublookup->type = Lookup::mark2base;
     sublookup->flags = 0;
@@ -1224,7 +1224,7 @@ Lookup* Madina::defaultwaqfmarkabovemarkprecise() {
     m_layout->addLookup(sublookup);
 
     MarkBaseSubtable* marksubtable = new MarkBaseSubtable(sublookup);
-    sublookup->subtables.append(marksubtable);
+    sublookup->subtables.push_back(marksubtable);
 
     marksubtable->name = asStdString(sublookup->name);
     marksubtable->base = {"bases"};
@@ -1234,7 +1234,7 @@ Lookup* Madina::defaultwaqfmarkabovemarkprecise() {
     marksubtable->classes["waqfmarks"].markfunction = Defaultopmarkanchor(*this, *marksubtable);
 
     ChainingSubtable* newsubtable = new ChainingSubtable(lookup);
-    lookup->subtables.append(newsubtable);
+    lookup->subtables.push_back(newsubtable);
 
     newsubtable->name = asStdString("topmarks_" + topmark);
 
@@ -1261,7 +1261,7 @@ Lookup* Madina::tajweedcolorcpp() {
   ValueRecord lkalkala{200, 200, 200, 0};
 
   SingleAdjustmentSubtable* newsubtable = new SingleAdjustmentSubtable(single, 3);
-  single->subtables.append(newsubtable);
+  single->subtables.push_back(newsubtable);
   newsubtable->name = asStdString(single->name);
   for (auto className : {"bases", "marks"}) {
     auto unicodes = m_layout->classtoUnicode(className);
@@ -1277,7 +1277,7 @@ Lookup* Madina::tajweedcolorcpp() {
   m_layout->addLookup(single);
 
   newsubtable = new SingleAdjustmentSubtable(single, 3);
-  single->subtables.append(newsubtable);
+  single->subtables.push_back(newsubtable);
   newsubtable->name = asStdString(single->name);
   for (auto className : {"^meem|^behshape|onedotup|^noon", "marks"}) {
     auto unicodes = m_layout->classtoUnicode(className);
@@ -1293,7 +1293,7 @@ Lookup* Madina::tajweedcolorcpp() {
   m_layout->addLookup(single);
 
   newsubtable = new SingleAdjustmentSubtable(single, 3);
-  single->subtables.append(newsubtable);
+  single->subtables.push_back(newsubtable);
   newsubtable->name = asStdString(single->name);
   for (auto className : {"^tah|^behshape|^dal|^hah|^kaf|^fehshape", "marks"}) {
     auto unicodes = m_layout->classtoUnicode(className);
@@ -1310,7 +1310,7 @@ Lookup* Madina::tajweedcolorcpp() {
 
   // tajweedcolor_meemiqlab1
   ChainingSubtable* chainingsubtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(chainingsubtable);
+  lookup->subtables.push_back(chainingsubtable);
 
   chainingsubtable->name = "tajweedcolor_meemiqlab1";
 
@@ -1324,7 +1324,7 @@ Lookup* Madina::tajweedcolorcpp() {
 
   // tajweedcolor_meemiqlab2
   chainingsubtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(chainingsubtable);
+  lookup->subtables.push_back(chainingsubtable);
 
   chainingsubtable->name = "tajweedcolor_meemiqlab2";
 
@@ -1340,7 +1340,7 @@ Lookup* Madina::tajweedcolorcpp() {
 
   // tajweedcolor_meemnoon
   chainingsubtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(chainingsubtable);
+  lookup->subtables.push_back(chainingsubtable);
 
   chainingsubtable->name = "tajweedcolor_meemnoon";
 
@@ -1370,7 +1370,7 @@ Lookup* Madina::pointmarks() {
     QString sublookupName = pointmark;
 
     Lookup* sublookup = new Lookup(m_layout);
-    sublookup->name = lookup->name + "." + sublookupName;
+    sublookup->name = lookup->name + "." + sublookupName.toStdString();
     sublookup->feature = "";
     sublookup->type = Lookup::mark2base;
     sublookup->flags = 0;
@@ -1378,7 +1378,7 @@ Lookup* Madina::pointmarks() {
     m_layout->addLookup(sublookup);
 
     MarkBaseSubtable* marksubtable = new MarkBaseSubtable(sublookup);
-    sublookup->subtables.append(marksubtable);
+    sublookup->subtables.push_back(marksubtable);
 
     marksubtable->name = asStdString(sublookup->name);
     marksubtable->base = {"bases"};
@@ -1392,7 +1392,7 @@ Lookup* Madina::pointmarks() {
     marksubtable->classes["lowmarks"].markfunction = Defaullowmarkanchor(*this, *marksubtable);
 
     ChainingSubtable* newsubtable = new ChainingSubtable(lookup);
-    lookup->subtables.append(newsubtable);
+    lookup->subtables.push_back(newsubtable);
 
     newsubtable->name = asStdString("pointmarks_" + pointmark);
 
@@ -1450,13 +1450,13 @@ Lookup* Madina::ayanumberskern() {
   for (int ayaNumber = 286; ayaNumber >= 1; ayaNumber--) {
     if (ayaNumber < 10) {
       Lookup* sublookup = new Lookup(m_layout);
-      sublookup->name = QString("ayanumberskern.l%1").arg(ayaNumber);
+      sublookup->name = QString("ayanumberskern.l%1").arg(ayaNumber).toStdString();
       sublookup->feature = "";
       sublookup->type = Lookup::singleadjustment;
       m_layout->addLookup(sublookup);
 
       SingleAdjustmentSubtable* singleadjsubtable = new SingleAdjustmentSubtable(sublookup);
-      sublookup->subtables.append(singleadjsubtable);
+      sublookup->subtables.push_back(singleadjsubtable);
 
       singleadjsubtable->name = asStdString(sublookup->name);
 
@@ -1469,7 +1469,7 @@ Lookup* Madina::ayanumberskern() {
       singleadjsubtable->singlePos[onesglyph.charcode] = {disp, digitheight, (short)-onesglyph.width, 0};
 
       ChainingSubtable* subtable = new ChainingSubtable(lookup);
-      lookup->subtables.append(subtable);
+      lookup->subtables.push_back(subtable);
       subtable->name = singleadjsubtable->name;
       subtable->compiledRule = ChainingSubtable::CompiledRule();
       subtable->compiledRule.input = {{(uint16_t)ayaGlyph.charcode}, {(uint16_t)onesglyph.charcode}};
@@ -1480,24 +1480,24 @@ Lookup* Madina::ayanumberskern() {
       int tensdigit = ayaNumber / 10;
 
       Lookup* sublookup1 = new Lookup(m_layout);
-      sublookup1->name = QString("ayanumberskern.l%1.1").arg(ayaNumber);
+      sublookup1->name = QString("ayanumberskern.l%1.1").arg(ayaNumber).toStdString();
       sublookup1->feature = "";
       sublookup1->type = Lookup::singleadjustment;
       m_layout->addLookup(sublookup1);
 
       SingleAdjustmentSubtable* singleadjsubtable1 = new SingleAdjustmentSubtable(sublookup1);
-      sublookup1->subtables.append(singleadjsubtable1);
+      sublookup1->subtables.push_back(singleadjsubtable1);
 
       singleadjsubtable1->name = asStdString(sublookup1->name);
 
       Lookup* sublookup2 = new Lookup(m_layout);
-      sublookup2->name = QString("ayanumberskern.l%1.2").arg(ayaNumber);
+      sublookup2->name = QString("ayanumberskern.l%1.2").arg(ayaNumber).toStdString();
       sublookup2->feature = "";
       sublookup2->type = Lookup::singleadjustment;
       m_layout->addLookup(sublookup2);
 
       SingleAdjustmentSubtable* singleadjsubtable2 = new SingleAdjustmentSubtable(sublookup2);
-      sublookup2->subtables.append(singleadjsubtable2);
+      sublookup2->subtables.push_back(singleadjsubtable2);
 
       singleadjsubtable2->name = asStdString(sublookup2->name);
 
@@ -1514,7 +1514,7 @@ Lookup* Madina::ayanumberskern() {
       singleadjsubtable1->singlePos[onesglyph.charcode] = {digitKern, digitheight, (short)(digitKern + position), 0};
 
       ChainingSubtable* subtable = new ChainingSubtable(lookup);
-      lookup->subtables.append(subtable);
+      lookup->subtables.push_back(subtable);
       subtable->name = asStdString(QString("ayanumberskern.l%1").arg(ayaNumber));
       subtable->compiledRule = ChainingSubtable::CompiledRule();
       subtable->compiledRule.input = {{(uint16_t)ayaGlyph.charcode}, {(uint16_t)tensglyph.charcode}, {(uint16_t)onesglyph.charcode}};
@@ -1523,30 +1523,30 @@ Lookup* Madina::ayanumberskern() {
 
     } else {
       Lookup* sublookup1 = new Lookup(m_layout);
-      sublookup1->name = QString("ayanumberskern.l%1.1").arg(ayaNumber);
+      sublookup1->name = QString("ayanumberskern.l%1.1").arg(ayaNumber).toStdString();
       sublookup1->feature = "";
       sublookup1->type = Lookup::singleadjustment;
       m_layout->addLookup(sublookup1);
       SingleAdjustmentSubtable* singleadjsubtable1 = new SingleAdjustmentSubtable(sublookup1);
-      sublookup1->subtables.append(singleadjsubtable1);
+      sublookup1->subtables.push_back(singleadjsubtable1);
       singleadjsubtable1->name = asStdString(sublookup1->name);
 
       Lookup* sublookup2 = new Lookup(m_layout);
-      sublookup2->name = QString("ayanumberskern.l%1.2").arg(ayaNumber);
+      sublookup2->name = QString("ayanumberskern.l%1.2").arg(ayaNumber).toStdString();
       sublookup2->feature = "";
       sublookup2->type = Lookup::singleadjustment;
       m_layout->addLookup(sublookup2);
       SingleAdjustmentSubtable* singleadjsubtable2 = new SingleAdjustmentSubtable(sublookup2);
-      sublookup2->subtables.append(singleadjsubtable2);
+      sublookup2->subtables.push_back(singleadjsubtable2);
       singleadjsubtable2->name = asStdString(sublookup2->name);
 
       Lookup* sublookup3 = new Lookup(m_layout);
-      sublookup3->name = QString("ayanumberskern.l%1.3").arg(ayaNumber);
+      sublookup3->name = QString("ayanumberskern.l%1.3").arg(ayaNumber).toStdString();
       sublookup3->feature = "";
       sublookup3->type = Lookup::singleadjustment;
       m_layout->addLookup(sublookup3);
       SingleAdjustmentSubtable* singleadjsubtable3 = new SingleAdjustmentSubtable(sublookup3);
-      sublookup3->subtables.append(singleadjsubtable3);
+      sublookup3->subtables.push_back(singleadjsubtable3);
       singleadjsubtable3->name = asStdString(sublookup3->name);
 
       int onesdigit = ayaNumber % 10;
@@ -1568,7 +1568,7 @@ Lookup* Madina::ayanumberskern() {
       singleadjsubtable1->singlePos[onesglyph.charcode] = {digitKern, digitheight, (short)(digitKern + position), 0};
 
       ChainingSubtable* subtable = new ChainingSubtable(lookup);
-      lookup->subtables.append(subtable);
+      lookup->subtables.push_back(subtable);
       subtable->name = asStdString(QString("ayanumberskern.l%1").arg(ayaNumber));
       subtable->compiledRule = ChainingSubtable::CompiledRule();
       subtable->compiledRule.input = {{(uint16_t)ayaGlyph.charcode}, {(uint16_t)hundredsglyph.charcode}, {(uint16_t)tensglyph.charcode}, {(uint16_t)onesglyph.charcode}};
@@ -1598,7 +1598,7 @@ Lookup* Madina::ayanumberskern() {
   m_layout->addLookup(sublookup);
 
   SingleAdjustmentSubtable* singleadjsubtable = new SingleAdjustmentSubtable(sublookup);
-  sublookup->subtables.append(singleadjsubtable);
+  sublookup->subtables.push_back(singleadjsubtable);
 
   singleadjsubtable->name = asStdString(sublookup->name);
 
@@ -1616,7 +1616,7 @@ Lookup* Madina::ayanumberskern() {
   m_layout->addLookup(sublookup);
 
   singleadjsubtable = new SingleAdjustmentSubtable(sublookup);
-  sublookup->subtables.append(singleadjsubtable);
+  sublookup->subtables.push_back(singleadjsubtable);
 
   singleadjsubtable->name = asStdString(sublookup->name);
 
@@ -1632,7 +1632,7 @@ Lookup* Madina::ayanumberskern() {
   m_layout->addLookup(sublookup);
 
   singleadjsubtable = new SingleAdjustmentSubtable(sublookup);
-  sublookup->subtables.append(singleadjsubtable);
+  sublookup->subtables.push_back(singleadjsubtable);
 
   singleadjsubtable->name = asStdString(sublookup->name);
 
@@ -1651,7 +1651,7 @@ Lookup* Madina::ayanumberskern() {
   m_layout->addLookup(sublookup);
 
   singleadjsubtable = new SingleAdjustmentSubtable(sublookup);
-  sublookup->subtables.append(singleadjsubtable);
+  sublookup->subtables.push_back(singleadjsubtable);
 
   singleadjsubtable->name = asStdString(sublookup->name);
 
@@ -1679,7 +1679,7 @@ Lookup* Madina::ayanumberskern() {
 
 
   ChainingSubtable* subtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(subtable);
+  lookup->subtables.push_back(subtable);
   subtable->name = "ayanumbers3digits";
   subtable->compiledRule = ChainingSubtable::CompiledRule();
   //subtable->compiledRule.backtrack = {{(int16_t)ayaGlyph.charcode}};
@@ -1689,7 +1689,7 @@ Lookup* Madina::ayanumberskern() {
   subtable->compiledRule.lookupRecords.push_back({ 3,"l1"});
 
   subtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(subtable);
+  lookup->subtables.push_back(subtable);
   subtable->name = "ayanumbers2digits";
   //subtable->compiledRule.backtrack = {{(int16_t)ayaGlyph.charcode}};
   subtable->compiledRule = ChainingSubtable::CompiledRule();
@@ -1698,7 +1698,7 @@ Lookup* Madina::ayanumberskern() {
   subtable->compiledRule.lookupRecords.push_back({ 2,"l2"});
 
   subtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(subtable);
+  lookup->subtables.push_back(subtable);
   subtable->name = "ayanumbers1digit";
   //subtable->compiledRule.backtrack = {{(std::uint16_t)ayaGlyph.charcode}};
   subtable->compiledRule = ChainingSubtable::CompiledRule();
@@ -1723,7 +1723,7 @@ Lookup* Madina::ayanumbers() {
   m_layout->addLookup(ligature);
 
   LigatureSubtable* ligaturesubtable = new LigatureSubtable(ligature);
-  ligature->subtables.append(ligaturesubtable);
+  ligature->subtables.push_back(ligaturesubtable);
   ligaturesubtable->name = asStdString(ligature->name);
 
   for (std::uint16_t i = 286; i > 99; i--) {
@@ -1748,7 +1748,7 @@ Lookup* Madina::ayanumbers() {
   m_layout->addLookup(ligature);
 
   ligaturesubtable = new LigatureSubtable(ligature);
-  ligature->subtables.append(ligaturesubtable);
+  ligature->subtables.push_back(ligaturesubtable);
   ligaturesubtable->name = asStdString(ligature->name);
 
   for (std::uint16_t i = 99; i > 9; i--) {
@@ -1771,7 +1771,7 @@ Lookup* Madina::ayanumbers() {
   m_layout->addLookup(ligature);
 
   ligaturesubtable = new LigatureSubtable(ligature);
-  ligature->subtables.append(ligaturesubtable);
+  ligature->subtables.push_back(ligaturesubtable);
   ligaturesubtable->name = asStdString(ligature->name);
 
   for (int i = 1; i < 10; i++) {
@@ -1796,7 +1796,7 @@ Lookup* Madina::ayanumbers() {
   digitySetplusendofaya.insert(endofaya);
 
   ChainingSubtable* subtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(subtable);
+  lookup->subtables.push_back(subtable);
   subtable->name = "ayanumbers3digits";
   subtable->compiledRule = ChainingSubtable::CompiledRule();
   if (extended) {
@@ -1809,7 +1809,7 @@ Lookup* Madina::ayanumbers() {
   subtable->compiledRule.lookupRecords.push_back({0, "l1"});
 
   subtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(subtable);
+  lookup->subtables.push_back(subtable);
   subtable->name = "ayanumbers2digits";
   subtable->compiledRule = ChainingSubtable::CompiledRule();
   if (extended) {
@@ -1820,7 +1820,7 @@ Lookup* Madina::ayanumbers() {
   subtable->compiledRule.lookupRecords.push_back({0, "l2"});
 
   subtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(subtable);
+  lookup->subtables.push_back(subtable);
   subtable->name = "ayanumbers1digit";
   subtable->compiledRule = ChainingSubtable::CompiledRule();
   if (extended) {
@@ -1840,7 +1840,7 @@ Lookup* Madina::forheh() {
   m_layout->addLookup(single);
 
   SingleSubtable* singlesubtable = new SingleSubtable(single);
-  single->subtables.append(singlesubtable);
+  single->subtables.push_back(singlesubtable);
   singlesubtable->name = asStdString(single->name);
 
   for (auto& [glyphKey, glyph] : glyphs) {
@@ -1866,7 +1866,7 @@ Lookup* Madina::forheh() {
   lookup->flags = lookup->flags | Lookup::Flags::IgnoreMarks;
 
   ChainingSubtable* newsubtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "forheh";
 
@@ -1893,7 +1893,7 @@ Lookup* Madina::forhamza() {
   m_layout->addLookup(single);
 
   SingleSubtable* singlesubtable = new SingleSubtable(single);
-  single->subtables.append(singlesubtable);
+  single->subtables.push_back(singlesubtable);
   singlesubtable->name = asStdString(single->name);
 
   int tatweel = 2;
@@ -1922,7 +1922,7 @@ Lookup* Madina::forhamza() {
   m_layout->addLookup(ligature);
 
   LigatureSubtable* ligaturesubtable = new LigatureSubtable(ligature);
-  ligature->subtables.append(ligaturesubtable);
+  ligature->subtables.push_back(ligaturesubtable);
   ligaturesubtable->name = asStdString(ligature->name);
 
   ligaturesubtable->ligatures.push_back({(std::uint16_t)glyphs["hamzaabove"].charcode, {(std::uint16_t)glyphs["hamzaabove"].charcode, 0x200D}});
@@ -1949,7 +1949,7 @@ Lookup* Madina::forhamza() {
   // lookup->flags = lookup->flags | Lookup::Flags::IgnoreMarks;
 
   ChainingSubtable* newsubtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "forhamza";
 
@@ -1969,7 +1969,7 @@ Lookup* Madina::forhamza() {
 
   // roundedfilledhigh
   newsubtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "roundedfilledhigh";
 
@@ -2012,14 +2012,14 @@ Lookup* Madina::shrinkstretchlt(float lt, QString featureName) {
   }
 
   Lookup* single = new Lookup(m_layout);
-  single->name = lookupName + ".l1";
+  single->name = lookupName.toStdString() + ".l1";
   single->feature = "";
   single->type = Lookup::single;
 
   m_layout->addLookup(single);
 
   SingleSubtable* singlesubtable = new SingleSubtable(single);
-  single->subtables.append(singlesubtable);
+  single->subtables.push_back(singlesubtable);
   singlesubtable->name = asStdString(single->name);
 
   for (auto& [glyphKey, glyph] : glyphs) {
@@ -2063,13 +2063,13 @@ Lookup* Madina::shrinkstretchlt(float lt, QString featureName) {
   }
 
   Lookup* lookup = new Lookup(m_layout);
-  lookup->name = lookupName;
-  lookup->feature = featureName;
+  lookup->name = lookupName.toStdString();
+  lookup->feature = featureName.toStdString();
   lookup->type = Lookup::chainingsub;
   lookup->flags = 0;
 
   ChainingSubtable* newsubtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = asStdString(lookupName);
 
@@ -2096,7 +2096,7 @@ Lookup* Madina::forsmallhighwaw() {
   float tatweel = 1;
 
   SingleSubtable* singlesubtable = new SingleSubtable(single);
-  single->subtables.append(singlesubtable);
+  single->subtables.push_back(singlesubtable);
   singlesubtable->name = asStdString(single->name);
 
   for (auto& [glyphKey, glyph] : glyphs) {
@@ -2121,7 +2121,7 @@ Lookup* Madina::forsmallhighwaw() {
   m_layout->addLookup(ligature);
 
   LigatureSubtable* ligaturesubtable = new LigatureSubtable(ligature);
-  ligature->subtables.append(ligaturesubtable);
+  ligature->subtables.push_back(ligaturesubtable);
   ligaturesubtable->name = asStdString(ligature->name);
 
   ligaturesubtable->ligatures.push_back({(std::uint16_t)glyphs["smallhighwaw"].charcode, {0x034F, (std::uint16_t)glyphs["smallhighwaw"].charcode}});
@@ -2136,7 +2136,7 @@ Lookup* Madina::forsmallhighwaw() {
 
   // forsmallalefwithmaddah
   ChainingSubtable* newsubtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "subtable1";
 
@@ -2166,7 +2166,7 @@ Lookup* Madina::forsmalllalef() {
   float tatweel = 1;
 
   SingleSubtable* singlesubtable = new SingleSubtable(single);
-  single->subtables.append(singlesubtable);
+  single->subtables.push_back(singlesubtable);
   singlesubtable->name = asStdString(single->name);
 
   for (auto& [glyphKey, glyph] : glyphs) {
@@ -2196,7 +2196,7 @@ Lookup* Madina::forsmalllalef() {
   tatweel = 2;
 
   singlesubtable = new SingleSubtable(single);
-  single->subtables.append(singlesubtable);
+  single->subtables.push_back(singlesubtable);
   singlesubtable->name = asStdString(single->name);
 
   for (auto& [glyphKey, glyph] : glyphs) {
@@ -2224,7 +2224,7 @@ Lookup* Madina::forsmalllalef() {
 
   // forsmallalefwithmaddah
   ChainingSubtable* newsubtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "forsmallalefwithmaddah";
 
@@ -2244,7 +2244,7 @@ Lookup* Madina::forsmalllalef() {
 
   // forsmallalef
   newsubtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "forsmallalef";
 
@@ -2263,7 +2263,7 @@ Lookup* Madina::forsmalllalef() {
 
   // forsmallalef
   newsubtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "forsmallalef";
 
@@ -2293,7 +2293,7 @@ Lookup* Madina::forwaw() {
   m_layout->addLookup(single);
 
   SingleSubtable* singlesubtable = new SingleSubtable(single);
-  single->subtables.append(singlesubtable);
+  single->subtables.push_back(singlesubtable);
   singlesubtable->name = asStdString(single->name);
 
   float tatweel = 1;
@@ -2322,7 +2322,7 @@ Lookup* Madina::forwaw() {
   lookup->flags = lookup->flags | Lookup::Flags::IgnoreMarks;
 
   ChainingSubtable* newsubtable = new ChainingSubtable(lookup);
-  lookup->subtables.append(newsubtable);
+  lookup->subtables.push_back(newsubtable);
 
   newsubtable->name = "forwaw";
 
@@ -2346,14 +2346,14 @@ Lookup* Madina::populatecvxx() {
 
   for (auto& alternates : cvxxfeatures) {
     Lookup* alternate = new Lookup(m_layout);
-    alternate->name = QString("cv%1").arg(cvNumber, 2, 10, QLatin1Char('0'));
+    alternate->name = QString("cv%1").arg(cvNumber, 2, 10, QLatin1Char('0')).toStdString();
     alternate->feature = alternate->name;
     alternate->type = Lookup::alternate;
 
     m_layout->addLookup(alternate);
 
     AlternateSubtable* alternateSubtable = new AlternateSubtable(alternate);
-    alternate->subtables.append(alternateSubtable);
+    alternate->subtables.push_back(alternateSubtable);
     alternate->name = alternate->name;
 
     alternateSubtable->alternates = alternates;
@@ -2425,14 +2425,14 @@ Lookup* Madina::glyphalternates() {
 
   for (auto& feature : altfeatures) {
     Lookup* alternate = new Lookup(m_layout);
-    alternate->name = QString::fromStdString(feature.featureName);
+    alternate->name = feature.featureName;
     alternate->feature = alternate->name;
     alternate->type = Lookup::alternate;
 
     m_layout->addLookup(alternate);
 
     AlternateSubtableWithTatweel* alternateSubtable = new AlternateSubtableWithTatweel(alternate);
-    alternate->subtables.append(alternateSubtable);
+    alternate->subtables.push_back(alternateSubtable);
     alternate->name = alternate->name;
 
     for (auto mapping : feature.alternates) {
@@ -2524,7 +2524,7 @@ Lookup* Madina::glyphalternates() {
   m_layout->addLookup(alternate);
 
   AlternateSubtableWithTatweel* alternateSubtable = new AlternateSubtableWithTatweel(alternate);
-  alternate->subtables.append(alternateSubtable);
+  alternate->subtables.push_back(alternateSubtable);
   alternate->name = alternate->name;
 
   for (auto mapping : mappingsdecomp) {
@@ -2566,7 +2566,7 @@ Lookup* Madina::glyphalternates() {
   m_layout->addLookup(alternate);
 
   alternateSubtable = new AlternateSubtableWithTatweel(alternate);
-  alternate->subtables.append(alternateSubtable);
+  alternate->subtables.push_back(alternateSubtable);
   alternateSubtable->name = asStdString(alternate->name);
 
   for (auto mapping : cv01mappings) {
@@ -2686,7 +2686,7 @@ Lookup* Madina::glyphalternates() {
   m_layout->addLookup(alternate);
 
   alternateSubtable = new AlternateSubtableWithTatweel(alternate);
-  alternate->subtables.append(alternateSubtable);
+  alternate->subtables.push_back(alternateSubtable);
   alternate->name = alternate->name;
 
   for (auto& glyph : m_layout->expandableGlyphs) {
