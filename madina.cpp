@@ -2131,7 +2131,8 @@ Lookup* Madina::forsmallhighwaw() {
   lookup->name = "forsmallhighwaw";
   lookup->feature = "rlig";
   lookup->type = Lookup::chainingsub;
-  lookup->markGlyphSetIndex = m_layout->addMarkSet(QList{(std::uint16_t)glyphs["smallhighwaw"].charcode});
+  lookup->markGlyphSetIndex = m_layout->addMarkSet(
+      std::vector<std::uint16_t>{(std::uint16_t)glyphs["smallhighwaw"].charcode});
   lookup->flags = lookup->flags | Lookup::Flags::UseMarkFilteringSet;
 
   // forsmallalefwithmaddah
