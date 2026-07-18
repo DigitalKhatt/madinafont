@@ -6,7 +6,7 @@
 
 class Madina : public Automedina {
  public:
-  Madina(OtLayout* layout, Font* font, bool extended);
+  Madina(OtLayout* layout, MPFont* font, bool extended);
   Lookup* getLookup(std::string lookupName) override;
   CalcAnchor getanchorCalcFunctions(std::string functionName, Subtable* subtable) override;
   ~Madina() {}

@@ -6,7 +6,6 @@
 #include "Lookup.h"
 #include "Subtable.h"
 #include "defaultmarkpositions.h"
-#include "font.hpp"
 #include "metafont.h"
 #include "qdebug.h"
 #include "qregularexpression.h"
@@ -15,7 +14,7 @@
 using namespace std;
 
 void Madina::generateGlyphs() {
-  auto edgess = font->getEdges();
+  auto edgess = font->edges();
 
   glyphs.clear();
 
@@ -106,13 +105,13 @@ void Madina::generateGlyphs() {
 }
 
 void Madina::addchars() {
-  auto useColoredAya = font->getBoolVariable("useColoredAya");
+  auto useColoredAya = font->boolVariable("useColoredAya");
 
   generateAyas("endofaya", useColoredAya);
 }
 
-Madina::Madina(OtLayout* layout, Font* font, bool extended) : Automedina{layout, font, extended} {
-  isForCoreText = font->getBoolVariable("isForCoreText");
+Madina::Madina(OtLayout* layout, MPFont* font, bool extended) : Automedina{layout, font, extended} {
+  isForCoreText = font->boolVariable("isForCoreText");
   // m_metafont = layout->m_font;
   classes["marks"] = {
       //"cgj",
