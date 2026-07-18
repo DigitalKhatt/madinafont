@@ -16,17 +16,23 @@ set(Source_Files
 
 
 find_package(Qt5 COMPONENTS Gui  REQUIRED)
-find_package(digitalkhatt_otlayout REQUIRED CONFIG HINTS "${CMAKE_CURRENT_SOURCE_DIR}")
+if(NOT TARGET digitalkhatt::otlayout)
+  find_package(digitalkhatt_otlayout REQUIRED CONFIG)
+endif()
 
+set(FONT_TARGET_NAME "${PROJECT_NAME}")
+if(DEFINED DIGITALKHATT_FONT_TARGET_NAME)
+  set(FONT_TARGET_NAME "${DIGITALKHATT_FONT_TARGET_NAME}")
+endif()
 
-add_library(${PROJECT_NAME} SHARED ${Source_Files})
+add_library(${FONT_TARGET_NAME} SHARED ${Source_Files})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
+set_target_properties(${FONT_TARGET_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME} DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
 
-target_link_libraries(${PROJECT_NAME} Qt5::Gui digitalkhatt_otlayout)
+target_link_libraries(${FONT_TARGET_NAME} PRIVATE Qt5::Gui digitalkhatt::otlayout)
 
-target_link_options(${PROJECT_NAME} PRIVATE $<$<CXX_COMPILER_ID:Clang>:-undefined dynamic_lookup>)
+target_link_options(${FONT_TARGET_NAME} PRIVATE $<$<CXX_COMPILER_ID:Clang>:-undefined dynamic_lookup>)
 
-target_compile_options(${PROJECT_NAME} PUBLIC $<$<CXX_COMPILER_ID:Clang>:-fdeclspec>)
+target_compile_options(${FONT_TARGET_NAME} PUBLIC $<$<CXX_COMPILER_ID:Clang>:-fdeclspec>)
 
-install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
+install(TARGETS ${FONT_TARGET_NAME} DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
