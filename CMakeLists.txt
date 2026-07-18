@@ -31,8 +31,4 @@ set_target_properties(${FONT_TARGET_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME}
 
 target_link_libraries(${FONT_TARGET_NAME} PRIVATE Qt5::Gui digitalkhatt::otlayout)
 
-target_link_options(${FONT_TARGET_NAME} PRIVATE $<$<CXX_COMPILER_ID:Clang>:-undefined dynamic_lookup>)
-
-target_compile_options(${FONT_TARGET_NAME} PUBLIC $<$<CXX_COMPILER_ID:Clang>:-fdeclspec>)
-
 install(TARGETS ${FONT_TARGET_NAME} DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
