@@ -48,18 +48,18 @@ void Madina::generateGlyphs() {
           if (anchor.anchorName) {
             switch (anchor.type) {
               case 1:
-                markAnchors[anchor.anchorName][glyph.charcode] = QPoint(anchor.x, anchor.y);
+                markAnchors[anchor.anchorName][glyph.charcode] = Point(anchor.x, anchor.y);
                 break;
               case 2:
-                entryAnchors[anchor.anchorName][glyph.charcode] = QPoint(anchor.x, anchor.y);
+                entryAnchors[anchor.anchorName][glyph.charcode] = Point(anchor.x, anchor.y);
                 break;
               case 3:
-                exitAnchors[anchor.anchorName][glyph.charcode] = QPoint(anchor.x, anchor.y);
+                exitAnchors[anchor.anchorName][glyph.charcode] = Point(anchor.x, anchor.y);
               case 4:
-                entryAnchorsRTL[anchor.anchorName][glyph.charcode] = QPoint(anchor.x, anchor.y);
+                entryAnchorsRTL[anchor.anchorName][glyph.charcode] = Point(anchor.x, anchor.y);
                 break;
               case 5:
-                exitAnchorsRTL[anchor.anchorName][glyph.charcode] = QPoint(anchor.x, anchor.y);
+                exitAnchorsRTL[anchor.anchorName][glyph.charcode] = Point(anchor.x, anchor.y);
               default:
                 break;
             }
@@ -625,22 +625,22 @@ Lookup* Madina::rehwawcursivecpp(QString lookupName, QString feature, bool right
   CursiveSubtable* rehfinaafterbehshape = new CursiveSubtable(lookup);
   lookup->subtables.push_back(rehfinaafterbehshape);
   rehfinaafterbehshape->name = "rehfinaafterbehshape";
-  rehfinaafterbehshape->anchors[glyphs["reh.fina.afterbehshape"].charcode].exit = QPoint(kern, 0);
+  rehfinaafterbehshape->anchors[glyphs["reh.fina.afterbehshape"].charcode].exit = Point(kern, 0);
 
   CursiveSubtable* rehfinaafterseen = new CursiveSubtable(lookup);
   lookup->subtables.push_back(rehfinaafterseen);
   rehfinaafterseen->name = "rehfinaafterseen";
-  rehfinaafterseen->anchors[glyphs["reh.fina.afterseen"].charcode].exit = QPoint(kern, 0);
+  rehfinaafterseen->anchors[glyphs["reh.fina.afterseen"].charcode].exit = Point(kern, 0);
 
   CursiveSubtable* rehisol = new CursiveSubtable(lookup);
   lookup->subtables.push_back(rehisol);
   rehisol->name = "rehisol";
-  rehisol->anchors[glyphs["reh.isol"].charcode].exit = QPoint(kern, 0);
+  rehisol->anchors[glyphs["reh.isol"].charcode].exit = Point(kern, 0);
 
   CursiveSubtable* wawisol = new CursiveSubtable(lookup);
   lookup->subtables.push_back(wawisol);
   wawisol->name = "wawisol";
-  wawisol->anchors[glyphs["waw.isol"].charcode].exit = QPoint(kern, 0);
+  wawisol->anchors[glyphs["waw.isol"].charcode].exit = Point(kern, 0);
 
   CursiveSubtable* rehfina = new CustomCursiveSubtable(lookup);
   lookup->subtables.push_back(rehfina);
@@ -649,7 +649,7 @@ Lookup* Madina::rehwawcursivecpp(QString lookupName, QString feature, bool right
   auto glyphcodes = m_layout->classtoUnicode("^reh.fina$|^reh.fina[.]added");
 
   for (auto glyphcode : glyphcodes) {
-    rehfina->anchors[glyphcode].exit = QPoint(kern, 0);
+    rehfina->anchors[glyphcode].exit = Point(kern, 0);
   }
 
   CursiveSubtable* wawfina = new CustomCursiveSubtable(lookup);
@@ -659,19 +659,19 @@ Lookup* Madina::rehwawcursivecpp(QString lookupName, QString feature, bool right
   glyphcodes = m_layout->classtoUnicode("^waw.fina$|^waw.fina[.]added");
 
   for (auto glyphcode : glyphcodes) {
-    wawfina->anchors[glyphcode].exit = QPoint(kern, 0);
+    wawfina->anchors[glyphcode].exit = Point(kern, 0);
   }
 
   for (auto glyphcode : cursiveGlyphs) {
     const auto& glyphName = m_layout->glyphNamePerCode[glyphcode];
     auto& glyph = glyphs[glyphName];
 
-    rehisol->anchors[glyphcode].entry = QPoint(glyph.width, 0);
-    wawisol->anchors[glyphcode].entry = QPoint(glyph.width, 0);
-    rehfina->anchors[glyphcode].entry = QPoint(glyph.width, 0);
-    wawfina->anchors[glyphcode].entry = QPoint(glyph.width, 0);
-    rehfinaafterbehshape->anchors[glyphcode].entry = QPoint(glyph.width, 0);
-    rehfinaafterseen->anchors[glyphcode].entry = QPoint(glyph.width, 0);
+    rehisol->anchors[glyphcode].entry = Point(glyph.width, 0);
+    wawisol->anchors[glyphcode].entry = Point(glyph.width, 0);
+    rehfina->anchors[glyphcode].entry = Point(glyph.width, 0);
+    wawfina->anchors[glyphcode].entry = Point(glyph.width, 0);
+    rehfinaafterbehshape->anchors[glyphcode].entry = Point(glyph.width, 0);
+    rehfinaafterseen->anchors[glyphcode].entry = Point(glyph.width, 0);
   }
 
   return lookup;
@@ -1127,7 +1127,7 @@ Lookup* Madina::defaultmkmk() {
 
   subtable->classes["smallalef.joined"].mark = { "smallalef.joined" };
   //subtable->classes["smallalef.joined"].baseanchors = { { "smallalef.joined", 1 } }
-  subtable->classes["smallalef.joined"].markanchors = { { "smallalef.joined", QPoint(200,0) } };*/
+  subtable->classes["smallalef.joined"].markanchors = { { "smallalef.joined", Point(200,0) } };*/
 
   return lookup;
 }
