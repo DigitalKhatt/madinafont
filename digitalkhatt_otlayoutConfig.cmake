@@ -1,0 +1,1 @@
+../visualmetafont/build/ninja-qt5brew/src/digitalkhatt_otlayoutConfig.cmake

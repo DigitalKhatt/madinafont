@@ -1,4 +1,5 @@
 #pragma once
+#include <QString>
 #include "GlyphVis.h"
 #include "Lookup.h"
 #include "Subtable.h"
