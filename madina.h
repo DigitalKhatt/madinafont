@@ -1,5 +1,5 @@
 #pragma once
-#include <QString>
+#include <string>
 #include "GlyphVis.h"
 #include "Lookup.h"
 #include "Subtable.h"
@@ -29,13 +29,13 @@ class Madina : public Automedina {
   Lookup* defaultmkmk();
   Lookup* ayanumbers();
   Lookup* ayanumberskern();
-  Lookup* rehwawcursivecpp(QString lookupName, QString feature, bool rightToLeft, std::unordered_set<std::uint16_t> cursiveGlyphs);
+  Lookup* rehwawcursivecpp(std::string lookupName, std::string feature, bool rightToLeft, std::unordered_set<std::uint16_t> cursiveGlyphs);
   Lookup* allCursiveJoin(bool rtl);
   Lookup* tajweedcolorcpp();
   Lookup* populatecvxx();
   Lookup* glyphalternates();
   // Justification
-  Lookup* shrinkstretchlt(float lt, QString featureName);
+  Lookup* shrinkstretchlt(float lt, std::string featureName);
   Lookup* shrinkstretchlt();
   void addchars();
   void generateGlyphs();
