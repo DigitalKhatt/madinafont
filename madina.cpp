@@ -2711,3 +2711,6 @@ Lookup* Madina::glyphalternates() {
 
   return nullptr;
 }
+void Madina::generateSubstEquivGlyphs() {
+  m_layout->generateSubstEquivGlyphsLegacy();
+}

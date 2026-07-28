@@ -10,6 +10,7 @@ class Madina : public Automedina {
   Madina(OtLayout* layout, MPFont* font, bool extended);
   Lookup* getLookup(std::string lookupName) override;
   CalcAnchor getanchorCalcFunctions(std::string functionName, Subtable* subtable) override;
+  void generateSubstEquivGlyphs() override;
   ~Madina() {}
 
  private:
