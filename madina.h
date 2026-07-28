@@ -33,7 +33,6 @@ class Madina : public Automedina {
   Lookup* rehwawcursivecpp(std::string lookupName, std::string feature, bool rightToLeft, std::unordered_set<std::uint16_t> cursiveGlyphs);
   Lookup* allCursiveJoin(bool rtl);
   Lookup* tajweedcolorcpp();
-  Lookup* populatecvxx();
   Lookup* glyphalternates();
   // Justification
   Lookup* shrinkstretchlt(float lt, std::string featureName);
