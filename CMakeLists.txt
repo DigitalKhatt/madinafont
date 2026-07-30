@@ -65,10 +65,7 @@ if(EMSCRIPTEN)
   # module compiled with DISABLE_EXCEPTION_CATCHING=0.
   target_compile_options(${FONT_TARGET_NAME} PRIVATE "SHELL:-s DISABLE_EXCEPTION_CATCHING=0")
   target_link_options(${FONT_TARGET_NAME} PRIVATE "SHELL:-s DISABLE_EXCEPTION_CATCHING=0")
-
-  add_custom_command(TARGET ${FONT_TARGET_NAME} POST_BUILD
-    COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:${FONT_TARGET_NAME}>" "${CMAKE_CURRENT_SOURCE_DIR}/../digitalkhatt.org/ClientApp/src/assets"
-    COMMENT "Copying to output directory")
+  
 else()
   add_library(${FONT_TARGET_NAME} SHARED ${Source_Files})
 
