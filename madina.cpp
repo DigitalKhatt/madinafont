@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <format>
 #include <iostream>
+#include <stdexcept>
 
 #include "GlyphVis.h"
 #include "Lookup.h"
@@ -113,6 +114,17 @@ void Madina::addchars() {
 }
 
 Madina::Madina(OtLayout* layout, MPFont* font, bool extended) : Automedina{layout, font, extended} {
+  const auto profileName = font->stringVariable("fontProfile");
+  // Older project files without this setting retain the justification default.
+  if (!profileName.empty() && profileName != "justification" && profileName != "live" && profileName != "portable")
+    throw std::runtime_error("Unknown Madina font profile: " + profileName +
+                             " (expected justification or portable)");
+  profile_ = profileName == "portable" ? Profile::Portable : Profile::Justification;
+  // Expose the selected profile to feature-file conditionals as well as C++.
+  // Selection does not depend on the renderer or the extended export format.
+  font->execute(std::string{"boolean isJustificationProfile, isPortableProfile; "} +
+                "isJustificationProfile := " + (profile_ == Profile::Justification ? "true" : "false") +
+                "; isPortableProfile := " + (profile_ == Profile::Portable ? "true" : "false") + ";");
   isForCoreText = font->boolVariable("isForCoreText");
   // m_metafont = layout->m_font;
   classes["marks"] = {
@@ -458,19 +470,6 @@ Madina::Madina(OtLayout* layout, MPFont* font, bool extended) : Automedina{layou
   // Basmala
   layout->expandableGlyphs["behshape.medi.basmala"] = {20, -1, 0, 0};
   layout->expandableGlyphs["seen.medi.basmala"] = {20, -1, 0, 0};
-}
-
-SingleAdjustFunc Madina::getSingleAdjustFunction(std::string functionName, Subtable*) {
-  const bool direct = functionName == "rehwawhorizontalentry.direct";
-  if (!direct && functionName != "rehwawhorizontalentry.split") return {};
-  return [this, direct](GlyphVis* glyph) -> ValueRecord {
-    auto* source = m_layout->getGlyph(glyph->sourceGlyphCode.value_or(glyph->charcode));
-    // Match the former cursive entry's direct or separate truncation.
-    const int entry = direct
-        ? static_cast<int>(glyph->width)
-        : static_cast<int>(source->width) + static_cast<int>(glyph->width - source->width);
-    return {0, 0, static_cast<short>(entry - toInt(glyph->width)), 0};
-  };
 }
 
 PairAdjustFunc Madina::getPairAdjustFunction(std::string functionName, Subtable*) {

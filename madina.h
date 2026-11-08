@@ -7,15 +7,18 @@
 
 class Madina : public Automedina {
  public:
+  enum class Profile { Justification, Portable };
+
   Madina(OtLayout* layout, MPFont* font, bool extended);
+  Profile fontProfile() const { return profile_; }
   Lookup* getLookup(std::string lookupName) override;
-  SingleAdjustFunc getSingleAdjustFunction(std::string functionName, Subtable* subtable) override;
   PairAdjustFunc getPairAdjustFunction(std::string functionName, Subtable* subtable) override;
   CalcAnchor getanchorCalcFunctions(std::string functionName, Subtable* subtable) override;
   void generateSubstEquivGlyphs() override;
   ~Madina() {}
 
  private:
+  Profile profile_ = Profile::Justification;
   bool isForCoreText = false;
   Lookup* defaultmarkposition();
   Lookup* defaultwaqfmarktobase();

@@ -355,6 +355,14 @@ z9 = (559.556,-228.144);
 
 penwidth_ := 20;
 
+% Editable source pictures; each evaluation starts from empty pictures.
+picture aya.first, aya.second, aya.third, aya.fourth, aya.fifth;
+aya.first := nullpicture;
+aya.second := nullpicture;
+aya.third := nullpicture;
+aya.fourth := nullpicture;
+aya.fifth := nullpicture;
+
 color bluecolor[];
 
 	
@@ -372,7 +380,8 @@ x9 := x8 := x1;
 
 %%beginpaths
 
-controlledPath (0,0)(_first)(
+controlledImage(aya.first)(
+fill
 z1 .. tension 0.962423 and 0.774639 ..
  {dir -36.5158}(564.911,873.931) .. tension 0.75 and 1.88674 ..
  {dir -34.7967}(593.239,830.932) .. tension 1.0101 and 0.75 ..
@@ -392,7 +401,8 @@ z1 .. tension 0.962423 and 0.774639 ..
  {left}(x1,868.018) .. tension 2.55249 and 1.77211 ..
  {right} cycle
 );
-controlledPath (1,0)(_second)(
+controlledImage(aya.second)(
+fill
 z2 .. tension 1.18369 and 0.75 ..
  {right}(654.902,696) .. tension 1.15254 and 1 ..
  {down}(x3 + penwidth_,y3) .. tension 1 and 1 ..
@@ -401,7 +411,8 @@ z2 .. tension 1.18369 and 0.75 ..
  {down}z2.2 .. tension 1.51346 and 1.12156 ..
  {up} cycle
 );
-controlledPath (2,0)(_third)(
+controlledImage(aya.third)(
+fill
 z2 .. tension 1.67732 and 1.25959 ..
  {down}(x2 + penwidth_,y2) .. tension 1 and 1 ..
  {right}(597.867,536.362) .. tension 1 and 1 ..
@@ -427,14 +438,16 @@ z2 .. tension 1.67732 and 1.25959 ..
  {left}(597.049,512.999) .. tension 1.2806 and 0.75 ..
  {up} cycle
 );
-controlledPath (3,0)(_fourth)(
+controlledImage(aya.fourth)(
+fill
 (x1,742.369) .. tension 1.1291 and 1.17856 ..
  {down}(603.205,684.827) .. tension 1.74043 and 1.14421 ..
  {up}(582.438,681.667) .. tension 1 and 1 ..
  {left}(x1,721.053) .. tension 1.30224 and 1.24712 ..
  {right} cycle
 );
-controlledPath (4,0)(_fifth)(
+controlledImage(aya.fifth)(
+fill
 z9 .. tension 1.20827 and 1 ..
 (578.192,-216.665) .. tension 1 and 1.2275 ..
  {right}(595.486,-198.689) .. tension 1.6671 and 1 ..
@@ -456,7 +469,11 @@ z9 .. tension 1.20827 and 1 ..
 %%beginbody
 
 path _paths[],_paths[].r;
-_paths0 := _first;_paths1 := _second;_paths2 := _third;_paths3 := _fourth;_paths4 := _fifth;	
+_paths0 := pathpart aya.first;
+_paths1 := pathpart aya.second;
+_paths2 := pathpart aya.third;
+_paths3 := pathpart aya.fourth;
+_paths4 := pathpart aya.fifth;
 
 _paths0.1.r := _paths0 reflectedabout (z1,z1+(0,10));_paths0.1:=reverse _paths0.1.r;
 _paths1.1.r := _paths1 reflectedabout (z1,z1+(0,10));_paths1.1:=reverse _paths1.1.r;
@@ -476,6 +493,7 @@ fill _paths1.2;fill _paths2.2;fill _paths1.3;fill _paths2.3;
 savepicture := 1;
 
 if useColoredAya : coloredglyph:="endofaya.colored"; fi
+
 
 enddefchar;
 defchar(endofaya.colored,-1,-1,5,-1);
