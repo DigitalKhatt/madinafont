@@ -9,21 +9,7 @@ lineheight := 88;
 penwidth := 88;
 joinvector := ljoinvector := rjoinvector := (16,lineheight);
 nuqta := 1.4penwidth;
-boolean isForCoreText; isForCoreText = false;
-if isForCoreText :
-  def setCursiveAnchor(suffix pname)(expr pvalue)(expr anchortype) =
-    if anchortype = EntryAnchor:
-      defAnchor(pname,pvalue,EntryAnchorRTL);
-    elseif anchortype = ExitAnchor:
-     defAnchor(pname,pvalue,ExitAnchorRTL);
-    else: 
-      defAnchor(pname,pvalue,anchortype); 
-    fi
-  enddef;
-fi
-if not isForCoreText :
-%defAxis("leftTatweel","LTAT",-20,0,20,"params0");
-%defAxis("rightTatweel","RTAT",-20,0,20,"params1");
+% Enable the historical CoreText workaround for unjustified layout.
+boolean isForCoreText; isForCoreText := false;
 defAxis("scaleX","SCLX",50,100,200,"params100");
-fi
 boolean useColoredAya;useColoredAya:=false;

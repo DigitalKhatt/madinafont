@@ -55,11 +55,13 @@ void Madina::generateGlyphs() {
                 break;
               case 3:
                 exitAnchors[anchor.anchorName][glyph.charcode] = Point(anchor.x, anchor.y);
+                break;
               case 4:
                 entryAnchorsRTL[anchor.anchorName][glyph.charcode] = Point(anchor.x, anchor.y);
                 break;
               case 5:
                 exitAnchorsRTL[anchor.anchorName][glyph.charcode] = Point(anchor.x, anchor.y);
+                break;
               default:
                 break;
             }
@@ -458,6 +460,30 @@ Madina::Madina(OtLayout* layout, MPFont* font, bool extended) : Automedina{layou
   layout->expandableGlyphs["seen.medi.basmala"] = {20, -1, 0, 0};
 }
 
+SingleAdjustFunc Madina::getSingleAdjustFunction(std::string functionName, Subtable*) {
+  const bool direct = functionName == "rehwawhorizontalentry.direct";
+  if (!direct && functionName != "rehwawhorizontalentry.split") return {};
+  return [this, direct](GlyphVis* glyph) -> ValueRecord {
+    auto* source = m_layout->getGlyph(glyph->sourceGlyphCode.value_or(glyph->charcode));
+    // Match the former cursive entry's direct or separate truncation.
+    const int entry = direct
+        ? static_cast<int>(glyph->width)
+        : static_cast<int>(source->width) + static_cast<int>(glyph->width - source->width);
+    return {0, 0, static_cast<short>(entry - toInt(glyph->width)), 0};
+  };
+}
+
+PairAdjustFunc Madina::getPairAdjustFunction(std::string functionName, Subtable*) {
+  const std::string prefix = "terminalbaseline_";
+  if (!functionName.starts_with(prefix)) return {};
+  const auto anchor = functionName.substr(prefix.size());
+  return [anchor](GlyphVis* first, GlyphVis* second) -> ValueRecord {
+    const auto exit = first->getAnchor(anchor, GlyphVis::AnchorType::ExitAnchorRTL);
+    const auto entry = second->getAnchor(anchor, GlyphVis::AnchorType::EntryAnchorRTL);
+    return {0, static_cast<short>(exit.y() - entry.y()), 0, 0};
+  };
+}
+
 CalcAnchor Madina::getanchorCalcFunctions(std::string functionName, Subtable* subtable) {
   CalcAnchor ret;
   if (functionName == "defaultmarkabovemark") {
@@ -498,29 +524,8 @@ Lookup* Madina::getLookup(std::string lookupName) {
     return forheh();
   } else if (lookupName == "forwaw") {
     return forwaw();
-  } else if (lookupName == "cursivejoin") {
-    return cursivejoin();
   } else if (lookupName == "cursivejoinrtl") {
     return cursivejoinrtl();
-  } else if (lookupName == "rehwawcursivecpp") {
-    if (isForCoreText) {
-      auto cursiveGlyphs = m_layout->classtoUnicode("[.]isol|[.]init");
-      return rehwawcursivecpp("rehwawcursivecpp", "", false, cursiveGlyphs);
-      /*auto rightToLeftCodes = m_layout->classtoUnicode("[.]isol");
-      auto leftToRighCodes = m_layout->classtoUnicode("[.]init");
-      std::unordered_set<std::uint16_t> rehWawIsols = {
-          (std::uint16_t)glyphs["reh.isol"].charcode,
-          (std::uint16_t)glyphs["waw.isol"].charcode};
-
-      rightToLeftCodes.subtract(rehWawIsols);
-      leftToRighCodes = leftToRighCodes + rehWawIsols;
-      m_layout->addLookup(rehwawcursivecpp("rehwawcursivecpp", "curs", true, rightToLeftCodes));
-      return rehwawcursivecpp("rehwawcursivecpp", "curs", false, leftToRighCodes);*/
-
-    } else {
-      auto cursiveGlyphs = m_layout->classtoUnicode("[.]isol|[.]init");
-      return rehwawcursivecpp("rehwawcursivecpp", "curs", false, cursiveGlyphs);
-    }
   } else if (lookupName == "defaultdotmarks") {
     return defaultdotmarks();
   } else if (lookupName == "pointmarks") {
@@ -543,162 +548,11 @@ Lookup* Madina::getLookup(std::string lookupName) {
     return forsmallhighwaw();
   } else if (lookupName == "glyphalternates") {
     return glyphalternates();
-  } else if (lookupName == "allcursivejoinnortl") {
-    return allCursiveJoin(false);
-  } else if (lookupName == "allcursivejoinrtl") {
-    return allCursiveJoin(true);
   }
 
   return nullptr;
 }
 
-Lookup* Madina::allCursiveJoin(bool rtl) {
-  auto lookup = new Lookup(m_layout);
-  lookup->name = std::string("allcursivejoin") + (rtl ? "rtl" : "nortl");
-  lookup->feature = "";
-  lookup->type = Lookup::cursive;
-
-  if (rtl) {
-    lookup->flags = Lookup::Flags::IgnoreMarks | Lookup::Flags::RightToLeft;
-  } else {
-    lookup->flags = Lookup::Flags::IgnoreMarks;
-  }
-  for (auto& [cursiveNameStr, entries] : entryAnchorsRTL) {
-    auto& exits = exitAnchorsRTL[cursiveNameStr];
-
-    CursiveSubtable* newsubtable = new CursiveSubtable(lookup);
-    lookup->subtables.push_back(newsubtable);
-    newsubtable->name = cursiveNameStr;
-
-    for (auto& [code, point] : entries) {
-      newsubtable->anchors[code].entry = point;
-    }
-
-    for (auto& [code, point] : exits) {
-      newsubtable->anchors[code].exit = point;
-    }
-  }
-  for (auto& [cursiveNameStr, entries] : entryAnchors) {
-    auto& exits = exitAnchors[cursiveNameStr];
-
-    CursiveSubtable* newsubtable = new CursiveSubtable(lookup);
-    lookup->subtables.push_back(newsubtable);
-    newsubtable->name = cursiveNameStr;
-
-    for (auto& [code, point] : entries) {
-      newsubtable->anchors[code].entry = point;
-    }
-
-    for (auto& [code, point] : exits) {
-      newsubtable->anchors[code].exit = point;
-    }
-  }
-  return lookup;
-}
-
-Lookup* Madina::rehwawcursivecpp(std::string lookupName, std::string feature, bool rightToLeft, std::unordered_set<std::uint16_t> cursiveGlyphs) {
-  Lookup* lookup = new Lookup(m_layout);
-  lookup->name = lookupName;
-  lookup->feature = feature;
-  lookup->type = Lookup::cursive;
-  if (rightToLeft) {
-    lookup->flags = Lookup::Flags::IgnoreMarks | Lookup::Flags::RightToLeft;
-  } else {
-    lookup->flags = Lookup::Flags::IgnoreMarks;
-  }
-
-  int kern = 150;
-
-  class CustomCursiveSubtable : public CursiveSubtable {
-   public:
-    CustomCursiveSubtable(Lookup* lookup) : CursiveSubtable(lookup) {}
-
-    virtual Point calculateEntry(GlyphVis* originalglyph, GlyphVis* extendedglyph, Point defaultEntry) {
-      Point entry = Point(extendedglyph->width, 0);
-
-      return entry;
-    }
-  };
-
-  CursiveSubtable* rehfinaafterbehshape = new CursiveSubtable(lookup);
-  lookup->subtables.push_back(rehfinaafterbehshape);
-  rehfinaafterbehshape->name = "rehfinaafterbehshape";
-  rehfinaafterbehshape->anchors[glyphs["reh.fina.afterbehshape"].charcode].exit = Point(kern, 0);
-
-  CursiveSubtable* rehfinaafterseen = new CursiveSubtable(lookup);
-  lookup->subtables.push_back(rehfinaafterseen);
-  rehfinaafterseen->name = "rehfinaafterseen";
-  rehfinaafterseen->anchors[glyphs["reh.fina.afterseen"].charcode].exit = Point(kern, 0);
-
-  CursiveSubtable* rehisol = new CursiveSubtable(lookup);
-  lookup->subtables.push_back(rehisol);
-  rehisol->name = "rehisol";
-  rehisol->anchors[glyphs["reh.isol"].charcode].exit = Point(kern, 0);
-
-  CursiveSubtable* wawisol = new CursiveSubtable(lookup);
-  lookup->subtables.push_back(wawisol);
-  wawisol->name = "wawisol";
-  wawisol->anchors[glyphs["waw.isol"].charcode].exit = Point(kern, 0);
-
-  CursiveSubtable* rehfina = new CustomCursiveSubtable(lookup);
-  lookup->subtables.push_back(rehfina);
-  rehfina->name = "rehfina";
-
-  auto glyphcodes = m_layout->classtoUnicode("^reh.fina$|^reh.fina[.]added");
-
-  for (auto glyphcode : glyphcodes) {
-    rehfina->anchors[glyphcode].exit = Point(kern, 0);
-  }
-
-  CursiveSubtable* wawfina = new CustomCursiveSubtable(lookup);
-  lookup->subtables.push_back(wawfina);
-  wawfina->name = "wawfina";
-
-  glyphcodes = m_layout->classtoUnicode("^waw.fina$|^waw.fina[.]added");
-
-  for (auto glyphcode : glyphcodes) {
-    wawfina->anchors[glyphcode].exit = Point(kern, 0);
-  }
-
-  for (auto glyphcode : cursiveGlyphs) {
-    const auto& glyphName = m_layout->glyphNamePerCode[glyphcode];
-    auto& glyph = glyphs[glyphName];
-
-    rehisol->anchors[glyphcode].entry = Point(glyph.width, 0);
-    wawisol->anchors[glyphcode].entry = Point(glyph.width, 0);
-    rehfina->anchors[glyphcode].entry = Point(glyph.width, 0);
-    wawfina->anchors[glyphcode].entry = Point(glyph.width, 0);
-    rehfinaafterbehshape->anchors[glyphcode].entry = Point(glyph.width, 0);
-    rehfinaafterseen->anchors[glyphcode].entry = Point(glyph.width, 0);
-  }
-
-  return lookup;
-}
-Lookup* Madina::cursivejoin() {
-  auto lookup = new Lookup(m_layout);
-  lookup->name = "cursivejoin";
-  lookup->feature = "curs";
-  lookup->type = Lookup::cursive;
-  lookup->flags = Lookup::Flags::IgnoreMarks;
-
-  for (auto& [cursiveNameStr, entries] : entryAnchors) {
-    auto& exits = exitAnchors[cursiveNameStr];
-
-    CursiveSubtable* newsubtable = new CursiveSubtable(lookup);
-    lookup->subtables.push_back(newsubtable);
-    newsubtable->name = cursiveNameStr;
-
-    for (auto& [code, point] : entries) {
-      newsubtable->anchors[code].entry = point;
-    }
-
-    for (auto& [code, point] : exits) {
-      newsubtable->anchors[code].exit = point;
-    }
-  }
-
-  return lookup;
-}
 Lookup* Madina::cursivejoinrtl() {
   auto lookup = new Lookup(m_layout);
   lookup->name = "cursivejoinrtl";
@@ -1084,16 +938,6 @@ Lookup* Madina::defaultmkmk() {
   subtable->classes["meemiqlab"].mark = {"meemiqlab"};
   subtable->classes["meemiqlab"].basefunction = Defaultmarkabovemark(*this, *subtable);
   subtable->classes["meemiqlab"].markfunction = Defaultopmarkanchor(*this, *subtable);
-
-  subtable = new MarkBaseSubtable(lookup);
-  lookup->subtables.push_back(subtable);
-
-  subtable->name = "defaultmkmksmalllowmeem";
-  subtable->base = {"kasra"};
-
-  subtable->classes["smalllowmeem"].mark = {"smalllowmeem"};
-  subtable->classes["smalllowmeem"].basefunction = Defaultmarkbelowmark(*this, *subtable);
-  subtable->classes["smalllowmeem"].markfunction = Defaullowmarkanchor(*this, *subtable);
 
   subtable = new MarkBaseSubtable(lookup);
   lookup->subtables.push_back(subtable);
