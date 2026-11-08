@@ -335,7 +335,7 @@
             }
         }
     },
-    "adjustmkmk_auto10": {
+    "adjustmkmk.lamheh.dammatan": {
         "subtable1": {
             "parameters": {
                 "dammatanidgham": [
@@ -347,7 +347,7 @@
             }
         }
     },
-    "adjustmkmk_auto11": {
+    "adjustmkmk.lamheh.dammatan.waqf": {
         "subtable1": {
             "parameters": {
                 "waqf.sad": [
@@ -359,7 +359,7 @@
             }
         }
     },
-    "adjustmkmk_auto12": {
+    "adjustmkmk.aleflam.fatha": {
         "subtable1": {
             "parameters": {
                 "fatha": [
@@ -371,7 +371,7 @@
             }
         }
     },
-    "adjustmkmk_auto14": {
+    "adjustmkmk.rehwawalefbeh.dot": {
         "subtable1": {
             "parameters": {
                 "onedotdown": [
@@ -383,7 +383,7 @@
             }
         }
     },
-    "adjustmkmk_auto15": {
+    "adjustmkmk.rehwawalefbeh.kasra": {
         "subtable1": {
             "parameters": {
                 "fatha": [
@@ -401,7 +401,7 @@
             }
         }
     },
-    "adjustmkmk_auto16": {
+    "adjustmkmk.rehwawaleflam.kasra": {
         "subtable1": {
             "parameters": {
                 "kasra": [
@@ -413,7 +413,7 @@
             }
         }
     },
-    "adjustmkmk_auto17": {
+    "adjustmkmk.lamdal.fatha": {
         "subtable1": {
             "parameters": {
                 "fatha": [
@@ -425,7 +425,7 @@
             }
         }
     },
-    "adjustmkmk_auto19": {
+    "adjustmkmk.lamheh.kasra.waqf": {
         "subtable1": {
             "parameters": {
                 "waqf.sad": [
@@ -437,7 +437,7 @@
             }
         }
     },
-    "adjustmkmk_auto22": {
+    "adjustmkmk.alefhamza.waqf": {
         "subtable1": {
             "parameters": {
                 "waqf.sad": [
@@ -449,7 +449,7 @@
             }
         }
     },
-    "adjustmkmk_auto3": {
+    "adjustmkmk.alefhamza.topmarks": {
         "subtable1": {
             "parameters": {
                 "damma": [
@@ -467,7 +467,7 @@
             }
         }
     },
-    "adjustmkmk_auto4": {
+    "adjustmkmk.lam.topmarks": {
         "subtable1": {
             "parameters": {
                 "damma": [
@@ -497,7 +497,7 @@
             }
         }
     },
-    "adjustmkmk_auto8": {
+    "adjustmkmk.lamheh.fatha": {
         "subtable1": {
             "parameters": {
                 "fatha": [
@@ -509,7 +509,7 @@
             }
         }
     },
-    "adjustmkmk_auto9": {
+    "adjustmkmk.lamheh.dots": {
         "subtable1": {
             "parameters": {
                 "twodotsup": [
@@ -2971,6 +2971,18 @@
             }
         }
     },
+    "defaultmkmksmalllowmeem": {
+        "subtable1": {
+            "smalllowmeem": {
+                "baseparameters": {
+                    "kasra": [
+                        -19,
+                        -10
+                    ]
+                }
+            }
+        }
+    },
     "defaultmkmk": {
         "defaultmkmkbottom": {
             "lowmarks": {
@@ -3004,16 +3016,6 @@
                     "onedotup": [
                         -101,
                         -97
-                    ]
-                }
-            }
-        },
-        "defaultmkmksmalllowmeem": {
-            "smalllowmeem": {
-                "baseparameters": {
-                    "kasra": [
-                        -19,
-                        -10
                     ]
                 }
             }
@@ -4263,7 +4265,7 @@
             }
         }
     },
-    "lowmarkafterwawandreh_auto2": {
+    "lowmarkafterwawandreh.wawhah.dot": {
         "subtable1": {
             "parameters": {
                 "onedotdown": [
@@ -4275,7 +4277,7 @@
             }
         }
     },
-    "lowmarkafterwawandreh_auto3": {
+    "lowmarkafterwawandreh.wawhah.kasra": {
         "subtable1": {
             "parameters": {
                 "kasra": [
@@ -4287,7 +4289,7 @@
             }
         }
     },
-    "lowmarkafterwawandreh_auto4": {
+    "lowmarkafterwawandreh.wawhah.smalllowmeem": {
         "subtable1": {
             "parameters": {
                 "smalllowmeem": [
@@ -4299,7 +4301,7 @@
             }
         }
     },
-    "lowmarkafterwawandreh_auto6": {
+    "lowmarkafterwawandreh.alefbeh.kasra": {
         "subtable1": {
             "parameters": {
                 "kasra": [
@@ -4307,212 +4309,6 @@
                     -32,
                     0,
                     0
-                ]
-            }
-        }
-    },
-    "rehwawcursivecpp": {
-        "rehfina": {
-            "entryParameters": {
-                "behshape.init.beforenoon": [
-                    28,
-                    -92
-                ],
-                "behshape.init.beforeyeh": [
-                    0,
-                    -33
-                ],
-                "hah.init": [
-                    -126,
-                    26
-                ],
-                "hah.init.basmala": [
-                    -232,
-                    19
-                ],
-                "hah.init.beforemeem": [
-                    -222,
-                    -13
-                ],
-                "hamza.isol": [
-                    -104,
-                    -14
-                ],
-                "heh.isol": [
-                    6,
-                    97
-                ],
-                "lam.isol": [
-                    0,
-                    27
-                ],
-                "qaf.isol": [
-                    -13,
-                    125
-                ],
-                "smallalef.isol": [
-                    -11,
-                    -23
-                ]
-            }
-        },
-        "rehfinaafterbehshape": {
-            "entryParameters": {
-                "alefmaksura.isol": [
-                    14,
-                    -55
-                ],
-                "behshape.init.beforenoon": [
-                    41,
-                    -110
-                ],
-                "behshape.init.beforereh": [
-                    -53,
-                    -79
-                ],
-                "behshape.init.beforeyeh": [
-                    55,
-                    -13
-                ],
-                "reh.isol": [
-                    83,
-                    0
-                ],
-                "waw.isol": [
-                    46,
-                    -23
-                ],
-                "yehshape.isol": [
-                    0,
-                    -55
-                ]
-            }
-        },
-        "rehfinaafterseen": {
-            "entryParameters": {
-                "hah.init.beforeyeh": [
-                    -76,
-                    41
-                ],
-                "kaf.init.beforelam": [
-                    -173,
-                    0
-                ],
-                "smallalef.isol": [
-                    81,
-                    34
-                ]
-            }
-        },
-        "rehisol": {
-            "entryParameters": {
-                "behshape.init.beforehah": [
-                    23,
-                    0
-                ],
-                "behshape.init.beforenoon": [
-                    104,
-                    -110
-                ],
-                "behshape.init.beforeyeh": [
-                    27,
-                    -124
-                ],
-                "heh.isol": [
-                    38,
-                    9
-                ],
-                "reh.isol": [
-                    41,
-                    0
-                ],
-                "waw.isol": [
-                    69,
-                    -27
-                ],
-                "yehshape.isol": [
-                    69,
-                    0
-                ]
-            }
-        },
-        "wawfina": {
-            "entryParameters": {
-                "alef.isol": [
-                    27,
-                    0
-                ],
-                "behshape.init.beforenoon": [
-                    -5,
-                    -106
-                ],
-                "behshape.init.beforeyeh": [
-                    23,
-                    -34
-                ],
-                "heh.isol": [
-                    -33,
-                    100
-                ],
-                "lam.init.beforeyeh": [
-                    0,
-                    -27
-                ],
-                "meem.isol": [
-                    -13,
-                    83
-                ]
-            }
-        },
-        "wawisol": {
-            "entryParameters": {
-                "alef.isol": [
-                    76,
-                    0
-                ],
-                "alef.isol.ii": [
-                    41,
-                    -296
-                ],
-                "behshape.init.beforenoon": [
-                    55,
-                    -41
-                ],
-                "behshape.init.beforeseen": [
-                    13,
-                    0
-                ],
-                "behshape.init.beforeyeh": [
-                    138,
-                    -80
-                ],
-                "fehshape.init.beforeyeh": [
-                    11,
-                    -46
-                ],
-                "heh.isol": [
-                    9,
-                    0
-                ],
-                "lam.init": [
-                    48,
-                    -8
-                ],
-                "lam.init.beforebeh": [
-                    27,
-                    0
-                ],
-                "lam.init.beforeyeh": [
-                    13,
-                    -55
-                ],
-                "reh.isol": [
-                    55,
-                    0
-                ],
-                "waw.isol": [
-                    41,
-                    -13
                 ]
             }
         }

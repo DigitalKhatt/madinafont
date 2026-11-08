@@ -9,11 +9,14 @@ class Madina : public Automedina {
  public:
   Madina(OtLayout* layout, MPFont* font, bool extended);
   Lookup* getLookup(std::string lookupName) override;
+  SingleAdjustFunc getSingleAdjustFunction(std::string functionName, Subtable* subtable) override;
+  PairAdjustFunc getPairAdjustFunction(std::string functionName, Subtable* subtable) override;
   CalcAnchor getanchorCalcFunctions(std::string functionName, Subtable* subtable) override;
   void generateSubstEquivGlyphs() override;
   ~Madina() {}
 
  private:
+  bool isForCoreText = false;
   Lookup* defaultmarkposition();
   Lookup* defaultwaqfmarktobase();
   Lookup* forsmalllalef();
@@ -21,7 +24,6 @@ class Madina : public Automedina {
   Lookup* forhamza();
   Lookup* forheh();
   Lookup* forwaw();
-  Lookup* cursivejoin();
   Lookup* cursivejoinrtl();
   Lookup* pointmarks();
   Lookup* defaultwaqfmarkabovemarkprecise();
@@ -30,8 +32,6 @@ class Madina : public Automedina {
   Lookup* defaultmkmk();
   Lookup* ayanumbers();
   Lookup* ayanumberskern();
-  Lookup* rehwawcursivecpp(std::string lookupName, std::string feature, bool rightToLeft, std::unordered_set<std::uint16_t> cursiveGlyphs);
-  Lookup* allCursiveJoin(bool rtl);
   Lookup* tajweedcolorcpp();
   Lookup* glyphalternates();
   // Justification
@@ -39,8 +39,6 @@ class Madina : public Automedina {
   Lookup* shrinkstretchlt();
   void addchars();
   void generateGlyphs();
-  // for Core Text. See bug https://github.com/DigitalKhatt/madinafont/issues/21
-  bool isForCoreText = false;
 };
 class Defaultwaqfmarkabovemark : public AnchorCalc {
  public:
