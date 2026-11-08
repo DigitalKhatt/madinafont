@@ -1,7 +1,176 @@
-# Madina version2
+# Madina universal profiles
 
-Work on this branch uses the live renderer with `isForCoreText=false`.
-CoreText compatibility is deferred while the shared font design is developed.
+The `universal` branch develops two shaping profiles from shared glyphs,
+anchors and feature source:
+
+- `justification`: the custom HarfBuzz justification renderer.
+- `portable`: standard OpenType for HarfBuzz, CoreText and DirectWrite.
+
+Both profiles currently use the same shaping rules. The portable name describes
+the compatibility target, rather than asserting that every engine difference
+has already been resolved.
+
+Select the profile in `madina.mp` before opening or reloading the project in
+VisualMetaFont:
+
+```metapost
+string fontProfile; fontProfile := "justification";
+% Or: fontProfile := "portable";
+```
+
+The plugin exposes `Madina::fontProfile()` to C++ and sets
+`isJustificationProfile` and `isPortableProfile` for feature-file `#if`
+conditions. Selection is independent of `isForCoreText` and export format;
+`isForCoreText=false` remains the current configuration. The former name `live`
+is accepted as an alias for `justification` in existing project sources.
+
+The font source and VisualMetaFont GUI are the primary workflow while the
+structure is being established. Other command-line and run-settings tools will
+be adapted afterward; profile/optional-glyph command-line options are not part
+of this change.
+
+## Character coverage
+
+`font-project.json` describes editor groups independently of the shaping
+profile. Every current glyph source is assigned to a group. Core Arabic,
+marks, numerals, punctuation/spacing, extended languages, Quranic signs,
+compatibility mappings and shared components have separate groups. Empty
+groups are intentional starting points for new designs.
+
+Open `madina.mp` in VisualMetaFont. The Project panel filters by one or more
+groups and searches glyph names or `U+` codes. Select glyph cells and use
+**Assign groups to selected glyphs…** to edit memberships. Assignments are
+saved atomically to the project file without rewriting `glyphs.mp`.
+Groups organize source glyphs; they do not exclude glyphs, generate Unicode
+mappings, or subset the exported font. Generated dotted forms and aliases
+remain controlled by the existing font plugin.
+
+## Multiple glyph source files
+
+`glyphFiles` in `font-project.json` is an explicit, ordered list of MetaPost
+source files, relative to the project directory:
+
+```json
+"glyphFiles": [
+  "glyphs.mp",
+  "glyphs/arabic-extensions.mp",
+  "glyphs/numerals.mp"
+]
+```
+
+Only list files that exist. The current project loads `glyphs.mp`, followed by
+`glyphs-general.mp` for additional general-text designs. Existing drawings and
+their relative evaluation order have not been reorganized. Projects without
+`glyphFiles` continue to load `glyphs.mp`.
+
+`glyphs-general.mp` starts with `sallallahualayhiwasallam` (U+FDFA), assigned to
+the Quranic-sign and compatibility groups. This is a **stacked drawing draft** traced from the user-supplied horizontal
+Mushaf image `images/salat.jpg`. The editable paths use directions and tensions;
+`z.salat`, `z.allah`, `z.alayhi` and `z.wasallam` move complete words. Its stacked
+background rearranges the scanned ink for comparison. The stacking is a new
+composition for review, not an original stacked manuscript. Provenance is in
+`images/references/fdfa-reference.json`. Refine the outline and spacing before
+release. Both shaping profiles load the new source file.
+
+The Project panel has independent source-file and group filters. **New source
+file…** creates an empty `.mp` file inside the project and saves the updated
+manifest. **New glyph…** asks for a name, optional BMP Unicode value in hex,
+and destination source file, then opens a blank editable glyph. **Move selected
+glyphs to file…** changes the destination of selected source definitions. Save
+writes new, moved and edited definitions to their owning files. The glyph
+Parameters panel shows its source file as read-only information.
+
+A glyph has one source file and can belong to several groups. Changing groups
+does not move glyph definitions. All listed files participate in both shaping
+profiles; source-file filters never subset the font. Shared macros still belong
+in the font initialization source; glyph files contain glyph definitions and
+comments. Image paths and MetaPost lookups remain relative to the project root.
+
+Unchanged definitions and text between glyphs (including comments) are retained.
+A no-op Save leaves files byte-identical. Edited glyph blocks are serialized by
+the existing glyph editor, using their file's line-ending convention. Missing files, duplicate glyph names, malformed glyph
+blocks and duplicate source paths produce an error. Save detects external file
+changes before writing. Files are replaced atomically one at a time, with all
+outputs staged first; this is not a transaction across the whole project.
+
+File order and definition order determine evaluation order. Moving existing
+glyphs between files can change generated glyph IDs, so future source splits
+must preserve order and be compared before adoption.
+
+The GUI, native OTF exporter, corpus generator and comparison tools use the
+same Qt-free glyph-source loader in `digitalkhatt_otlayout`. It reads the ordered
+manifest, parses definitions, rejects duplicates and registers sources in the
+same order. The GUI adds editing and lossless saving through a thin Qt adapter.
+CLI materialization registers all source definitions before executing them.
+
+`digitalkhatt_generate_opentype --glyphs FILE` remains an explicit single-file
+override of the manifest. Without that option, the project manifest is used;
+without a manifest, `glyphs.mp` remains the default. Corpus run manifests record
+hashes for all consumed glyph files, including nested paths, and the project
+metadata file. Existing justification/profile settings are unchanged.
+
+## Internal parameters and OpenType axes
+
+`font-project.json` schema 2 keeps two separate collections:
+
+- `internalParameters`: designer controls with their own names, units, ranges,
+  defaults, MetaPost slots and optional coordinate conversion. They have no
+  OpenType tag and do not automatically become exported axes.
+- `openTypeAxes`: final axis tags and ranges, with explicit mappings to internal
+  coordinates. One axis can drive several internal parameters using different
+  piecewise-linear curves. Mappings are independent of internal MetaPost slots.
+
+The glyph Parameters panel edits **internal parameters** using the custom slider,
+numeric field and per-parameter reset. **Reset internal parameters** restores
+all defaults in one undo step. Existing defaults stay unchanged: weight 400,
+horizontal scale 100, extensions 0. These are internal design coordinates;
+a future final axis may use a different range and units.
+
+For example, a future final `wght` axis could map 100 / 400 / 900 to
+−1 / 0 / +1 for a stem-thickness parameter, and to −20 / 0 / +40 for
+an ink-gain parameter. Extra mapping points can tune the curve independently
+for each target. This is an example for future designs, not an axis currently
+exported by Madina.
+
+Each mapping lists `internalParameter` and `points` of the form
+`[OpenType coordinate, internal coordinate]`. Mappings must cover the full final
+axis range, use increasing input coordinates, stay within the target's range,
+and preserve the internal default at the final axis default. Unknown or duplicate
+targets within an axis are rejected. Each axis mapping returns only its own
+parameter targets; combining multiple axes that affect the same parameter will
+need an explicit composition policy later.
+
+The Project panel lists OpenType axes separately. The current project describes
+`SCLX` mapped to the internal horizontal-scale parameter. Weight remains an
+internal control reserving `params101`; no final `wght` axis is declared yet and
+glyph weight variation is not designed. Weight's current 400 / 100 / 900 values
+still map to 0 / −1 / +1 in MetaPost.
+
+This stage establishes the source metadata and GUI separation. Axis export
+continues to use `defAxis` in `madina.mp`; metadata mappings do not silently
+register runtime axes or change the exporter. The current `SCLX` source definition
+is unchanged. Wiring final axis mappings into runtime/export is a later step.
+
+Legacy slots 0–4 retain their meanings. Unused slots 2–4 are hidden in this
+project with `visible: false`. Horizontal scale uses `params100`, with neutral
+100 mapping to the existing zero sentinel. Preview coordinates are not saved
+into glyph outlines.
+
+Projects without metadata keep their five existing internal parameters.
+Schema 1 metadata remains readable as internal controls; its old tags never
+implicitly declare exported OpenType axes. Saving memberships preserves unknown
+metadata fields. Schema 2 rejects OpenType tags on internal parameter records.
+
+The current font already maps Arabic-Indic digits U+0660–U+0669
+(٠١٢٣٤٥٦٧٨٩). ASCII digits U+0030–U+0039 and Extended Arabic-Indic digits
+U+06F0–U+06F9 are not yet mapped.
+
+The `justifier-v2` branch is the saved reference. `universal` started at
+`08a7587`, including the reh/waw rounding simplification. The initial
+profile-selection baseline and verification are saved separately from the
+source checkout.
+
+## Historical version2 reference
 
 The reference is the live output of commit
 `9aeb02c26d8dae4c032820733466c1ee9137e6d6` with:
@@ -75,32 +244,26 @@ shaping and standard OTF export:
 - Each pass consumes one input glyph and modifies only that glyph. Consecutive
   reh/waw pairs therefore overlap normally; marks are ignored during matching.
 
-SinglePos now accepts `<function name>` in named helpers and inline contextual
-rules. `rehwawhorizontalentry.direct` and `.split` compute the former cursive
-entry's rounding from the actual glyph width. The direct form truncates the
-instance width; the split form truncates the source width and deformation
-separately. Live callbacks evaluate the current parameter instance, while
-export writes ordinary numeric GPOS values for materialized glyphs. The
-font-specific `prepareAnchorResolution()` rewrite and custom serializer are
-removed; only the small width functions remain in the font's C++ source.
-Function-valued records retain constant export values across SCLX, matching
-the former pair policy.
+The entry pass now has six contextual rules, one per preceding reh/waw
+form, and six numeric SinglePos correction tables. Base and `.added` forms
+share the same contextual rule. The shared `@rehwawentry` class contains
+initial and isolated glyphs. The marked input is always the following glyph;
+reh/waw remains in backtrack, preserving the DirectWrite-compatible structure.
 
-Full 604-page / 9,046-line justified live binaries and sidecars are byte-identical
-before and after this rewrite (Experimental / XScale / None / `qpc_v2_layout`,
-force disabled). Static HarfBuzz/CoreText traces and variable OTF traces at
-SCLX 50, 100 and 200 are also byte-identical within each engine. Every one of
-20,460 compiled horizontal pairs, including materialized alternates, has the
-same adjustments. All 1,084 overlap/mark controls retain their output.
-With the separate isolated-noon edit preserved, DirectWrite has zero glyph,
-width or position differences under the existing normalizer-only CGJ-removal
-input policy. The comparison baseline includes that same vertical edit, so
-it measures only this SinglePos rewrite. All cursive lookups stay RTL. Compared
-with the former C++ two-pass exporter, the static OTF is 178,980 bytes smaller
-(about 2.3%) and the variable OTF is 169,152 bytes smaller. Outlines, metrics, cmap, GSUB and
-glyph ordering are unchanged. A focused regression test covers named/inline
-syntax, instance callbacks, all positioning fields, parameters, table splitting
-and unknown function errors.
+The former `.round.direct` and `.round.split` helpers and their font-owned
+C++ callbacks have been removed. Entry advances now use the normal rounded
+glyph metrics plus the explicit numeric corrections. This intentionally accepts
+the small horizontal differences caused by the former cursive anchor
+truncation; they can accumulate or affect justification decisions. Exact
+horizontal parity with the old cursive calculation is no longer claimed.
+The shaping engine's generic function-valued SinglePos support is unchanged;
+its regression test owns its callback fixture separately from the font.
+
+Live comparison settings remain Experimental / XScale / None /
+`qpc_v2_layout`, with `isForCoreText=false` and Force disabled. All cursive
+lookups remain RTL. Full-corpus comparisons against the frozen `main`
+reference are generated separately from the source checkout; installed fonts
+are unchanged.
 
 All shared reh/waw vertical pair rules, baseline propagation and distance
 passes have been removed. Vertical corrections are now reviewed separately,
@@ -118,7 +281,7 @@ ignore marks and apply only to the final glyph listed below:
 | --- | ---: |
 | `waw.isol → alef.isol.ii` | +296 |
 | `reh.fina.afterseen → behshape.init.beforenoon → noon.fina.afterbeh` | -184 |
-| Same context ending in `noon.fina.expa.afterbeh` | -69 |
+| Same context ending in `noon.fina.expa.afterbeh` | -137 |
 | `reh.fina → qaf.isol` | -125 |
 | `reh.isol → behshape.init.beforeyeh → yehshape.fina.ii` | +124 |
 | `reh.fina.afterbehshape → behshape.init.beforereh → reh.fina` | +118 |
@@ -141,9 +304,8 @@ in the two `rehwawhorizontal` passes.
 
 Regrouping the previously separate lookup rules, including moving the
 isolated-base corrections to this common stage, leaves all 604 pages and
-9,046 lines of live shaping byte-identical. The expanded noon retains the
-requested half correction (-69, rounded from half of 137), so page 61 line 5
-word 7 still has a 68-unit vertical difference. Page 353 line 8 word 9's
+9,046 lines of live shaping byte-identical. The expanded noon now uses the full -137 correction after
+`reh.fina.afterseen`, including page 61 line 5 word 7. Page 353 line 8 word 9's
 preceding section retains its 36-unit difference; its final beh/noon
 section matches. Page 4 line 4 word 3, page 43 line 5 word 8 and page 26
 line 7 word 5 match the original reference after their focused corrections.

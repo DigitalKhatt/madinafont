@@ -1,0 +1,962 @@
+{
+  "schemaVersion": 2,
+  "name": "DigitalKhatt Madina",
+  "glyphFiles": [
+    "glyphs.mp",
+    "glyphs-general.mp",
+    "glyphs-tracing.mp"
+  ],
+  "profiles": [
+    {
+      "id": "justification",
+      "label": "Justification"
+    },
+    {
+      "id": "portable",
+      "label": "Portable"
+    }
+  ],
+  "groups": [
+    {
+      "id": "core-arabic",
+      "label": "Core Arabic"
+    },
+    {
+      "id": "marks",
+      "label": "Marks"
+    },
+    {
+      "id": "numerals",
+      "label": "Numerals"
+    },
+    {
+      "id": "punctuation-spacing",
+      "label": "Punctuation and spacing"
+    },
+    {
+      "id": "extended-languages",
+      "label": "Extended languages"
+    },
+    {
+      "id": "quranic-signs",
+      "label": "Quranic signs"
+    },
+    {
+      "id": "compatibility",
+      "label": "Compatibility mappings"
+    },
+    {
+      "id": "components",
+      "label": "Shared components"
+    }
+  ],
+  "internalParameters": [
+    {
+      "key": "lefttatweel",
+      "label": "Left extension",
+      "min": -10,
+      "default": 0,
+      "max": 20,
+      "step": 0.1,
+      "description": "Existing left tatweel coordinate.",
+      "metaPostIndex": 0,
+      "metaPostMapping": "offset"
+    },
+    {
+      "key": "righttatweel",
+      "label": "Right extension",
+      "min": -10,
+      "default": 0,
+      "max": 20,
+      "step": 0.1,
+      "description": "Existing right tatweel coordinate.",
+      "metaPostIndex": 1,
+      "metaPostMapping": "offset"
+    },
+    {
+      "key": "third",
+      "label": "Third design axis",
+      "min": -10,
+      "default": 0,
+      "max": 20,
+      "step": 0.1,
+      "description": "Legacy slot, available to glyph-specific designs.",
+      "visible": false,
+      "metaPostIndex": 2,
+      "metaPostMapping": "offset"
+    },
+    {
+      "key": "fourth",
+      "label": "Fourth design axis",
+      "min": -10,
+      "default": 0,
+      "max": 20,
+      "step": 0.1,
+      "description": "Legacy slot, available to glyph-specific designs.",
+      "visible": false,
+      "metaPostIndex": 3,
+      "metaPostMapping": "offset"
+    },
+    {
+      "key": "fifth",
+      "label": "Fifth design axis",
+      "min": -10,
+      "default": 0,
+      "max": 20,
+      "step": 0.1,
+      "description": "Legacy slot, available to glyph-specific designs.",
+      "visible": false,
+      "metaPostIndex": 4,
+      "metaPostMapping": "offset"
+    },
+    {
+      "key": "horizontalScale",
+      "label": "Horizontal scale",
+      "min": 50,
+      "default": 100,
+      "max": 200,
+      "step": 1,
+      "description": "Internal percentage width. Neutral 100 maps to the existing zero sentinel; this parameter itself has no OpenType tag.",
+      "metaPostIndex": 100,
+      "metaPostMapping": "absolute"
+    },
+    {
+      "key": "weight",
+      "label": "Weight (design coordinate)",
+      "min": 100,
+      "default": 400,
+      "max": 900,
+      "step": 1,
+      "description": "Internal weight coordinate only: 400 = 0; 100 = -1; 900 = +1 in params101. Glyph weight deltas and a final OpenType weight axis are not implemented.",
+      "metaPostIndex": 101,
+      "metaPostMapping": "normalized"
+    }
+  ],
+  "openTypeAxes": [
+    {
+      "tag": "SCLX",
+      "label": "Horizontal scale",
+      "min": 50,
+      "default": 100,
+      "max": 200,
+      "mappings": [
+        {
+          "internalParameter": "horizontalScale",
+          "points": [
+            [
+              50,
+              50
+            ],
+            [
+              100,
+              100
+            ],
+            [
+              200,
+              200
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "glyphGroups": {
+    "allah": [
+      "core-arabic"
+    ],
+    "behmediyehfina": [
+      "core-arabic"
+    ],
+    "lamalef.isol": [
+      "core-arabic"
+    ],
+    "lambeh": [
+      "core-arabic"
+    ],
+    "notdef": [
+      "components"
+    ],
+    "null": [
+      "components"
+    ],
+    "linefeed": [
+      "punctuation-spacing"
+    ],
+    "zwj": [
+      "punctuation-spacing"
+    ],
+    "cgj": [
+      "punctuation-spacing"
+    ],
+    "space": [
+      "punctuation-spacing"
+    ],
+    "space.ii": [
+      "punctuation-spacing"
+    ],
+    "rubelhizb": [
+      "quranic-signs"
+    ],
+    "placeofsajdah": [
+      "quranic-signs"
+    ],
+    "endofaya": [
+      "quranic-signs"
+    ],
+    "endofaya.colored": [
+      "quranic-signs"
+    ],
+    "one_dot": [
+      "components"
+    ],
+    "minikaf": [
+      "components"
+    ],
+    "two_dots": [
+      "components"
+    ],
+    "onedotup": [
+      "components"
+    ],
+    "onedotdown": [
+      "components"
+    ],
+    "three_dots": [
+      "components"
+    ],
+    "twodotsup": [
+      "components"
+    ],
+    "twodotsdown": [
+      "components"
+    ],
+    "fatha": [
+      "marks"
+    ],
+    "kasra": [
+      "marks"
+    ],
+    "fathatan": [
+      "marks"
+    ],
+    "kasratan": [
+      "marks"
+    ],
+    "fathatanidgham": [
+      "quranic-signs"
+    ],
+    "kasratanidgham": [
+      "quranic-signs"
+    ],
+    "damma": [
+      "marks"
+    ],
+    "damma.ii": [
+      "marks"
+    ],
+    "dammatan": [
+      "marks"
+    ],
+    "dammatanidgham": [
+      "quranic-signs"
+    ],
+    "shadda": [
+      "marks"
+    ],
+    "headkhah": [
+      "quranic-signs"
+    ],
+    "sukun": [
+      "marks"
+    ],
+    "maddahabove": [
+      "marks"
+    ],
+    "smallalef": [
+      "quranic-signs"
+    ],
+    "smallalef.joined": [
+      "quranic-signs"
+    ],
+    "smallalef.isol": [
+      "quranic-signs"
+    ],
+    "smallalef.replacement": [
+      "quranic-signs"
+    ],
+    "wasla": [
+      "marks"
+    ],
+    "meemiqlab": [
+      "quranic-signs"
+    ],
+    "smalllowmeem": [
+      "quranic-signs"
+    ],
+    "smallwaw": [
+      "quranic-signs"
+    ],
+    "smallyeh": [
+      "quranic-signs"
+    ],
+    "smallhighyeh": [
+      "quranic-signs"
+    ],
+    "smallhighwaw": [
+      "quranic-signs"
+    ],
+    "smallhighroundedzero": [
+      "quranic-signs"
+    ],
+    "rectangularzero": [
+      "quranic-signs"
+    ],
+    "roundedfilledhigh": [
+      "quranic-signs"
+    ],
+    "roundedfilledlow": [
+      "quranic-signs"
+    ],
+    "hamzaabove": [
+      "marks"
+    ],
+    "hamzaabove.joined": [
+      "marks"
+    ],
+    "hamzaabove.lamalef": [
+      "marks"
+    ],
+    "hamzaabove.small": [
+      "marks"
+    ],
+    "hamzabelow": [
+      "marks"
+    ],
+    "waqf.lam": [
+      "quranic-signs"
+    ],
+    "waqf.qaf": [
+      "quranic-signs"
+    ],
+    "waqf.jeem": [
+      "quranic-signs"
+    ],
+    "waqf.sad": [
+      "quranic-signs"
+    ],
+    "waqf.smallhighthreedots": [
+      "quranic-signs"
+    ],
+    "waqf.meem": [
+      "quranic-signs"
+    ],
+    "smallhighseen": [
+      "quranic-signs"
+    ],
+    "smalllowseen": [
+      "quranic-signs"
+    ],
+    "smallhighnoon": [
+      "quranic-signs"
+    ],
+    "heh.fina.allah": [
+      "core-arabic"
+    ],
+    "lam.medi.allah": [
+      "core-arabic"
+    ],
+    "lam.init.allah": [
+      "core-arabic"
+    ],
+    "fehshape.init.allah": [
+      "core-arabic"
+    ],
+    "lam.medi.allah.afterfeh": [
+      "core-arabic"
+    ],
+    "hah.medi.afterbeh": [
+      "core-arabic"
+    ],
+    "hamza.isol": [
+      "core-arabic"
+    ],
+    "alef.isol": [
+      "core-arabic"
+    ],
+    "alef.isol.ii": [
+      "core-arabic"
+    ],
+    "alef.fina": [
+      "core-arabic"
+    ],
+    "alef.fina.afterkaf": [
+      "core-arabic"
+    ],
+    "alef.fina.laf": [
+      "core-arabic"
+    ],
+    "lam.init.lamalef": [
+      "core-arabic"
+    ],
+    "alef.fina.lamalef": [
+      "core-arabic"
+    ],
+    "behshape.isol": [
+      "core-arabic"
+    ],
+    "behshape.isol.expa": [
+      "core-arabic"
+    ],
+    "behshape.init": [
+      "core-arabic"
+    ],
+    "behshape.init.beforebeh": [
+      "core-arabic"
+    ],
+    "behshape.init.beforereh": [
+      "core-arabic"
+    ],
+    "behshape.init.beforeyeh": [
+      "core-arabic"
+    ],
+    "behshape.init.beforeseen": [
+      "core-arabic"
+    ],
+    "behshape.init.beforenoon": [
+      "core-arabic"
+    ],
+    "behshape.init.beforehah": [
+      "core-arabic"
+    ],
+    "behshape.init.beforehahyeh": [
+      "core-arabic"
+    ],
+    "behshape.medi": [
+      "core-arabic"
+    ],
+    "behshape.medi.afterlam": [
+      "core-arabic"
+    ],
+    "behshape.medi.expa": [
+      "core-arabic"
+    ],
+    "behshape.medi.beforeseen": [
+      "core-arabic"
+    ],
+    "behshape.medi.beforereh": [
+      "core-arabic"
+    ],
+    "behshape.medi.beforenoon": [
+      "core-arabic"
+    ],
+    "behshape.medi.beforeyeh": [
+      "core-arabic"
+    ],
+    "behshape.fina": [
+      "core-arabic"
+    ],
+    "behshape.fina.expa": [
+      "core-arabic"
+    ],
+    "seen.isol": [
+      "core-arabic"
+    ],
+    "seen.init": [
+      "core-arabic"
+    ],
+    "seen.init.beforereh": [
+      "core-arabic"
+    ],
+    "seen.init.beforeyeh": [
+      "core-arabic"
+    ],
+    "seen.medi": [
+      "core-arabic"
+    ],
+    "seen.medi.beforeyeh": [
+      "core-arabic"
+    ],
+    "seen.medi.beforereh": [
+      "core-arabic"
+    ],
+    "seen.fina": [
+      "core-arabic"
+    ],
+    "lam.isol": [
+      "core-arabic"
+    ],
+    "lam.init.beforeyeh": [
+      "core-arabic"
+    ],
+    "lam.init": [
+      "core-arabic"
+    ],
+    "lam.init.beforebeh": [
+      "core-arabic"
+    ],
+    "lam.init.lam_hah": [
+      "core-arabic"
+    ],
+    "lam.init.beforehahyeh": [
+      "core-arabic"
+    ],
+    "lam.init.beforedal": [
+      "core-arabic"
+    ],
+    "lam.init.beforelam": [
+      "core-arabic"
+    ],
+    "lam.medi": [
+      "core-arabic"
+    ],
+    "lam.medi.afterkaf": [
+      "core-arabic"
+    ],
+    "lam.medi.beforeyeh": [
+      "core-arabic"
+    ],
+    "lam.medi.beforeheh": [
+      "core-arabic"
+    ],
+    "lam.medi.beforeheh.afterkaf": [
+      "core-arabic"
+    ],
+    "lam.fina": [
+      "core-arabic"
+    ],
+    "lam.medi.laf": [
+      "core-arabic"
+    ],
+    "lam.medi.laf.afterkaf": [
+      "core-arabic"
+    ],
+    "lam.fina.afterkaf": [
+      "core-arabic"
+    ],
+    "meem.isol": [
+      "core-arabic"
+    ],
+    "meem.isol.ii": [
+      "core-arabic"
+    ],
+    "meem.init": [
+      "core-arabic"
+    ],
+    "meem.init.beforehah": [
+      "core-arabic"
+    ],
+    "meem.init.beforeyeh": [
+      "core-arabic"
+    ],
+    "meem.medi": [
+      "core-arabic"
+    ],
+    "meem.medi.afterhah": [
+      "core-arabic"
+    ],
+    "meem.medi.beforeyeh": [
+      "core-arabic"
+    ],
+    "meem.fina": [
+      "core-arabic"
+    ],
+    "meem.fina.ii": [
+      "core-arabic"
+    ],
+    "meem.fina.afterheh": [
+      "core-arabic"
+    ],
+    "meem.fina.afterkaf": [
+      "core-arabic"
+    ],
+    "meem.fina.basmala": [
+      "core-arabic"
+    ],
+    "noon.isol": [
+      "core-arabic"
+    ],
+    "noon.isol.expa": [
+      "core-arabic"
+    ],
+    "noon.fina": [
+      "core-arabic"
+    ],
+    "noon.fina.afterbeh": [
+      "core-arabic"
+    ],
+    "noon.fina.expa.afterbeh": [
+      "core-arabic"
+    ],
+    "noon.fina.expa": [
+      "core-arabic"
+    ],
+    "noon.fina.basmala": [
+      "core-arabic"
+    ],
+    "qaf.isol": [
+      "core-arabic"
+    ],
+    "qaf.isol.expa": [
+      "core-arabic"
+    ],
+    "qaf.fina": [
+      "core-arabic"
+    ],
+    "qaf.fina.expa": [
+      "core-arabic"
+    ],
+    "feh.isol": [
+      "core-arabic"
+    ],
+    "feh.isol.expa": [
+      "core-arabic"
+    ],
+    "fehshape.init": [
+      "core-arabic"
+    ],
+    "fehshape.init.beforehah": [
+      "core-arabic"
+    ],
+    "fehshape.init.beforeyeh": [
+      "core-arabic"
+    ],
+    "fehshape.medi": [
+      "core-arabic"
+    ],
+    "fehshape.medi.beforeyeh": [
+      "core-arabic"
+    ],
+    "feh.fina": [
+      "core-arabic"
+    ],
+    "feh.fina.expa": [
+      "core-arabic"
+    ],
+    "hah.isol": [
+      "core-arabic"
+    ],
+    "hah.isol.ii": [
+      "core-arabic"
+    ],
+    "hah.init": [
+      "core-arabic"
+    ],
+    "hah.init.ii": [
+      "core-arabic"
+    ],
+    "hah.init.beforemeem": [
+      "core-arabic"
+    ],
+    "hah.init.beforeyeh": [
+      "core-arabic"
+    ],
+    "hah.medi": [
+      "core-arabic"
+    ],
+    "hah.medi.ii": [
+      "core-arabic"
+    ],
+    "hah.medi.afterbeh.beforeyeh": [
+      "core-arabic"
+    ],
+    "hah.medi.afterlam.beforeyeh": [
+      "core-arabic"
+    ],
+    "hah.medi.lam_hah": [
+      "core-arabic"
+    ],
+    "hah.medi.aftermeem": [
+      "core-arabic"
+    ],
+    "hah.medi.afterfeh": [
+      "core-arabic"
+    ],
+    "hah.medi.beforeyeh": [
+      "core-arabic"
+    ],
+    "hah.fina": [
+      "core-arabic"
+    ],
+    "dal.isol": [
+      "core-arabic"
+    ],
+    "dal.fina": [
+      "core-arabic"
+    ],
+    "dal.fina.afterlam": [
+      "core-arabic"
+    ],
+    "reh.isol": [
+      "core-arabic"
+    ],
+    "reh.fina": [
+      "core-arabic"
+    ],
+    "reh.fina.afterbehshape": [
+      "core-arabic"
+    ],
+    "reh.fina.afterseen": [
+      "core-arabic"
+    ],
+    "waw.fina": [
+      "core-arabic"
+    ],
+    "waw.isol": [
+      "core-arabic"
+    ],
+    "heh.isol": [
+      "core-arabic"
+    ],
+    "heh.init": [
+      "core-arabic"
+    ],
+    "heh.init.beforemeem": [
+      "core-arabic"
+    ],
+    "heh.init.beforeyeh": [
+      "core-arabic"
+    ],
+    "heh.medi": [
+      "core-arabic"
+    ],
+    "heh.medi.beforeyeh": [
+      "core-arabic"
+    ],
+    "heh.fina": [
+      "core-arabic"
+    ],
+    "heh.fina.afterlam": [
+      "core-arabic"
+    ],
+    "sad.isol": [
+      "core-arabic"
+    ],
+    "sad.init": [
+      "core-arabic"
+    ],
+    "sad.init.beforereh": [
+      "core-arabic"
+    ],
+    "sad.init.beforeyeh": [
+      "core-arabic"
+    ],
+    "sad.medi": [
+      "core-arabic"
+    ],
+    "sad.medi.beforereh": [
+      "core-arabic"
+    ],
+    "sad.medi.beforeyeh": [
+      "core-arabic"
+    ],
+    "sad.fina": [
+      "core-arabic"
+    ],
+    "ain.isol": [
+      "core-arabic"
+    ],
+    "ain.init": [
+      "core-arabic"
+    ],
+    "ain.init.beforeyeh": [
+      "core-arabic"
+    ],
+    "ain.init.finjani": [
+      "core-arabic"
+    ],
+    "ain.medi": [
+      "core-arabic"
+    ],
+    "ain.medi.beforeyeh": [
+      "core-arabic"
+    ],
+    "ain.fina": [
+      "core-arabic"
+    ],
+    "tah.isol": [
+      "core-arabic"
+    ],
+    "tah.init": [
+      "core-arabic"
+    ],
+    "tah.init.beforeyeh": [
+      "core-arabic"
+    ],
+    "tah.medi": [
+      "core-arabic"
+    ],
+    "tah.medi.beforeyeh": [
+      "core-arabic"
+    ],
+    "tah.fina": [
+      "core-arabic"
+    ],
+    "alefmaksura.isol.min": [
+      "core-arabic"
+    ],
+    "alefmaksura.isol.max": [
+      "core-arabic"
+    ],
+    "alefmaksura.isol": [
+      "core-arabic"
+    ],
+    "yehshape.fina": [
+      "core-arabic"
+    ],
+    "yehshape.isol": [
+      "core-arabic"
+    ],
+    "yehshape.fina.ii": [
+      "core-arabic"
+    ],
+    "yehshape.fina.afterbeh": [
+      "core-arabic"
+    ],
+    "kaf.isol": [
+      "core-arabic"
+    ],
+    "kaf.init": [
+      "core-arabic"
+    ],
+    "kaf.init.ascent": [
+      "core-arabic"
+    ],
+    "kaf.init.ii": [
+      "core-arabic"
+    ],
+    "kaf.init.ii.i": [
+      "core-arabic"
+    ],
+    "kaf.init.beforelam": [
+      "core-arabic"
+    ],
+    "kaf.init.beforeyeh": [
+      "core-arabic"
+    ],
+    "kaf.init.beforemeem": [
+      "core-arabic"
+    ],
+    "kaf.medi": [
+      "core-arabic"
+    ],
+    "kaf.medi.beforemeem": [
+      "core-arabic"
+    ],
+    "kaf.medi.beforeyeh": [
+      "core-arabic"
+    ],
+    "kaf.medi.beforelam": [
+      "core-arabic"
+    ],
+    "kaf.medi.ii": [
+      "core-arabic"
+    ],
+    "kaf.fina": [
+      "core-arabic"
+    ],
+    "kaf.fina.afterlam": [
+      "core-arabic"
+    ],
+    "kaf.fina.expa": [
+      "core-arabic"
+    ],
+    "kaf.fina.afterlam.expa": [
+      "core-arabic"
+    ],
+    "zeroindic": [
+      "numerals"
+    ],
+    "oneindic": [
+      "numerals"
+    ],
+    "twoindic": [
+      "numerals"
+    ],
+    "threeindic": [
+      "numerals"
+    ],
+    "fourindic": [
+      "numerals"
+    ],
+    "fiveindic": [
+      "numerals"
+    ],
+    "sixindic": [
+      "numerals"
+    ],
+    "sevenindic": [
+      "numerals"
+    ],
+    "eightindic": [
+      "numerals"
+    ],
+    "nineindic": [
+      "numerals"
+    ],
+    "tatweel": [
+      "core-arabic"
+    ],
+    "tatweel.fina": [
+      "core-arabic"
+    ],
+    "behsinna": [
+      "components"
+    ],
+    "expaform.i": [
+      "components"
+    ],
+    "expaform.ii": [
+      "components"
+    ],
+    "behshape.isol.expa.ii": [
+      "core-arabic"
+    ],
+    "alefmaksura.isol.expa": [
+      "core-arabic"
+    ],
+    "yehshape.isol.expa": [
+      "core-arabic"
+    ],
+    "yehshape.fina.afterbeh.expa": [
+      "core-arabic"
+    ],
+    "yehshape.fina.ii.expa": [
+      "core-arabic"
+    ],
+    "yehshape.fina.expa": [
+      "core-arabic"
+    ],
+    "sad.isol.expa": [
+      "core-arabic"
+    ],
+    "sad.fina.expa": [
+      "core-arabic"
+    ],
+    "seen.isol.expa": [
+      "core-arabic"
+    ],
+    "seen.fina.expa": [
+      "core-arabic"
+    ],
+    "behshape.init.bseen.basmala": [
+      "core-arabic"
+    ],
+    "seen.medi.basmala": [
+      "core-arabic"
+    ],
+    "behshape.medi.basmala": [
+      "core-arabic"
+    ],
+    "hah.init.basmala": [
+      "core-arabic"
+    ],
+    "sallallahualayhiwasallam": [
+      "quranic-signs",
+      "compatibility"
+    ],
+    "sallallahualayhiwasallam.extrema": [
+      "quranic-signs",
+      "compatibility"
+    ]
+  }
+}

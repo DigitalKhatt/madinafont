@@ -9,6 +9,9 @@ lineheight := 88;
 penwidth := 88;
 joinvector := ljoinvector := rjoinvector := (16,lineheight);
 nuqta := 1.4penwidth;
+% Shaping profile, independent of export format and isForCoreText.
+% Both profiles initially share the existing shaping rules.
+string fontProfile; fontProfile := "justification";
 % Enable the historical CoreText workaround for unjustified layout.
 boolean isForCoreText; isForCoreText := false;
 defAxis("scaleX","SCLX",50,100,200,"params100");

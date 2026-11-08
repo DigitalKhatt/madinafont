@@ -75,3 +75,17 @@ else()
 
   install(TARGETS ${FONT_TARGET_NAME} DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})
 endif()
+
+# The workspace supplies the MetaPost resources needed by the integration test.
+if(BUILD_TESTING AND NOT EMSCRIPTEN AND
+   EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../visualmetafont/src/Resources/metafont/vmf.mp")
+  add_executable(${FONT_TARGET_NAME}_profile_test tests/ProfileSelectionTest.cpp)
+  target_include_directories(${FONT_TARGET_NAME}_profile_test PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+  target_link_libraries(${FONT_TARGET_NAME}_profile_test PRIVATE ${FONT_TARGET_NAME} digitalkhatt::otlayout)
+  target_compile_definitions(${FONT_TARGET_NAME}_profile_test PRIVATE
+    MADINA_METAFONT_RESOURCES="${CMAKE_CURRENT_SOURCE_DIR}/../visualmetafont/src/Resources/metafont")
+  set_target_properties(${FONT_TARGET_NAME}_profile_test PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>")
+  add_test(NAME madina.profile_selection COMMAND ${FONT_TARGET_NAME}_profile_test
+    "${CMAKE_CURRENT_SOURCE_DIR}/madina.mp")
+endif()

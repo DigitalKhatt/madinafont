@@ -2048,13 +2048,7 @@ lookup rehwawhorizontal.exit {
 lookup rehwawhorizontal.entry {
   feature curs;
   lookupflag IgnoreMarks;
-
-  lookup rehwawhorizontal.round.direct {
-    pos /[.]isol|[.]init/ <function rehwawhorizontalentry.direct>;
-  } rehwawhorizontal.round.direct;
-  lookup rehwawhorizontal.round.split {
-    pos /[.]isol|[.]init/ <function rehwawhorizontalentry.split>;
-  } rehwawhorizontal.round.split;
+  @rehwawentry = [/[.]isol|[.]init/];
 
   lookup rehwawhorizontal.corrections.rehfina {
     pos [behshape.init.beforenoon] <0 0 28 0>;
@@ -2111,14 +2105,12 @@ lookup rehwawhorizontal.entry {
     pos [lam.init.beforebeh] <0 0 27 0>;
   } rehwawhorizontal.corrections.wawisol;
 
-  pos [reh.fina] /[.]isol|[.]init/'lookup rehwawhorizontal.round.direct lookup rehwawhorizontal.corrections.rehfina;
-  pos /^reh[.]fina($|[.]added)/ /[.]isol|[.]init/'lookup rehwawhorizontal.round.split lookup rehwawhorizontal.corrections.rehfina;
-  pos [reh.fina.afterbehshape] /[.]isol|[.]init/'lookup rehwawhorizontal.round.split lookup rehwawhorizontal.corrections.rehafterbehshape;
-  pos [reh.fina.afterseen] /[.]isol|[.]init/'lookup rehwawhorizontal.round.split lookup rehwawhorizontal.corrections.rehafterseen;
-  pos [reh.isol] /[.]isol|[.]init/'lookup rehwawhorizontal.round.split lookup rehwawhorizontal.corrections.rehisol;
-  pos [waw.fina] /[.]isol|[.]init/'lookup rehwawhorizontal.round.direct lookup rehwawhorizontal.corrections.wawfina;
-  pos /^waw[.]fina($|[.]added)/ /[.]isol|[.]init/'lookup rehwawhorizontal.round.split lookup rehwawhorizontal.corrections.wawfina;
-  pos [waw.isol] /[.]isol|[.]init/'lookup rehwawhorizontal.round.split lookup rehwawhorizontal.corrections.wawisol;
+  pos /^reh[.]fina($|[.]added)/ @rehwawentry'lookup rehwawhorizontal.corrections.rehfina;
+  pos [reh.fina.afterbehshape] @rehwawentry'lookup rehwawhorizontal.corrections.rehafterbehshape;
+  pos [reh.fina.afterseen] @rehwawentry'lookup rehwawhorizontal.corrections.rehafterseen;
+  pos [reh.isol] @rehwawentry'lookup rehwawhorizontal.corrections.rehisol;
+  pos /^waw[.]fina($|[.]added)/ @rehwawentry'lookup rehwawhorizontal.corrections.wawfina;
+  pos [waw.isol] @rehwawentry'lookup rehwawhorizontal.corrections.wawisol;
 } rehwawhorizontal.entry;
 
 

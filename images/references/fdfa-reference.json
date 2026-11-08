@@ -1,0 +1,133 @@
+{
+  "codepoint": "U+FDFA",
+  "text": "ﷺ",
+  "sourceImage": "images/salat.jpg",
+  "sourceImageSha256": "2b783720e37ab47ca3a6ff8432441468bffadc75c3bcfa9f9710e9e44ce3a829",
+  "sourceAttribution": "User supplied a photograph from the original Mushaf; publication/page not independently verified.",
+  "originalGlyphBackground": {
+    "path": "images/salat.jpg",
+    "x": -208,
+    "y": -1015,
+    "transform": [
+      1,
+      0,
+      0,
+      1
+    ]
+  },
+  "draft": "Smoothed scan tracing re-arranged into three rows: صلى الله / عليه / وسلم. Not a facsimile of an original stacked composition.",
+  "editableOutline": "MetaPost directions and tensions, without explicit control coordinates.",
+  "stackedReference": "images/salat_stacked_reference.png",
+  "layout": {
+    "glyphName": "sallallahualayhiwasallam",
+    "unicode": 65018,
+    "advance": 1140,
+    "unitsPerPixel": 0.48,
+    "background": "%%backgroundimage:images/salat_stacked_reference.png,0,-1320,1,0,0,1",
+    "guide": {
+      "width": 1140,
+      "height": 1800,
+      "left": 0,
+      "top": 1320
+    },
+    "groups": [
+      {
+        "id": "salat",
+        "parameter": "z.salat",
+        "sourceOrigin": [
+          3900,
+          900
+        ],
+        "designOrigin": [
+          565,
+          750
+        ],
+        "components": [
+          1,
+          4,
+          13,
+          14
+        ]
+      },
+      {
+        "id": "allah",
+        "parameter": "z.allah",
+        "sourceOrigin": [
+          3200,
+          900
+        ],
+        "designOrigin": [
+          90,
+          750
+        ],
+        "components": [
+          2,
+          7,
+          10,
+          12,
+          17
+        ]
+      },
+      {
+        "id": "alayhi",
+        "parameter": "z.alayhi",
+        "sourceOrigin": [
+          1600,
+          900
+        ],
+        "designOrigin": [
+          205,
+          250
+        ],
+        "components": [
+          5,
+          9,
+          15,
+          18,
+          20,
+          21
+        ]
+      },
+      {
+        "id": "wasallam",
+        "parameter": "z.wasallam",
+        "sourceOrigin": [
+          100,
+          900
+        ],
+        "designOrigin": [
+          220,
+          -290
+        ],
+        "components": [
+          0,
+          3,
+          6,
+          8,
+          11,
+          16,
+          19
+        ]
+      }
+    ]
+  },
+  "traceSummary": {
+    "image": "/Users/amin/projects/digitalkhatt/madinafont/images/salat.jpg",
+    "imageSha256": "2b783720e37ab47ca3a6ff8432441468bffadc75c3bcfa9f9710e9e44ce3a829",
+    "components": 22,
+    "contours": 28,
+    "tensionSegments": 1024,
+    "maxSerializedControlReconstructionErrorFontUnits": 2.430952703554216e-05,
+    "explicitControlsEmitted": false,
+    "settings": {
+      "image": "/Users/amin/projects/digitalkhatt/madinafont/images/salat.jpg",
+      "output": "/Users/amin/projects/digitalkhatt/outputs/madinafont-fdfa-stacked-trace/final-trace",
+      "plan": "work/fdfa-stacked-trace/plan.json",
+      "resize_percent": 50,
+      "blur": 3.0,
+      "threshold": 45,
+      "speckles": 40,
+      "tolerance": 3.0
+    }
+  }
+}
