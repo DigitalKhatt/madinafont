@@ -1919,9 +1919,32 @@ lookup kafswash {
   sub yehshape.fina.ii by yehshape.fina;
 } kafswash;
 
+# Give a base followed by CGJ its own source span before Arabic joining in DirectWrite.
+lookup cgj.span.split {
+  feature ccmp;
+  sub alef.isol by alef.isol cgj.span.padding;
+  sub waw.isol by waw.isol cgj.span.padding;
+  sub alefmaksura.isol by alefmaksura.isol cgj.span.padding;
+} cgj.span.split;
+
+# Absorb the padding into the selected joining form before required ligatures.
+lookup cgj.span.merge {
+  feature rlig;
+  lookupflag UseMarkFilteringSet [cgj.span.padding];
+  sub alef.isol cgj.span.padding by alef.isol;
+  sub alef.fina cgj.span.padding by alef.fina;
+  sub waw.isol cgj.span.padding by waw.isol;
+  sub waw.fina cgj.span.padding by waw.fina;
+  sub alefmaksura.isol cgj.span.padding by alefmaksura.isol;
+  sub behshape.init cgj.span.padding by behshape.init;
+  sub behshape.medi cgj.span.padding by behshape.medi;
+  sub yehshape.fina cgj.span.padding by yehshape.fina;
+} cgj.span.merge;
+
 feature ccmp {	
   lookup setdecomp;	  
   lookup miscellaneoussubst;
+  lookup cgj.span.split;
 } ccmp;
 
 feature init {
@@ -1948,6 +1971,7 @@ feature bism {
 } bism;
 
 feature rlig {  
+  lookup cgj.span.merge;
   #lookup meemfina;  
   lookup requiredligature;	
   lookup otherliga;

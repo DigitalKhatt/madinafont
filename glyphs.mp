@@ -233,6 +233,9 @@ beginchar(cgj,847,-1,-1,-1);
 %847
 charwd := 0;
 endchar;
+beginchar(cgj.span.padding,-1,0,GlyphTypeMark,-1);
+%%beginbody
+endchar;
 defchar(space,32,-1,-1,-1);
 %%beginbody
 
