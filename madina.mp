@@ -16,6 +16,3 @@ string fontProfile; fontProfile := "justification";
 boolean isForCoreText; isForCoreText := false;
 defAxis("scaleX","SCLX",50,100,200,"params100");
 boolean useColoredAya;useColoredAya:=false;
-
-% Reserve an internal code without renumbering existing glyphs.
-cgj.span.padding := 9000;
