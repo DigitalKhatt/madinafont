@@ -2596,9 +2596,11 @@ feature ss01 {
  lookup kafswash;
 } ss01;
 
-feature cv01 {
-  lookup glyphalternates;
-} cv01;
+if isJustificationProfile {
+  feature cv01 {
+    lookup glyphalternates;
+  } cv01;
+}
 
 feature shr1 {
   lookup shrr.alefcursive {	

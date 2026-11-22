@@ -4,10 +4,13 @@
 #include <iostream>
 #include <stdexcept>
 
+#include "digitalkhatt/project/FontProfile.h"
 #include "MPFont.h"
 #include "madina.h"
 
 namespace fs = std::filesystem;
+using digitalkhatt::project::FontProfile;
+using digitalkhatt::project::ScopedFontProfile;
 
 static void require(bool condition, const char* message) {
   if (!condition) throw std::runtime_error(message);
@@ -84,6 +87,29 @@ feature test {
                     layout.lookupsIndexByName.contains("profile.test.justification") == !portable,
             "Only the selected profile's conditional lookup must be included");
       }
+    }
+    {
+      MPFont font;
+      initialize(font, project);
+      OtLayout liveLayout(&font, false, true);
+      require(liveLayout.isOTVar, "Justification may export the SCLX axis");
+      liveLayout.loadLookupFile("features.fea");
+      require(liveLayout.lookupsIndexByName.contains("cv01") &&
+                  liveLayout.lookupsIndexByName.contains("cv18"),
+          "Justification must generate the production character variants");
+      {
+        const ScopedFontProfile profileOverride(font, FontProfile::Portable);
+        OtLayout exportLayout(&font, false, true);
+        require(!exportLayout.isOTVar, "Portable export must omit the justification-only SCLX axis");
+        exportLayout.loadLookupFile("features.fea");
+        require(font.boolVariable("isPortableProfile") &&
+                    !exportLayout.lookupsIndexByName.contains("cv01") &&
+                    !exportLayout.lookupsIndexByName.contains("cv18"),
+            "Portable must skip the production character variant generator");
+      }
+      require(font.stringVariable("fontProfile") == "justification" &&
+                  font.boolVariable("isJustificationProfile") && !font.boolVariable("isPortableProfile"),
+          "OpenType export must restore the live editor profile");
     }
     {
       MPFont font;

@@ -10,9 +10,11 @@ penwidth := 88;
 joinvector := ljoinvector := rjoinvector := (16,lineheight);
 nuqta := 1.4penwidth;
 % Shaping profile, independent of export format and isForCoreText.
-% Both profiles initially share the existing shaping rules.
+% The portable profile omits the justification character variants.
 string fontProfile; fontProfile := "justification";
 % Enable the historical CoreText workaround for unjustified layout.
 boolean isForCoreText; isForCoreText := false;
 defAxis("scaleX","SCLX",50,100,200,"params100");
+boolean axes[]justificationOnly;
+axes[number_of_axes-1].justificationOnly := true;
 boolean useColoredAya;useColoredAya:=false;

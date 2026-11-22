@@ -11,6 +11,7 @@
 #include "defaultmarkpositions.h"
 #include "metafont.h"
 #include "digitalkhatt/core/Regex16.h"
+#include "digitalkhatt/project/FontProfile.h"
 
 using namespace std;
 
@@ -114,17 +115,8 @@ void Madina::addchars() {
 }
 
 Madina::Madina(OtLayout* layout, MPFont* font, bool extended) : Automedina{layout, font, extended} {
-  const auto profileName = font->stringVariable("fontProfile");
-  // Older project files without this setting retain the justification default.
-  if (!profileName.empty() && profileName != "justification" && profileName != "live" && profileName != "portable")
-    throw std::runtime_error("Unknown Madina font profile: " + profileName +
-                             " (expected justification or portable)");
-  profile_ = profileName == "portable" ? Profile::Portable : Profile::Justification;
-  // Expose the selected profile to feature-file conditionals as well as C++.
-  // Selection does not depend on the renderer or the extended export format.
-  font->execute(std::string{"boolean isJustificationProfile, isPortableProfile; "} +
-                "isJustificationProfile := " + (profile_ == Profile::Justification ? "true" : "false") +
-                "; isPortableProfile := " + (profile_ == Profile::Portable ? "true" : "false") + ";");
+  const auto profile = digitalkhatt::project::initializeFontProfile(*font);
+  profile_ = profile == digitalkhatt::project::FontProfile::Portable ? Profile::Portable : Profile::Justification;
   isForCoreText = font->boolVariable("isForCoreText");
   // m_metafont = layout->m_font;
   classes["marks"] = {
