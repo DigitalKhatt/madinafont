@@ -8674,6 +8674,7 @@ setCursiveAnchor(hahbehshape,z1,ExitAnchorRTL);
 enddefchar;
 
 % Append the padding glyph so the existing core glyph codes stay stable.
-beginchar(cgj.span.padding,-1,0,GlyphTypeMark,-1);
+% The glyph editor expects the numeric mark type (3 = GlyphTypeMark).
+beginchar(cgj.span.padding,-1,0,3,-1);
 %%beginbody
 endchar;

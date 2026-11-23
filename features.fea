@@ -988,7 +988,7 @@ lookup variouskern {
 
   pos [waw.fina]' [alef.isol]'<70 0 -20 0> [smallhighroundedzero]' ;
 
-  pos [lam.fina]'<100 0 0 0> [damma]' [waqf.jeem]' space [kaf.init];
+  pos [lam.fina]' [damma]' [waqf.jeem]' space' [kaf.init]'<0 0 200 0>;
 
 } variouskern;
 
@@ -1306,10 +1306,12 @@ lookup othercalt {
     sub hamzaabove by hamzaabove.small;			
   } othercalt.l1;
 
-  lookup othercalt.l2 {
-    sub alef.isol add -1.4 0;
-    #sub alef.fina add -1.4 0;		
-  } othercalt.l2;
+  if isJustificationProfile {
+    lookup othercalt.l2 {
+      sub alef.isol add -1.4 0;
+      #sub alef.fina add -1.4 0;
+    } othercalt.l2;
+  }
 
   lookup othercalt.l3 {
     sub behshape.init add 1 0;	
@@ -3310,87 +3312,89 @@ table(just) {
   }
 };
 
-lookup shrink1.l1 {
-  sub /init/ add -0.1 0;
-  sub /medi/ add -0.1 -0.1;
-  sub /fina/ add 0 -0.1;
-  sub behshape.isol add -0.2 0;
-  sub behshape.fina add -0.2 0;
-  sub feh.isol add -0.2 0;
-  sub qaf.fina add -0.2 0;
-  sub [yehshape.fina.ii yehshape.fina.afterbeh] add -0.1 0;
-  sub [alefmaksura.isol] add -0.2 0;
-  sub [yehshape.isol ] add -0.2 0;
-  sub [reh.fina] add 0 -0.2;
-  sub [lam.fina] add -0.1 -0.2;
-  sub [lam.isol] add -0.2 0;
-  sub [kaf.fina] add -0.3 -0.1;  
-  sub [noon.isol noon.fina.afterbeh] add -0.3 0; 
-  sub [dal.isol] add -0.2 0; 
-  sub [noon.fina] add -0.3 -0.1;
-  sub [feh.fina] add -0.2 -0.1;
-  sub [kaf.fina.afterlam] add -0.2 0;
-  sub [kaf.isol] add -0.3 0;
-} shrink1.l1;
+if isJustificationProfile {
+  lookup shrink1.l1 {
+    sub /init/ add -0.1 0;
+    sub /medi/ add -0.1 -0.1;
+    sub /fina/ add 0 -0.1;
+    sub behshape.isol add -0.2 0;
+    sub behshape.fina add -0.2 0;
+    sub feh.isol add -0.2 0;
+    sub qaf.fina add -0.2 0;
+    sub [yehshape.fina.ii yehshape.fina.afterbeh] add -0.1 0;
+    sub [alefmaksura.isol] add -0.2 0;
+    sub [yehshape.isol ] add -0.2 0;
+    sub [reh.fina] add 0 -0.2;
+    sub [lam.fina] add -0.1 -0.2;
+    sub [lam.isol] add -0.2 0;
+    sub [kaf.fina] add -0.3 -0.1;
+    sub [noon.isol noon.fina.afterbeh] add -0.3 0;
+    sub [dal.isol] add -0.2 0;
+    sub [noon.fina] add -0.3 -0.1;
+    sub [feh.fina] add -0.2 -0.1;
+    sub [kaf.fina.afterlam] add -0.2 0;
+    sub [kaf.isol] add -0.3 0;
+  } shrink1.l1;
 
-lookup shrink1 {
+  lookup shrink1 {
 
-  feature inherited;
+    feature inherited;
 
-  lookupflag IgnoreMarks;    
-  
-  sub @bases'lookup shrink1.l1;
+    lookupflag IgnoreMarks;
 
-} shrink1;
+    sub @bases'lookup shrink1.l1;
 
-lookup shrink2 {
+  } shrink1;
 
-  feature inherited;
+  lookup shrink2 {
 
-  lookupflag IgnoreMarks;    
+    feature inherited;
 
-  
-  
-  sub @bases'lookup shrink1.l1;
+    lookupflag IgnoreMarks;
 
-} shrink2;
 
-lookup shrink3 {
 
-  feature inherited;
+    sub @bases'lookup shrink1.l1;
 
-  lookupflag IgnoreMarks;    
+  } shrink2;
 
-  sub [behshape.init.beforeseen]' [seen.medi]';
-  
-  sub @bases'lookup shrink1.l1;
+  lookup shrink3 {
 
-} shrink3;
+    feature inherited;
 
-lookup shrink4 {
+    lookupflag IgnoreMarks;
 
-  feature inherited;
+    sub [behshape.init.beforeseen]' [seen.medi]';
 
-  lookupflag IgnoreMarks;    
+    sub @bases'lookup shrink1.l1;
 
-  sub [behshape.init.beforeseen]' [seen.medi]';
-  
-  sub @bases'lookup shrink1.l1;
+  } shrink3;
 
-} shrink4;
+  lookup shrink4 {
 
-feature sk01 {
-  lookup shrink1;
-} sk01;
+    feature inherited;
 
-feature sk02{
-  lookup shrink2;
-} sk02;
+    lookupflag IgnoreMarks;
 
-feature sk03{
-  lookup shrink3;
-} sk03;
+    sub [behshape.init.beforeseen]' [seen.medi]';
 
-feature sk04 {
-  lookup shrink4;
-} sk04;
+    sub @bases'lookup shrink1.l1;
+
+  } shrink4;
+
+  feature sk01 {
+    lookup shrink1;
+  } sk01;
+
+  feature sk02{
+    lookup shrink2;
+  } sk02;
+
+  feature sk03{
+    lookup shrink3;
+  } sk03;
+
+  feature sk04 {
+    lookup shrink4;
+  } sk04;
+}

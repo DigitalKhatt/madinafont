@@ -54,19 +54,19 @@ int main(int argc, char** argv) {
   try {
     const auto features = temporary / "profiles.fea";
     std::ofstream(features) << R"(
-#if isJustificationProfile
-lookup profile.test.justification { feature test; pos space <0 0 1 0>; } profile.test.justification;
-#endif;
-#if isPortableProfile
-lookup profile.test.portable { feature test; pos space <0 0 2 0>; } profile.test.portable;
-#endif;
+if isJustificationProfile {
+  lookup profile.test.justification { feature test; pos space <0 0 1 0>; } profile.test.justification;
+}
+if isPortableProfile {
+  lookup profile.test.portable { feature test; pos space <0 0 2 0>; } profile.test.portable;
+}
 feature test {
-#if isJustificationProfile
-  lookup profile.test.justification;
-#endif;
-#if isPortableProfile
-  lookup profile.test.portable;
-#endif;
+  if isJustificationProfile {
+    lookup profile.test.justification;
+  }
+  if isPortableProfile {
+    lookup profile.test.portable;
+  }
 } test;
 )";
     for (bool extended : {false, true}) {
@@ -106,6 +106,12 @@ feature test {
                     !exportLayout.lookupsIndexByName.contains("cv01") &&
                     !exportLayout.lookupsIndexByName.contains("cv18"),
             "Portable must skip the production character variant generator");
+        for (const auto* tag : {"sk01", "sk02", "sk03", "sk04"})
+          require(liveLayout.allFeatures.contains(tag) && !exportLayout.allFeatures.contains(tag),
+              "The four sk shrink features belong to Justification");
+        for (const auto* name : {"shrink1", "shrink2", "shrink3", "shrink4", "shrink1.l1", "othercalt.l2"})
+          require(liveLayout.lookupsIndexByName.contains(name) && !exportLayout.lookupsIndexByName.contains(name),
+              "Portable must skip the associated lookup declarations");
       }
       require(font.stringVariable("fontProfile") == "justification" &&
                   font.boolVariable("isJustificationProfile") && !font.boolVariable("isPortableProfile"),
